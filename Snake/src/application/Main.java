@@ -21,8 +21,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcTo;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.ClosePath;
+import javafx.scene.shape.HLineTo;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.VLineTo;
 import javafx.scene.text.Font;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.io.FileInputStream; 
+import java.io.FileNotFoundException; 
 
 public class Main extends Application {
 	// variable
@@ -31,18 +42,18 @@ public class Main extends Application {
 	static int foodcolor = 0;
 	static int width = 20;
 	static int height = 30;
-	static int foodX = width/2;
-	static int foodY = height/3;
+//	static int foodX = 5;
+//	static int foodY = height/3;
 	static int x=0;
 	static int y=0;
 	static int cornersize = 25;
 	static List<Corner> snake = new ArrayList<>();
-	static Corner food = new Corner(width/2,height/3);
+	static Corner food = new Corner(10,height/3);
 	static List<List<Corner>> mega= new ArrayList<List<Corner>>();
 	//static ball b=new ball(x,y);
 	static Dir direction = Dir.left;
 	static boolean gameOver = false;
-	
+	static ArcTo arcTo;
 	
 	static Random rand = new Random();
 	
@@ -58,7 +69,8 @@ public class Main extends Application {
 		Circle circle = new Circle();
 		public ball(int x, int y) {
 			circle.setCenterX(250); 
-			circle.setCenterY(650); 
+			circle.setCenterY(650
+					); 
 			circle.setRadius(15 );
 			circle.setFill(Color.GREEN);
 		}	
@@ -81,6 +93,34 @@ public class Main extends Application {
 			this.y = y;
 		}
 
+	}
+	
+	public static class Star{
+        // Create a Triangle
+        //arcTo = new ArcTo();
+        
+        // Use the arcTo element to build a Path
+//        Path path = new Path(new MoveTo(0, 0),
+//            new VLineTo(100),
+//            new HLineTo(100),
+//            new VLineTo(50),
+//            arcTo);
+//        
+//        public Path star() {
+//        	return path;
+//        }
+		public ImageView star() throws FileNotFoundException{
+		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\unnamed.png"));
+		ImageView imageView = new ImageView(image);
+		imageView.setX(230); 
+	    imageView.setY(400);
+	    imageView.setFitHeight(50); 
+	    imageView.setFitWidth(100);
+	    imageView.setPreserveRatio(true);
+	    return imageView;
+		}
+	    
+		
 	}
 	
 	public static List<Corner> generate(GraphicsContext gc) {
@@ -159,6 +199,8 @@ public class Main extends Application {
 		try {
 			//newFood();
 			Circle ball = new Circle(x, Color.DARKSLATEBLUE);
+			Star s=new Star();
+			ImageView p=s.star();
 			var root = new Pane();
 			//VBox root = new VBox();
 			Canvas c = new Canvas(width * cornersize, height * cornersize);
@@ -168,6 +210,7 @@ public class Main extends Application {
 			root.getChildren().add(c);
 			
 			root.getChildren().add(b.circle);
+			root.getChildren().add(p);
 			List<Corner> obstacle = generate(gc);
 			mega.add(obstacle);
 			//root.getChildren().add(ball);
@@ -493,22 +536,22 @@ public class Main extends Application {
 	}
 
 	// food
-	public static void newFood() {
-		
-			foodX = width/2;
-			foodY = height/3;
-
-//			for (Corner c : snake) {
-//				if (c.x == foodX && c.y == foodY) {
-//					continue start;
-//				}
-//			}
-			foodcolor = rand.nextInt(3);
-			//speed++;
-			//break;
-
-		
-	}
+//	public static void newFood() {
+//		
+//			foodX = 1;
+//			foodY = height/2;
+//
+////			for (Corner c : snake) {
+////				if (c.x == foodX && c.y == foodY) {
+////					continue start;
+////				}
+////			}
+//			foodcolor = rand.nextInt(3);
+//			//speed++;
+//			//break;
+//
+//		
+//	}
 
 	public static void main(String[] args) {
 		launch(args);
