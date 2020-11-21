@@ -77,18 +77,13 @@ public class Main extends Application {
 		l.setEndY(400);
 		l.setStroke(Color.PINK);
 		l.setStrokeWidth(10);
-//		rectangle4.setX(350); 
-//		rectangle4.setY(350); 
-//		rectangle4.setWidth(110); 
-//		rectangle4.setHeight(10);
-//		rectangle4.setFill(Color.BLUE);
 		return l;
 		}
 		public Line line2() {
 			l2.setStartX(250);
 			l2.setStartY(400);
 			l2.setEndX(300);
-			l2.setEndY(425);
+			l2.setEndY(450);
 			l2.setStroke(Color.YELLOW);
 			l2.setStrokeWidth(10);
 			return l2;
@@ -97,7 +92,7 @@ public class Main extends Application {
 			l3.setStartX(250);
 			l3.setStartY(400);
 			l3.setEndX(200);
-			l3.setEndY(425);
+			l3.setEndY(450);
 			l3.setStroke(Color.GREEN);
 			l3.setStrokeWidth(10);
 			return l3;
@@ -111,6 +106,50 @@ public class Main extends Application {
 			l4.setStartY(350);
 			l4.setEndX(250);
 			l4.setEndY(400);
+			l4.setStroke(Color.BLUE);
+			l4.setStrokeWidth(10);
+			return l4;
+		}
+	}
+	
+	public static class Diamond{
+		Line l = new Line();
+		Line l2 = new Line();
+		Line l3 = new Line();
+		Line l4 = new Line();
+		Rectangle rectangle4=new Rectangle();
+		public Line line1() {
+		l.setStartX(300);
+		l.setStartY(480);
+		l.setEndX(270);
+		l.setEndY(530);
+		l.setStroke(Color.PINK);
+		l.setStrokeWidth(10);
+		return l;
+		}
+		public Line line2() {
+			l2.setStartX(270);
+			l2.setStartY(532);
+			l2.setEndX(200);
+			l2.setEndY(532);
+			l2.setStroke(Color.YELLOW);
+			l2.setStrokeWidth(10);
+			return l2;
+		}
+		public Line line3() {
+			l3.setStartX(230);
+			l3.setStartY(480);
+			l3.setEndX(200);
+			l3.setEndY(530);
+			l3.setStroke(Color.GREEN);
+			l3.setStrokeWidth(10);
+			return l3;
+		}
+		public Line line4() {
+			l4.setStartX(230);
+			l4.setStartY(480);
+			l4.setEndX(300);
+			l4.setEndY(480);
 			l4.setStroke(Color.BLUE);
 			l4.setStrokeWidth(10);
 			return l4;
@@ -353,6 +392,7 @@ public class Main extends Application {
 			ImageView p=s.star();
 			Square sq=new Square();
 			Quad q=new Quad();
+			Diamond d=new Diamond();
 			Cross cr=new Cross();
 			var root = new Pane();
 			//VBox root = new VBox();
@@ -366,6 +406,11 @@ public class Main extends Application {
 			root.getChildren().add(cr.line3());
 			root.getChildren().add(cr.line4());
 			
+			root.getChildren().add(d.line1());
+			root.getChildren().add(d.line2());
+			root.getChildren().add(d.line3());
+			root.getChildren().add(d.line4());
+		
 			root.getChildren().add(b.circle);
 			root.getChildren().add(p);
 			root.getChildren().add(q.arc1());
@@ -600,22 +645,22 @@ public class Main extends Application {
 		if (food.color==1) {
 			gc.setFill(Color.GREEN);
 			
-			gc.fillOval(240, 550, 30 , 30 );
+			gc.fillOval(240, 570, 30 , 30 );
 		}
 		if (food.color==2) {
 			gc.setFill(Color.PINK);
 			
-			gc.fillOval(240, 550, 30 , 30 );
+			gc.fillOval(240, 570, 30 , 30 );
 		}
 		if (food.color==3) {
 			gc.setFill(Color.YELLOW);
 			
-			gc.fillOval(240, 550, 30 , 30 );
+			gc.fillOval(240, 570, 30 , 30 );
 		}
 		if (food.color==4) {
 			gc.setFill(Color.BLUE);
 			
-			gc.fillOval(240, 550, 30 , 30 );
+			gc.fillOval(240, 570, 30 , 30 );
 		}
 		
 		//int i=0;
