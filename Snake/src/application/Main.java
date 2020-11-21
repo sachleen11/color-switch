@@ -22,7 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcTo;
+import javafx.scene.shape.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.ClosePath;
 import javafx.scene.shape.HLineTo;
@@ -36,6 +36,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException; 
+import javafx.scene.shape.Arc;
 
 public class Main extends Application {
 	// variable
@@ -43,14 +44,14 @@ public class Main extends Application {
 	static int speed = 5;
 	static int foodcolor = 0;
 	static int width = 20;
-	static int height = 30;
+	static int height = 35;
 //	static int foodX = 5;
 //	static int foodY = height/3;
 	static int x=0;
 	static int y=0;
 	static int cornersize = 25;
 	static List<Corner> snake = new ArrayList<>();
-	static Corner food = new Corner(10,13);
+	static Corner food = new Corner(10,20);
 	static List<List<Corner>> mega= new ArrayList<List<Corner>>();
 	//static ball b=new ball(x,y);
 	static Dir direction = Dir.left;
@@ -71,7 +72,7 @@ public class Main extends Application {
 		Circle circle = new Circle();
 		public ball(int x, int y) {
 			circle.setCenterX(250); 
-			circle.setCenterY(650
+			circle.setCenterY(800
 					); 
 			circle.setRadius(15 );
 			circle.setFill(Color.GREEN);
@@ -82,6 +83,58 @@ public class Main extends Application {
 			
 			
 			return circle;
+		}
+	}
+	
+	
+	public static class Quad{
+		Arc arc1 = new Arc();
+		Arc arc2= new Arc();
+		Arc arc3 = new Arc();
+		Arc arc4 = new Arc();
+		public Arc arc1() {
+			arc1.setCenterX(250.0f); 
+			arc1.setCenterY(280); 
+			arc1.setRadiusX(50); 
+			arc1.setRadiusY(50);
+	        arc1.setStartAngle(0.0f); 
+	        arc1.setLength(90.0f); 
+	        arc1.setStrokeWidth(10);
+			arc1.setStroke(Color.PINK);
+			return arc1;
+		}
+		public Arc arc2() {
+			arc2.setCenterX(250.0f); 
+			arc2.setCenterY(280); 
+			arc2.setRadiusX(50); 
+			arc2.setRadiusY(50);
+			arc2.setStartAngle(90.0f); 
+			arc2.setLength(90.0f); 
+			arc2.setStrokeWidth(10);
+			arc2.setStroke(Color.GREEN);
+			return arc2;
+		}
+		public Arc arc3() {
+			arc3.setCenterX(250.0f); 
+			arc3.setCenterY(280); 
+			arc3.setRadiusX(50); 
+			arc3.setRadiusY(50);
+			arc3.setStartAngle(180.0f); 
+			arc3.setLength(90.0f); 
+			arc3.setStrokeWidth(10);
+			arc3.setStroke(Color.YELLOW);
+			return arc3;
+		}
+		public Arc arc4() {
+			arc4.setCenterX(250.0f); 
+			arc4.setCenterY(280); 
+			arc4.setRadiusX(50); 
+			arc4.setRadiusY(50);
+			arc4.setStartAngle(270.0f); 
+			arc4.setLength(90.0f); 
+			arc4.setStrokeWidth(10);
+			arc4.setStroke(Color.BLUE);
+			return arc4;
 		}
 	}
 	
@@ -172,7 +225,7 @@ public class Main extends Application {
 		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\unnamed.png"));
 		ImageView imageView = new ImageView(image);
 		imageView.setX(230); 
-	    imageView.setY(400);
+	    imageView.setY(625);
 	    imageView.setFitHeight(50); 
 	    imageView.setFitWidth(100);
 	    imageView.setPreserveRatio(true);
@@ -184,26 +237,10 @@ public class Main extends Application {
 	
 	public static List<Corner> generate(GraphicsContext gc) {
 		 List<Corner> obstacle = new ArrayList<>();
-		obstacle.add(new Corner(width ,2* height /3 ));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width ,2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
-		obstacle.add(new Corner(width , 2* height /3));
+		 
+		 for (int i=0;i<20;i++) {
+		obstacle.add(new Corner(width ,4* height /5 ));
+}
 
 		return obstacle;
 	}
@@ -257,10 +294,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			//newFood();
+			
+			
 			Circle ball = new Circle(x, Color.DARKSLATEBLUE);
 			Star s=new Star();
 			ImageView p=s.star();
 			Square sq=new Square();
+			Quad q=new Quad();
 			var root = new Pane();
 			//VBox root = new VBox();
 			Canvas c = new Canvas(width * cornersize, height * cornersize);
@@ -271,6 +311,11 @@ public class Main extends Application {
 			
 			root.getChildren().add(b.circle);
 			root.getChildren().add(p);
+			root.getChildren().add(q.arc1());
+			root.getChildren().add(q.arc2());
+			root.getChildren().add(q.arc3());
+			root.getChildren().add(q.arc4());
+			
 			root.getChildren().add(sq.square1());
 			root.getChildren().add(sq.square2());
 			root.getChildren().add(sq.square3());
@@ -498,22 +543,22 @@ public class Main extends Application {
 		if (food.color==1) {
 			gc.setFill(Color.GREEN);
 			
-			gc.fillOval(240, 325, 30 , 30 );
+			gc.fillOval(240, 550, 30 , 30 );
 		}
 		if (food.color==2) {
 			gc.setFill(Color.PINK);
 			
-			gc.fillOval(240, 325, 30 , 30 );
+			gc.fillOval(240, 550, 30 , 30 );
 		}
 		if (food.color==3) {
 			gc.setFill(Color.YELLOW);
 			
-			gc.fillOval(240, 325, 30 , 30 );
+			gc.fillOval(240, 550, 30 , 30 );
 		}
 		if (food.color==4) {
 			gc.setFill(Color.BLUE);
 			
-			gc.fillOval(240, 325, 30 , 30 );
+			gc.fillOval(240, 550, 30 , 30 );
 		}
 		
 		//int i=0;
