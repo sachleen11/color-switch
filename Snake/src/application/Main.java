@@ -11,6 +11,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -32,6 +33,7 @@ import javafx.scene.shape.VLineTo;
 import javafx.scene.text.Font;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException; 
 
@@ -48,7 +50,7 @@ public class Main extends Application {
 	static int y=0;
 	static int cornersize = 25;
 	static List<Corner> snake = new ArrayList<>();
-	static Corner food = new Corner(10,height/3);
+	static Corner food = new Corner(10,13);
 	static List<List<Corner>> mega= new ArrayList<List<Corner>>();
 	//static ball b=new ball(x,y);
 	static Dir direction = Dir.left;
@@ -81,6 +83,63 @@ public class Main extends Application {
 			
 			return circle;
 		}
+	}
+	
+	public static class Square{
+		
+		Rectangle rectangle = new Rectangle();
+		Rectangle rectangle2 = new Rectangle();
+		Rectangle rectangle3 = new Rectangle();
+		Rectangle rectangle4 = new Rectangle();
+		public Rectangle square1() {
+		      rectangle.setX(300); 
+		      rectangle.setY(100); 
+		      rectangle.setWidth(10); 
+		      rectangle.setHeight(100);
+		      rectangle.setFill(Color.PINK);
+
+		      
+		      Group g=new Group();
+		      
+		      return rectangle;
+		}
+		public Rectangle square2() {
+
+			rectangle2.setX(200); 
+			rectangle2.setY(100); 
+			rectangle2.setWidth(10); 
+			rectangle2.setHeight(100);
+			rectangle2.setFill(Color.GREEN);
+
+			
+			Group g=new Group();
+			
+			return rectangle2;
+		}
+		public Rectangle square3() {
+
+			rectangle3.setX(200); 
+			rectangle3.setY(100); 
+			rectangle3.setWidth(100); 
+			rectangle3.setHeight(10);
+			rectangle3.setFill(Color.YELLOW);
+
+			
+			//Group g=new Group();
+			
+			return rectangle3;
+		}
+		public Rectangle square4() {
+
+			rectangle4.setX(200); 
+			rectangle4.setY(200); 
+			rectangle4.setWidth(110); 
+			rectangle4.setHeight(10);
+			rectangle4.setFill(Color.BLUE);
+
+			return rectangle4;
+		}
+		
 	}
 
 	public static class Corner {
@@ -201,6 +260,7 @@ public class Main extends Application {
 			Circle ball = new Circle(x, Color.DARKSLATEBLUE);
 			Star s=new Star();
 			ImageView p=s.star();
+			Square sq=new Square();
 			var root = new Pane();
 			//VBox root = new VBox();
 			Canvas c = new Canvas(width * cornersize, height * cornersize);
@@ -211,6 +271,10 @@ public class Main extends Application {
 			
 			root.getChildren().add(b.circle);
 			root.getChildren().add(p);
+			root.getChildren().add(sq.square1());
+			root.getChildren().add(sq.square2());
+			root.getChildren().add(sq.square3());
+			root.getChildren().add(sq.square4());
 			List<Corner> obstacle = generate(gc);
 			mega.add(obstacle);
 			//root.getChildren().add(ball);
@@ -434,22 +498,22 @@ public class Main extends Application {
 		if (food.color==1) {
 			gc.setFill(Color.GREEN);
 			
-			gc.fillOval(food.x * cornersize, food.y * cornersize, cornersize - 1, cornersize - 1);
+			gc.fillOval(240, 325, 30 , 30 );
 		}
 		if (food.color==2) {
 			gc.setFill(Color.PINK);
 			
-			gc.fillOval(food.x * cornersize, food.y * cornersize, cornersize - 1, cornersize - 1);
+			gc.fillOval(240, 325, 30 , 30 );
 		}
 		if (food.color==3) {
 			gc.setFill(Color.YELLOW);
 			
-			gc.fillOval(food.x * cornersize, food.y * cornersize, cornersize - 1, cornersize - 1);
+			gc.fillOval(240, 325, 30 , 30 );
 		}
 		if (food.color==4) {
 			gc.setFill(Color.BLUE);
 			
-			gc.fillOval(food.x * cornersize, food.y * cornersize, cornersize - 1, cornersize - 1);
+			gc.fillOval(240, 325, 30 , 30 );
 		}
 		
 		//int i=0;
