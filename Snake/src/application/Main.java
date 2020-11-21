@@ -14,6 +14,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +23,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.ClosePath;
@@ -75,7 +80,7 @@ public class Main extends Application {
 		l.setStartY(350);
 		l.setEndX(250);
 		l.setEndY(400);
-		l.setStroke(Color.PINK);
+		l.setStroke(Color.web("ED476F",1.0));
 		l.setStrokeWidth(10);
 		return l;
 		}
@@ -84,7 +89,7 @@ public class Main extends Application {
 			l2.setStartY(400);
 			l2.setEndX(300);
 			l2.setEndY(450);
-			l2.setStroke(Color.YELLOW);
+			l2.setStroke(Color.web("FAD167",1.0));
 			l2.setStrokeWidth(10);
 			return l2;
 		}
@@ -93,7 +98,7 @@ public class Main extends Application {
 			l3.setStartY(400);
 			l3.setEndX(200);
 			l3.setEndY(450);
-			l3.setStroke(Color.GREEN);
+			l3.setStroke(Color.web("61D8A2",1.0));
 			l3.setStrokeWidth(10);
 			return l3;
 		}
@@ -106,7 +111,7 @@ public class Main extends Application {
 			l4.setStartY(350);
 			l4.setEndX(250);
 			l4.setEndY(400);
-			l4.setStroke(Color.BLUE);
+			l4.setStroke(Color.web("368BB2",1.0));
 			l4.setStrokeWidth(10);
 			return l4;
 		}
@@ -123,8 +128,8 @@ public class Main extends Application {
 		l.setStartY(480);
 		l.setEndX(270);
 		l.setEndY(530);
-		l.setStroke(Color.PINK);
-		l.setStrokeWidth(10);
+		l.setStroke(Color.web("ED476F",1.0));
+		l.setStrokeWidth(5);
 		return l;
 		}
 		public Line line2() {
@@ -132,8 +137,8 @@ public class Main extends Application {
 			l2.setStartY(532);
 			l2.setEndX(200);
 			l2.setEndY(532);
-			l2.setStroke(Color.YELLOW);
-			l2.setStrokeWidth(10);
+			l2.setStroke(Color.web("FAD167",1.0));
+			l2.setStrokeWidth(5);
 			return l2;
 		}
 		public Line line3() {
@@ -141,8 +146,8 @@ public class Main extends Application {
 			l3.setStartY(480);
 			l3.setEndX(200);
 			l3.setEndY(530);
-			l3.setStroke(Color.GREEN);
-			l3.setStrokeWidth(10);
+			l3.setStroke(Color.web("61D8A2",1.0));
+			l3.setStrokeWidth(5);
 			return l3;
 		}
 		public Line line4() {
@@ -150,8 +155,8 @@ public class Main extends Application {
 			l4.setStartY(480);
 			l4.setEndX(300);
 			l4.setEndY(480);
-			l4.setStroke(Color.BLUE);
-			l4.setStrokeWidth(10);
+			l4.setStroke(Color.web("368BB2",1.0));
+			l4.setStrokeWidth(5);
 			return l4;
 		}
 	}
@@ -166,7 +171,7 @@ public class Main extends Application {
 			circle.setCenterY(800
 					); 
 			circle.setRadius(15 );
-			circle.setFill(Color.GREEN);
+			circle.setFill(Color.web("F8FDE6",1.0));
 		}	
 		
 		public Circle cir() {
@@ -191,7 +196,8 @@ public class Main extends Application {
 	        arc1.setStartAngle(0.0f); 
 	        arc1.setLength(90.0f); 
 	        arc1.setStrokeWidth(10);
-			arc1.setStroke(Color.PINK);
+			arc1.setStroke(Color.web("ED476F",1.0));
+			arc1.setFill(Color.web("061731",1.0));
 			return arc1;
 		}
 		public Arc arc2() {
@@ -202,7 +208,8 @@ public class Main extends Application {
 			arc2.setStartAngle(90.0f); 
 			arc2.setLength(90.0f); 
 			arc2.setStrokeWidth(10);
-			arc2.setStroke(Color.GREEN);
+			arc2.setFill(Color.web("061731",1.0));
+			arc2.setStroke(Color.web("61D8A2",1.0));
 			return arc2;
 		}
 		public Arc arc3() {
@@ -213,7 +220,8 @@ public class Main extends Application {
 			arc3.setStartAngle(180.0f); 
 			arc3.setLength(90.0f); 
 			arc3.setStrokeWidth(10);
-			arc3.setStroke(Color.YELLOW);
+			arc3.setFill(Color.web("061731",1.0));
+			arc3.setStroke(Color.web("FAD167",1.0));
 			return arc3;
 		}
 		public Arc arc4() {
@@ -224,7 +232,8 @@ public class Main extends Application {
 			arc4.setStartAngle(270.0f); 
 			arc4.setLength(90.0f); 
 			arc4.setStrokeWidth(10);
-			arc4.setStroke(Color.BLUE);
+			arc4.setFill(Color.web("061731",1.0));
+			arc4.setStroke(Color.web("368BB2",1.0));
 			return arc4;
 		}
 	}
@@ -236,11 +245,13 @@ public class Main extends Application {
 		Rectangle rectangle3 = new Rectangle();
 		Rectangle rectangle4 = new Rectangle();
 		public Rectangle square1() {
+	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTPINK), new Stop(1, Color.CORAL)};  
+	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops); 
 		      rectangle.setX(300); 
 		      rectangle.setY(100); 
 		      rectangle.setWidth(10); 
 		      rectangle.setHeight(100);
-		      rectangle.setFill(Color.PINK);
+		      rectangle.setFill(Color.web("ED476F",1.0));
 
 		      
 		      Group g=new Group();
@@ -248,12 +259,13 @@ public class Main extends Application {
 		      return rectangle;
 		}
 		public Rectangle square2() {
-
+	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTGREEN), new Stop(1, Color.FORESTGREEN)};  
+	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops); 
 			rectangle2.setX(200); 
 			rectangle2.setY(100); 
 			rectangle2.setWidth(10); 
 			rectangle2.setHeight(100);
-			rectangle2.setFill(Color.GREEN);
+			rectangle2.setFill(Color.web("61D8A2",1.0));
 
 			
 			Group g=new Group();
@@ -261,12 +273,14 @@ public class Main extends Application {
 			return rectangle2;
 		}
 		public Rectangle square3() {
+	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTGOLDENRODYELLOW), new Stop(1, Color.YELLOW)};  
+	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops); 
 
 			rectangle3.setX(200); 
 			rectangle3.setY(100); 
 			rectangle3.setWidth(100); 
 			rectangle3.setHeight(10);
-			rectangle3.setFill(Color.YELLOW);
+			rectangle3.setFill(Color.web("FAD167",1.0));
 
 			
 			//Group g=new Group();
@@ -274,12 +288,13 @@ public class Main extends Application {
 			return rectangle3;
 		}
 		public Rectangle square4() {
-
+	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTBLUE), new Stop(1, Color.BLUE)};  
+	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops); 
 			rectangle4.setX(200); 
 			rectangle4.setY(200); 
 			rectangle4.setWidth(110); 
 			rectangle4.setHeight(10);
-			rectangle4.setFill(Color.BLUE);
+			rectangle4.setFill(Color.web("368BB2",1.0));
 
 			return rectangle4;
 		}
@@ -313,7 +328,7 @@ public class Main extends Application {
 //        	return path;
 //        }
 		public ImageView star() throws FileNotFoundException{
-		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\unnamed.png"));
+		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png"));
 		ImageView imageView = new ImageView(image);
 		imageView.setX(230); 
 	    imageView.setY(625);
@@ -389,7 +404,26 @@ public class Main extends Application {
 			
 			Circle ball = new Circle(x, Color.DARKSLATEBLUE);
 			Star s=new Star();
+
+			DropShadow dropShadow = new DropShadow();
+			dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
+			dropShadow.setColor(Color.PERU);
+		      dropShadow.setHeight(5); 
+		      
+		      //Setting the width of the shadow 
+		      dropShadow.setWidth(5); 
+		      
+		      //Setting the radius of the shadow 
+		      dropShadow.setRadius(5); 
+		      
+		      //setting the offset of the shadow 
+		      dropShadow.setOffsetX(3); 
+		      dropShadow.setOffsetY(2); 
+		      
+		      //Setting the spread of the shadow 
+		      dropShadow.setSpread(5);
 			ImageView p=s.star();
+			//p.setEffect(dropShadow);
 			Square sq=new Square();
 			Quad q=new Quad();
 			Diamond d=new Diamond();
@@ -397,6 +431,7 @@ public class Main extends Application {
 			var root = new Pane();
 			//VBox root = new VBox();
 			Canvas c = new Canvas(width * cornersize, height * cornersize);
+			
 			GraphicsContext gc = c.getGraphicsContext2D();
 			ball b=new ball(width/3,height/3);
 			//root.getChildren().add(b.cir());
@@ -417,7 +452,7 @@ public class Main extends Application {
 			root.getChildren().add(q.arc2());
 			root.getChildren().add(q.arc3());
 			root.getChildren().add(q.arc4());
-			
+			//sq.square4().setFill(linear);
 			root.getChildren().add(sq.square1());
 			root.getChildren().add(sq.square2());
 			root.getChildren().add(sq.square3());
@@ -589,11 +624,6 @@ public class Main extends Application {
 		}
 
 		// eat food
-//		if (foodX == snake.get(0).x && foodY == snake.get(0).y) {
-//			snake.add(new Corner(-1, -1));
-//			newFood();
-//		}
-
 		// self destroy
 		for (int i = 1; i < snake.size(); i++) {
 			if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
@@ -603,7 +633,7 @@ public class Main extends Application {
 
 		// fill
 		// background
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.web("061731",1.0));
 		gc.fillRect(0, 0, width * cornersize, height * cornersize);
 
 		// score
@@ -612,29 +642,30 @@ public class Main extends Application {
 		gc.fillText("Score: " + (speed - 6), 10, 30);
 
 		// random foodcolor
+		
 		Color cc = Color.WHITE;
 
-		switch (foodcolor) {
-		case 0:
-			cc = Color.GREEN;
-			break;
-		case 1:
-			cc = Color.PINK;
-			break;
-		case 2:
-			cc = Color.YELLOW;
-			break;
-		case 3:
-			cc = Color.BLUE;
-			break;
-		}
+//		switch (foodcolor) {
+//		case 0:
+//			cc = Color.web("#a719b4",1.0);
+//			break;
+//		case 1:
+//			cc = Color.PINK;
+//			break;
+//		case 2:
+//			cc = Color.web("FAD167",1.0);
+//			break;
+//		case 3:
+//			cc = Color.BLUE;
+//			break;
+//		}
 		gc.setFill(cc);
 		gc.fillOval(x* cornersize, y * cornersize, cornersize, cornersize);
 
 		// snake
 		for (Corner c : snake) {
 			c.color=1;
-			gc.setFill(Color.GREEN);
+			gc.setFill(Color.web("#a719b4",1.0));
 			gc.fillOval(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
 //			gc.setFill(Color.GREEN);
 //			gc.fillOval(c.x * cornersize, c.y * cornersize, cornersize - 2, cornersize - 2);
@@ -643,22 +674,22 @@ public class Main extends Application {
 		
 		food.color=rand.nextInt(3)+1;
 		if (food.color==1) {
-			gc.setFill(Color.GREEN);
+			gc.setFill(Color.web("61D8A2",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
 		if (food.color==2) {
-			gc.setFill(Color.PINK);
+			gc.setFill(Color.web("ED476F",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
 		if (food.color==3) {
-			gc.setFill(Color.YELLOW);
+			gc.setFill(Color.web("FAD167",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
 		if (food.color==4) {
-			gc.setFill(Color.BLUE);
+			gc.setFill(Color.web("368BB2",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
@@ -670,26 +701,30 @@ public class Main extends Application {
 		for (int i=0;i<5;i++) {
 			Corner c=obstacle.get(i);
 			c.color=2;
-			gc.setFill(Color.PINK);
+			gc.setFill(Color.web("ED476F",1.0));
 			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
+			gc.setStroke(Color.web("061731",1.0));
+			gc.setStroke(Color.web("061731",1.0));
 		}
 		for (int i=5;i<10;i++) {
 			Corner c=obstacle.get(i);
 			c.color=3;
-			gc.setFill(Color.YELLOW);
+			gc.setFill(Color.web("FAD167",1.0));
 			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
 		}
 		for (int i=10;i<15;i++) {
 			Corner c=obstacle.get(i);
 			c.color=4;
-			gc.setFill(Color.BLUE);
+			gc.setFill(Color.web("368BB2",1.0));
 			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
+			gc.setStroke(Color.web("061731",1.0));
 		}
 		for (int i=15;i<20;i++) {
 			Corner c=obstacle.get(i);
 			c.color=1;
-			gc.setFill(Color.GREEN);
+			gc.setFill(Color.web("61D8A2",1.0));
 			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
+			gc.setStroke(Color.web("061731",1.0));
 		}
 //		for (Corner c : obstacle) {
 //			gc.setFill(Color.PINK);
@@ -722,22 +757,22 @@ public class Main extends Application {
 			snake.get(0).y--;
 			if (ball.color==1) {
 				//Corner c=snake.get(0);
-				ball.circle.setFill(Color.GREEN);
+				ball.circle.setFill(Color.web("61D8A2",1.0));
 				
 				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
 			}
 			if (ball.color==2) {
-				ball.circle.setFill(Color.PINK);
+				ball.circle.setFill(Color.web("ED476F",1.0));
 				
 				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
 			}
 			if (ball.color==3) {
-				ball.circle.setFill(Color.YELLOW);
+				ball.circle.setFill(Color.web("FAD167",1.0));
 				
 				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
 			}
 			if (ball.color==4) {
-				ball.circle.setFill(Color.BLUE);
+				ball.circle.setFill(Color.web("368BB2",1.0));
 				
 				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
 			}
