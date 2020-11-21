@@ -6,7 +6,6 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -63,6 +62,59 @@ public class Main extends Application {
 	
 	public enum Dir {
 		left, right, up, down
+	}
+	
+	public static class Cross{
+		Line l = new Line();
+		Line l2 = new Line();
+		Line l3 = new Line();
+		Line l4 = new Line();
+		Rectangle rectangle4=new Rectangle();
+		public Line line1() {
+		l.setStartX(300);
+		l.setStartY(350);
+		l.setEndX(250);
+		l.setEndY(400);
+		l.setStroke(Color.PINK);
+		l.setStrokeWidth(10);
+//		rectangle4.setX(350); 
+//		rectangle4.setY(350); 
+//		rectangle4.setWidth(110); 
+//		rectangle4.setHeight(10);
+//		rectangle4.setFill(Color.BLUE);
+		return l;
+		}
+		public Line line2() {
+			l2.setStartX(250);
+			l2.setStartY(400);
+			l2.setEndX(300);
+			l2.setEndY(425);
+			l2.setStroke(Color.YELLOW);
+			l2.setStrokeWidth(10);
+			return l2;
+		}
+		public Line line3() {
+			l3.setStartX(250);
+			l3.setStartY(400);
+			l3.setEndX(200);
+			l3.setEndY(425);
+			l3.setStroke(Color.GREEN);
+			l3.setStrokeWidth(10);
+			return l3;
+		}
+		public Line line4() {
+//			l4.setStartX(250);
+//			l4.setStartY(400);
+//			l4.setEndX(200);
+//			l4.setEndY(450);
+			l4.setStartX(200);
+			l4.setStartY(350);
+			l4.setEndX(250);
+			l4.setEndY(400);
+			l4.setStroke(Color.BLUE);
+			l4.setStrokeWidth(10);
+			return l4;
+		}
 	}
 	
 	public static class ball{
@@ -301,6 +353,7 @@ public class Main extends Application {
 			ImageView p=s.star();
 			Square sq=new Square();
 			Quad q=new Quad();
+			Cross cr=new Cross();
 			var root = new Pane();
 			//VBox root = new VBox();
 			Canvas c = new Canvas(width * cornersize, height * cornersize);
@@ -308,6 +361,10 @@ public class Main extends Application {
 			ball b=new ball(width/3,height/3);
 			//root.getChildren().add(b.cir());
 			root.getChildren().add(c);
+			root.getChildren().add(cr.line1());
+			root.getChildren().add(cr.line2());
+			root.getChildren().add(cr.line3());
+			root.getChildren().add(cr.line4());
 			
 			root.getChildren().add(b.circle);
 			root.getChildren().add(p);
