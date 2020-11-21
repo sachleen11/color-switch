@@ -30,7 +30,7 @@ public class Main extends Application {
 	static int speed = 5;
 	static int foodcolor = 0;
 	static int width = 20;
-	static int height = 20;
+	static int height = 30;
 	static int foodX = width/2;
 	static int foodY = height/3;
 	static int x=0;
@@ -58,7 +58,7 @@ public class Main extends Application {
 		Circle circle = new Circle();
 		public ball(int x, int y) {
 			circle.setCenterX(250); 
-			circle.setCenterY(450); 
+			circle.setCenterY(650); 
 			circle.setRadius(15 );
 			circle.setFill(Color.GREEN);
 		}	
@@ -85,26 +85,26 @@ public class Main extends Application {
 	
 	public static List<Corner> generate(GraphicsContext gc) {
 		 List<Corner> obstacle = new ArrayList<>();
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
-		obstacle.add(new Corner(width , height / 2));
+		obstacle.add(new Corner(width ,2* height /3 ));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width ,2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
+		obstacle.add(new Corner(width , 2* height /3));
 
 		return obstacle;
 	}
