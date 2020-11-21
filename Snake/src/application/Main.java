@@ -341,14 +341,61 @@ public class Main extends Application {
 		
 	}
 	
-	public static List<Corner> generate(GraphicsContext gc) {
+	public static List<Rectangle> generate(GraphicsContext gc) {
 		 List<Corner> obstacle = new ArrayList<>();
-		 
-		 for (int i=0;i<20;i++) {
+		 List<Rectangle> Linear = new ArrayList<>();
+		 int j=500;
+		 for (int i=0;i<5;i++) {
+			 Rectangle r=new Rectangle();
+				r.setX(j); 
+				r.setY(700); 
+				r.setWidth(30); 
+				r.setHeight(30);
+				r.setFill(Color.web("ED476F",1.0));
+				r.setStroke(Color.web("061731",1.0));
+				Linear.add(r);
 		obstacle.add(new Corner(width ,4* height /5 ));
+		j=j+30;
+}
+		 for (int i=5;i<10;i++) {
+			 Rectangle r=new Rectangle();
+				r.setX(j); 
+				r.setY(700); 
+				r.setWidth(30); 
+				r.setHeight(30);
+				r.setFill(Color.web("61D8A2",1.0));
+				//r.setStroke(Color.web("61D8A2",1.0));
+				r.setStroke(Color.web("061731",1.0));
+				Linear.add(r);
+		obstacle.add(new Corner(width ,4* height /5 ));
+		j=j+30;
+}
+		 for (int i=10;i<15;i++) {
+			 Rectangle r=new Rectangle();
+				r.setX(j); 
+				r.setY(700); 
+				r.setWidth(30); 
+				r.setHeight(30);
+				r.setFill(Color.web("FAD167",1.0));
+				r.setStroke(Color.web("061731",1.0));
+				Linear.add(r);
+		obstacle.add(new Corner(width ,4* height /5 ));
+		j=j+30;
+}
+		 for (int i=15;i<20;i++) {
+			 Rectangle r=new Rectangle();
+				r.setX(j); 
+				r.setY(700); 
+				r.setWidth(30); 
+				r.setHeight(30);
+				r.setFill(Color.web("368BB2",1.0));
+				r.setStroke(Color.web("061731",1.0));
+				Linear.add(r);
+		obstacle.add(new Corner(width ,4* height /5 ));
+		j=j+30;
 }
 
-		return obstacle;
+		return Linear;
 	}
 	
 	
@@ -457,8 +504,11 @@ public class Main extends Application {
 			root.getChildren().add(sq.square2());
 			root.getChildren().add(sq.square3());
 			root.getChildren().add(sq.square4());
-			List<Corner> obstacle = generate(gc);
-			mega.add(obstacle);
+			List<Rectangle> obstacle = generate(gc);
+			for (int i=0;i<20;i++) {
+				root.getChildren().add(obstacle.get(i));
+			}
+			//mega.add(obstacle);
 			//root.getChildren().add(ball);
 
 			new AnimationTimer() {
@@ -535,7 +585,7 @@ public class Main extends Application {
 	}
 
 	// tick
-	public static void tick(GraphicsContext gc,List<Corner> obstacle,ball ball) {
+	public static void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball) {
 		if (gameOver) {
 			gc.setFill(Color.RED);
 			gc.setFont(new Font("", 50));
@@ -559,8 +609,9 @@ public class Main extends Application {
 			//List<Corner> obstacle2 = mega.get(0);
 		for (int i = obstacle.size() - 1; i >= 1; i--) {
 
-			obstacle.get(i).x = obstacle.get(i - 1).x;
-			obstacle.get(i).y = obstacle.get(i - 1).y;
+			obstacle.get(i).setX(obstacle.get(i - 1).getX());
+			obstacle.get(i).setY(obstacle.get(i - 1).getY());
+			//obstacle.get(i).y = obstacle.get(i - 1).y;
 		}
 		
 
@@ -568,7 +619,8 @@ public class Main extends Application {
 		case up:
 			
 			//snake.get(0).y--;
-			obstacle.get(0).x--;
+			//obstacle.get(0).x--;
+			obstacle.get(0).setX(obstacle.get(0).getX()-30);
 			int i=(int)ball.circle.getCenterY();
 			i=i-30;
 			ball.circle.setCenterY(i);
@@ -582,7 +634,8 @@ public class Main extends Application {
 			break;
 		case down:
 			snake.get(0).y++;
-			obstacle.get(0).x--;
+			//obstacle.get(0).x--;
+			obstacle.get(0).setX(obstacle.get(0).getX()-30);
 			int j=(int)ball.circle.getCenterY();
 			j=j+30;
 			ball.circle.setCenterY(j);
@@ -593,7 +646,8 @@ public class Main extends Application {
 			break;
 		case left:
 			snake.get(0).x=width/2;
-			obstacle.get(0).x--;
+			//obstacle.get(0).x--;
+			obstacle.get(0).setX(obstacle.get(0).getX()-30);
 //			j=(int)ball.circle.getCenterY();
 //			j=j+30;
 //			ball.circle.setCenterY(j);
@@ -699,33 +753,34 @@ public class Main extends Application {
 			//
 		//List<Corner> obstacle = mega.get(0);
 		for (int i=0;i<5;i++) {
-			Corner c=obstacle.get(i);
-			c.color=2;
-			gc.setFill(Color.web("ED476F",1.0));
-			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-			gc.setStroke(Color.web("061731",1.0));
-			gc.setStroke(Color.web("061731",1.0));
+			Rectangle c=obstacle.get(i);
+//			c.color=2;
+//			gc.setFill(Color.web("ED476F",1.0));
+//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
+//			gc.setStroke(Color.web("061731",1.0));
+//			gc.setStroke(Color.web("061731",1.0));
+			
 		}
-		for (int i=5;i<10;i++) {
-			Corner c=obstacle.get(i);
-			c.color=3;
-			gc.setFill(Color.web("FAD167",1.0));
-			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-		}
-		for (int i=10;i<15;i++) {
-			Corner c=obstacle.get(i);
-			c.color=4;
-			gc.setFill(Color.web("368BB2",1.0));
-			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-			gc.setStroke(Color.web("061731",1.0));
-		}
-		for (int i=15;i<20;i++) {
-			Corner c=obstacle.get(i);
-			c.color=1;
-			gc.setFill(Color.web("61D8A2",1.0));
-			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-			gc.setStroke(Color.web("061731",1.0));
-		}
+//		for (int i=5;i<10;i++) {
+//			Corner c=obstacle.get(i);
+//			c.color=3;
+//			gc.setFill(Color.web("FAD167",1.0));
+//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
+//		}
+//		for (int i=10;i<15;i++) {
+//			Corner c=obstacle.get(i);
+//			c.color=4;
+//			gc.setFill(Color.web("368BB2",1.0));
+//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
+//			gc.setStroke(Color.web("061731",1.0));
+//		}
+//		for (int i=15;i<20;i++) {
+//			Corner c=obstacle.get(i);
+//			c.color=1;
+//			gc.setFill(Color.web("61D8A2",1.0));
+//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
+//			gc.setStroke(Color.web("061731",1.0));
+//		}
 //		for (Corner c : obstacle) {
 //			gc.setFill(Color.PINK);
 //			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
@@ -739,17 +794,17 @@ public class Main extends Application {
 //			//action(mega,gc);
 //			
 //		}
-		if (ball.circle.getCenterY()==240) {
-			//ball.circle.setFill(Color.PINK);
+		if (ball.circle.getCenterY()==710) {
+			ball.circle.setFill(Color.PINK);
 		for (int i=0;i<obstacle.size();i++) {
-			if (obstacle.get(i).x==width/2 && obstacle.get(i).y==height/2) {
-				if (ball.color!=obstacle.get(i).color) {
+			if (obstacle.get(i).getX()==260) {
+				if (ball.circle.getFill()!=obstacle.get(i).getFill()) {
 					gameOver=true;
 				}
 			}
 		}}
 		
-		if (ball.circle.getCenterY()==210) {
+		if (ball.circle.getCenterY()==560) {
 			ball.color=food.color;
 			// 450-x=3y
 			//ball.circle.setFill(Color.PINK);
