@@ -56,7 +56,7 @@ public class Main extends Application {
 	static int cornersize = 25;
 	static List<Corner> snake = new ArrayList<>();
 	static Corner food = new Corner(10,20);
-	static List<List<Corner>> mega= new ArrayList<List<Corner>>();
+	static List<List<Rectangle>> mega= new ArrayList<List<Rectangle>>();
 	//static ball b=new ball(x,y);
 	static Dir direction = Dir.left;
 	static boolean gameOver = false;
@@ -235,6 +235,20 @@ public class Main extends Application {
 			arc4.setFill(Color.web("061731",1.0));
 			arc4.setStroke(Color.web("368BB2",1.0));
 			return arc4;
+		}
+		
+		public void inf(boolean v) {
+			int i=0;
+			boolean loop=true;
+			int angle=0;
+			while (!v) {
+				arc1.setStartAngle(arc1.getStartAngle()+angle);
+				arc2.setStartAngle(arc2.getStartAngle()+angle);
+				arc3.setStartAngle(arc3.getStartAngle()+angle);
+				arc4.setStartAngle(arc4.getStartAngle()+angle);
+				angle=angle+90;
+				i++;
+			}
 		}
 	}
 	
@@ -499,16 +513,23 @@ public class Main extends Application {
 			root.getChildren().add(q.arc2());
 			root.getChildren().add(q.arc3());
 			root.getChildren().add(q.arc4());
+			//q.inf();
 			//sq.square4().setFill(linear);
 			root.getChildren().add(sq.square1());
 			root.getChildren().add(sq.square2());
 			root.getChildren().add(sq.square3());
 			root.getChildren().add(sq.square4());
 			List<Rectangle> obstacle = generate(gc);
+			List<Rectangle> obstacle2 = generate(gc);
 			for (int i=0;i<20;i++) {
 				root.getChildren().add(obstacle.get(i));
 			}
-			//mega.add(obstacle);
+			for (int i=0;i<20;i++) {
+				root.getChildren().add(obstacle2.get(i));
+			}
+			
+			mega.add(obstacle);
+			mega.add(obstacle2);
 			//root.getChildren().add(ball);
 
 			new AnimationTimer() {
@@ -517,13 +538,13 @@ public class Main extends Application {
 				public void handle(long now) {
 					if (lastTick == 0) {
 						lastTick = now;
-						tick(gc,obstacle,b);
+						tick(gc,obstacle,b,q);
 						return;
 					}
 
 					if (now - lastTick > 1000000000 / speed) {
 						lastTick = now;
-						tick(gc,obstacle,b);
+						tick(gc,obstacle,b,q);
 					}
 				}
 
@@ -557,22 +578,7 @@ public class Main extends Application {
 			// add start snake parts
 			
 			snake.add(new Corner(width, height ));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
-//			obstacle.add(new Corner(width , height / 2));
+
 			//snake.add(new Corner(width / 2, height / 2));
 			//If you do not want to use css style, you can just delete the next line.
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -585,16 +591,16 @@ public class Main extends Application {
 	}
 
 	// tick
-	public static void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball) {
+	public static void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q) {
 		if (gameOver) {
 			gc.setFill(Color.RED);
 			gc.setFont(new Font("", 50));
 			gc.fillText("GAME OVER", 100, 250);
 			return;
 		}
-		for (int j=0;j<mega.size();j++) {
-			List<Corner> obstacle2 = mega.get(j);
-			action(obstacle2,gc);}
+//		for (int j=0;j<mega.size();j++) {
+//			//List<Corner> obstacle2 = mega.get(j);
+//			action(obstacle2,gc);}
 		
 
 		
@@ -609,18 +615,21 @@ public class Main extends Application {
 			//List<Corner> obstacle2 = mega.get(0);
 		for (int i = obstacle.size() - 1; i >= 1; i--) {
 
-			obstacle.get(i).setX(obstacle.get(i - 1).getX());
-			obstacle.get(i).setY(obstacle.get(i - 1).getY());
+			mega.get(0).get(i).setX(mega.get(0).get(i - 1).getX());
+			mega.get(0).get(i).setY(mega.get(0).get(i - 1).getY());
+			mega.get(1).get(i).setX(mega.get(1).get(i - 1).getX());
+			mega.get(1).get(i).setY(mega.get(1).get(i - 1).getY());
 			//obstacle.get(i).y = obstacle.get(i - 1).y;
 		}
 		
-
+		boolean loop=true;
+		//q.inf(gameOver);
 		switch (direction) {
 		case up:
 			
 			//snake.get(0).y--;
 			//obstacle.get(0).x--;
-			obstacle.get(0).setX(obstacle.get(0).getX()-30);
+			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 			int i=(int)ball.circle.getCenterY();
 			i=i-30;
 			ball.circle.setCenterY(i);
@@ -635,7 +644,8 @@ public class Main extends Application {
 		case down:
 			snake.get(0).y++;
 			//obstacle.get(0).x--;
-			obstacle.get(0).setX(obstacle.get(0).getX()-30);
+			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
+			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
 			int j=(int)ball.circle.getCenterY();
 			j=j+30;
 			ball.circle.setCenterY(j);
@@ -646,8 +656,13 @@ public class Main extends Application {
 			break;
 		case left:
 			snake.get(0).x=width/2;
+//			while (loop) {
+//				
+//			}
 			//obstacle.get(0).x--;
-			obstacle.get(0).setX(obstacle.get(0).getX()-30);
+			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
+			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
+
 //			j=(int)ball.circle.getCenterY();
 //			j=j+30;
 //			ball.circle.setCenterY(j);
@@ -796,13 +811,20 @@ public class Main extends Application {
 //		}
 		if (ball.circle.getCenterY()==710) {
 			ball.circle.setFill(Color.PINK);
-		for (int i=0;i<obstacle.size();i++) {
-			if (obstacle.get(i).getX()==260) {
-				if (ball.circle.getFill()!=obstacle.get(i).getFill()) {
+		for (int i=0;i<mega.get(0).size();i++) {
+			if (mega.get(0).get(i).getX()==260) {
+				if (ball.circle.getFill()!=mega.get(0).get(i).getFill()) {
 					gameOver=true;
 				}
 			}
 		}}
+		
+		if (mega.get(0).get(19).getX()==470) {
+			mega.get(1).get(0).setX(500);
+		}
+		if (mega.get(1).get(19).getX()==470) {
+			mega.get(0).get(0).setX(500);
+		}
 		
 		if (ball.circle.getCenterY()==560) {
 			ball.color=food.color;
