@@ -44,6 +44,34 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException; 
 import javafx.scene.shape.Arc;
 
+
+class obstacle{
+	
+	int getsize(){
+		return 0;
+	}
+	void setsize(){
+		
+	}
+	Color getcolor() {
+		return Color.BLACK;
+		
+	}
+	void setcolor(){
+		
+	}
+	int getspeed() {
+		return 0;
+	}
+	void setspeed() {
+		
+	}
+	void display() {
+		
+	}
+	
+}
+
 public class Main extends Application {
 	// variable
 	
@@ -71,7 +99,7 @@ public class Main extends Application {
 		left, right, up, down
 	}
 	
-	public static class Cross{
+	public static class Cross extends obstacle{
 		Line l = new Line();
 		Line l2 = new Line();
 		Line l3 = new Line();
@@ -119,7 +147,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public static class Diamond{
+	public static class Diamond extends obstacle{
 		Line l = new Line();
 		Line l2 = new Line();
 		Line l3 = new Line();
@@ -163,7 +191,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public static class ball{
+	public static class ball extends obstacle{
 		int x;
 		int y;
 		int color=0;
@@ -185,7 +213,7 @@ public class Main extends Application {
 	}
 	
 	
-	public static class Quad{
+	public static class Quad extends obstacle{
 		Arc arc1 = new Arc();
 		Arc arc2= new Arc();
 		Arc arc3 = new Arc();
@@ -254,7 +282,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public static class Square{
+	public static class Square extends obstacle{
 		
 		Rectangle rectangle = new Rectangle();
 		Rectangle rectangle2 = new Rectangle();
@@ -814,19 +842,25 @@ public class Main extends Application {
 		//List<Corner> obstacle = mega.get(0);
 
 		if (ball.circle.getCenterY()==710) {
-			ball.circle.setFill(Color.PINK);
+			//ball.circle.setFill(Color.PINK);
 		for (int i=0;i<mega.get(0).size();i++) {
 			if (mega.get(0).get(i).getX()==240) {
+				//ball.circle.setFill(Color.PINK);
 				String s1=ball.circle.getFill().toString();
 				String s2=mega.get(0).get(i).getFill().toString();
 				if (!s1.equals(s2)) {
-//					System.out.println(ball.circle.getFill().getClass());
-//					System.out.println(mega.get(0).get(i).getFill());
+					
+				//	System.out.println(ball.circle.getFill().getClass());
+				//System.out.println(mega.get(0).get(i).getFill());
 //					ball.circle.setFill(Color.web("61D8A2",1.0));
 					gameOver=true;
 				}
 			}
 		}}
+		
+		if (ball.circle.getCenterY()==20) {
+			gameOver=true;
+		}
 		
 		if (mega.get(0).get(19).getX()==480) {
 			mega.get(1).get(0).setX(510);
