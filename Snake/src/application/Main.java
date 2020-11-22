@@ -5,6 +5,7 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -15,11 +16,17 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -37,12 +44,29 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.VLineTo;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException; 
 import javafx.scene.shape.Arc;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 class obstacle{
@@ -73,18 +97,14 @@ class obstacle{
 }
 
 public class Main extends Application {
-	// variable
-	
+
 	static int speed = 5;
-	static int foodcolor = 0;
 	static int width = 20;
 	static int height = 35;
-//	static int foodX = 5;
-//	static int foodY = height/3;
+	static int stars=0;
 	static int x=0;
 	static int y=0;
 	static int cornersize = 25;
-	static List<Corner> snake = new ArrayList<>();
 	static Corner food = new Corner(10,20);
 	static List<List<Rectangle>> mega= new ArrayList<List<Rectangle>>();
 	//static ball b=new ball(x,y);
@@ -98,6 +118,64 @@ public class Main extends Application {
 	public enum Dir {
 		left, right, up, down
 	}
+	
+    public void exitGame(){
+
+        return;
+    }
+
+    protected void SetUp(Pane mainPage, Scene scene2, Stage primaryStage) throws Exception{
+        Font gamefont = Font.font(30);
+
+        Button Start = new Button("START GAME");
+        Start.setFont(gamefont);
+        Start.setOnAction(event ->  primaryStage.setScene(scene2));
+        Start.setId("shiny-orange");
+        Start.setMaxWidth(190);
+        
+
+        Button Exit = new Button("EXIT GAME");
+        Exit.setFont(gamefont);
+        
+        Exit.setOnAction(event -> Platform.exit());
+        Exit.setId("shiny-orange");
+        Exit.setMaxWidth(190);
+
+        
+        FileInputStream input = new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png");
+        Image image = new Image(input);
+        ImageView imageView = new ImageView(image);
+        imageView.setTranslateX(-210);
+        imageView.setTranslateY(-340);
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
+        imageView.setPreserveRatio(true);
+
+        Text t = new Text();
+        //String t = "BEST SCORE";
+        t.setText("7");
+        t.setFont(new Font("Proxima Nova",20));
+        t.setFill(Color.WHITE);
+        t.setTranslateX(-180);
+        t.setTranslateY(-338);
+
+        Text t2 = new Text();
+        //String t = "BEST SCORE";
+        t2.setText("BEST SCORE: 7");
+        t2.setFont(new Font("Proxima Nova",20));
+        t2.setFill(Color.WHITE);
+        t2.setTranslateX(160);
+        t2.setTranslateY(-340);
+        //Group img = new Group(imageView);
+
+        VBox vbox = new VBox(40,Start, Exit);
+
+        vbox.setTranslateX(170);
+        vbox.setTranslateY(500);
+
+        mainPage.getChildren().addAll(vbox,imageView,t,t2);
+    }
+
 	
 	public static class Cross extends obstacle{
 		Line l = new Line();
@@ -372,6 +450,22 @@ public class Main extends Application {
 	    
 		
 	}
+	
+	public static class bg{
+
+		public ImageView star() throws FileNotFoundException{
+		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"));
+		ImageView imageView = new ImageView(image);
+		imageView.setX(250); 
+	    imageView.setY(325);
+	    imageView.setFitHeight(500); 
+	    imageView.setFitWidth(750);
+	    imageView.setPreserveRatio(true);
+	    return imageView;
+		}
+	    
+		
+	}
 	public static class Stardeco{
 
 		public ImageView star() throws FileNotFoundException{
@@ -453,58 +547,29 @@ public class Main extends Application {
 
 		return Linear;
 	}
-	
-	
-//	public static void action(List<Corner> obstacle, GraphicsContext gc) {
-//
-//		for (int i = obstacle.size() - 1; i >= 1; i--) {
-//
-//			obstacle.get(i).x = obstacle.get(i - 1).x;
-//			obstacle.get(i).y = obstacle.get(i - 1).y;
-//		}
-//		
-//		switch (direction) {
-//		case up:
-//			
-//			//snake.get(0).y--;
-//			obstacle.get(0).x--;
-//			//snake.get(0).y++;
-//			//snake.get(0).y++;
-//			//b.y--;
-//			
-//			if (snake.get(0).y < 0) {
-//				//gameOver = true;
-//			}
-//			break;
-//		case down:
-//			//snake.get(0).y++;
-//			obstacle.get(0).x--;
-//			//b.y++;
-//			if (snake.get(0).y > height) {
-//				//gameOver = true;
-//			}
-//			break;
-//		case left:
-//			//snake.get(0).x--;
-//			obstacle.get(0).x--;
-//			//b.x++;
-//			
-////			if (snake.get(0).x < 0) {
-////				gameOver = true;
-////			}
-//			break;	
-//		
-//		}
-//		
-//
-//	}
+
 
 
 	public void start(Stage primaryStage) {
 		try {
 			//newFood();
-			
-			
+			//sachleen
+//	        StackPane rt = new StackPane();
+//	        SetUp(rt);
+//	        rt.setId("pane");
+//	        Scene scene = new Scene(rt, 500, 750);
+//	        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+//
+//	        //Scene s_img = new Scene(img, 500,600);
+//	        primaryStage.setTitle("Color Switch");
+//	        primaryStage.setScene(scene);
+//	        //primaryStage.setScene(s_img);
+//	        primaryStage.show();
+	        
+	        
+	        
+	        
+	        //ishika
 			Circle ball = new Circle(x, Color.DARKSLATEBLUE);
 			Star s=new Star();
 			Stardeco d1=new Stardeco();
@@ -597,10 +662,11 @@ public class Main extends Application {
 
 			}.start();
 
-			Scene scene = new Scene(root, width * cornersize, height * cornersize);
+			
+			Scene scene2 = new Scene(root, width * cornersize, height * cornersize);
 
 			// control
-			scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+			scene2.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 				if (key.getCode() == KeyCode.W) {
 					
 					//ball.setCenterX(x++);
@@ -622,16 +688,27 @@ public class Main extends Application {
 
 			});
 
-			// add start snake parts
-			
-			snake.add(new Corner(width, height ));
+			bg photo=new bg();
+	        StackPane rt = new StackPane();
+	        SetUp(rt,scene2,primaryStage);
+	       // rt.getChildren().add(photo.star());
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"),500,750,false,true),
+	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+	                  BackgroundSize.DEFAULT);
+	        
+	        
+	        //then you set to your node
+	        rt.setBackground(new Background(myBI));
+	        //rt.setBackground(arg0);
+	        rt.setId("pane");
+	        Scene scene = new Scene(rt, 500, 750);
+	        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
 
-			//snake.add(new Corner(width / 2, height / 2));
-			//If you do not want to use css style, you can just delete the next line.
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("SNAKE GAME");
-			primaryStage.show();
+	        //Scene s_img = new Scene(img, 500,600);
+	        primaryStage.setTitle("Color Switch");
+	        primaryStage.setScene(scene);
+	        //primaryStage.setScene(s_img);
+	        primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -639,23 +716,7 @@ public class Main extends Application {
 
 	// tick
 	public static void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q) {
-		//gravity(ball);
 
-//		for (int j=0;j<mega.size();j++) {
-//			//List<Corner> obstacle2 = mega.get(j);
-//			action(obstacle2,gc);}
-		
-
-		
-//		for (int i = snake.size() - 1; i >= 1; i--) {
-//			snake.get(i).x = snake.get(i - 1).x;
-//			snake.get(i).y = snake.get(i - 1).y;
-////			obstacle.get(i).x = obstacle.get(i - 1).x;
-////			obstacle.get(i).y = obstacle.get(i - 1).y;
-//		}
-		
-		//for (int j=0;j<mega.size();j++) {
-			//List<Corner> obstacle2 = mega.get(0);
 		for (int i = obstacle.size() - 1; i >= 1; i--) {
 
 			mega.get(0).get(i).setX(mega.get(0).get(i - 1).getX());
@@ -664,22 +725,6 @@ public class Main extends Application {
 			mega.get(1).get(i).setY(mega.get(1).get(i - 1).getY());
 			//obstacle.get(i).y = obstacle.get(i - 1).y;
 		}
-		
-		//gravity(ball);
-		
-//		EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>() {
-//		    @Override
-//		    public void handle(KeyEvent e) {
-//
-//		      if(e.getCode() == KeyCode.W) {
-//		            //your code for shooting the missile
-//		    	  System.out.println("hi");
-//		    	  ball.circle.setCenterY(ball.circle.getCenterY()-30);
-//		        }
-//		        e.consume();
-//		    }
-//		};
-		
 		
 		
 		boolean loop=true;
@@ -698,20 +743,10 @@ public class Main extends Application {
 			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
 			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
 			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
-//			for (int j=0;j<19;j++) {
-//				mega.get(0).get(j).setY(mega.get(0).get(j).getY()+10);
-//				mega.get(1).get(j).setY(mega.get(1).get(j).getY()+10);
-//			}
-			//snake.get(0).y++;
-			//snake.get(0).y++;
-			//b.y--;
-			
-			if (snake.get(0).y < 0) {
-				//gameOver = true;
-			}
+
 			break;
 		case down:
-			snake.get(0).y++;
+
 			//obstacle.get(0).x--;
 			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
@@ -719,16 +754,10 @@ public class Main extends Application {
 			j=j+30;
 			ball.circle.setCenterY(j);
 			//b.y++;
-			if (snake.get(0).y > height) {
-				//gameOver = true;
-			}
+
 			break;
 		case left:
-			snake.get(0).x=width/2;
-//			while (loop) {
-//				
-//			}
-			//obstacle.get(0).x--;
+
 			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
 			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
@@ -748,29 +777,13 @@ public class Main extends Application {
 		            // ball.circle.setFill(Color.DARKSLATEBLUE);
 		          } 
 		       };
-			//b.x++;
-			
-			if (snake.get(0).x < 0) {
-				//gameOver = true;
-			}
+
 			break;
-		case right:
-			//snake.get(0).x++;
-			//obstacle.get(0).x--;
-			if (snake.get(0).x > width) {
-				//gameOver = true;
-			}
-			break;
+
 
 		}
 
-		// eat food
-		// self destroy
-		for (int i = 1; i < snake.size(); i++) {
-			if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
-				gameOver = true;
-			}
-		}
+
 
 		// fill
 		// background
@@ -781,38 +794,13 @@ public class Main extends Application {
 		gc.setFill(Color.web("F8FDE7",1.0));
 		Font f=Font.font("Proxima Nova",FontWeight.BOLD, (double)27);
 		gc.setFont(f);
-		gc.fillText("Stars: " + 0, 40, 30);
+		gc.fillText(" " + stars, 40, 30);
 
 		// random foodcolor
 		
 		Color cc = Color.WHITE;
 
-//		switch (foodcolor) {
-//		case 0:
-//			cc = Color.web("#a719b4",1.0);
-//			break;
-//		case 1:
-//			cc = Color.PINK;
-//			break;
-//		case 2:
-//			cc = Color.web("FAD167",1.0);
-//			break;
-//		case 3:
-//			cc = Color.BLUE;
-//			break;
-//		}
-//		gc.setFill(cc);
-//		gc.fillOval(x* cornersize, y * cornersize, cornersize, cornersize);
 
-		// snake
-		for (Corner c : snake) {
-			c.color=1;
-			gc.setFill(Color.web("#a719b4",1.0));
-			gc.fillOval(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
-//			gc.setFill(Color.GREEN);
-//			gc.fillOval(c.x * cornersize, c.y * cornersize, cornersize - 2, cornersize - 2);
-
-		}
 		
 		food.color=rand.nextInt(3)+1;
 		if (food.color==1) {
@@ -835,11 +823,6 @@ public class Main extends Application {
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
-		
-		//int i=0;
-		//for (int j=0;j<mega.size();j++) {
-			//
-		//List<Corner> obstacle = mega.get(0);
 
 		if (ball.circle.getCenterY()==710) {
 			//ball.circle.setFill(Color.PINK);
@@ -849,10 +832,7 @@ public class Main extends Application {
 				String s1=ball.circle.getFill().toString();
 				String s2=mega.get(0).get(i).getFill().toString();
 				if (!s1.equals(s2)) {
-					
-				//	System.out.println(ball.circle.getFill().getClass());
-				//System.out.println(mega.get(0).get(i).getFill());
-//					ball.circle.setFill(Color.web("61D8A2",1.0));
+
 					gameOver=true;
 				}
 			}
@@ -869,12 +849,17 @@ public class Main extends Application {
 			mega.get(0).get(0).setX(510);
 		}
 		
+		// 230 625  800-30x=625 175
+		if (ball.circle.getCenterY()==620) {
+			//System.out.println("hufwc");
+			//ball.circle.setFill(Color.PINK);
+			stars++;
+		}
+		
+		
 		if (ball.circle.getCenterY()==560) {
 			ball.color=food.color;
-			// 450-x=3y
-			//ball.circle.setFill(Color.PINK);
-			//Corner c=snake.get(0);
-			snake.get(0).y--;
+
 			if (ball.color==1) {
 				//Corner c=snake.get(0);
 				ball.circle.setFill(Color.web("61D8A2",1.0));
