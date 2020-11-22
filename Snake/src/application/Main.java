@@ -171,7 +171,7 @@ public class Main extends Application {
 			circle.setCenterY(800
 					); 
 			circle.setRadius(15 );
-			circle.setFill(Color.web("F8FDE6",1.0));
+			circle.setFill(Color.web("ED476F",1.0));
 		}	
 		
 		public Circle cir() {
@@ -358,7 +358,7 @@ public class Main extends Application {
 	public static List<Rectangle> generate(GraphicsContext gc) {
 		 List<Corner> obstacle = new ArrayList<>();
 		 List<Rectangle> Linear = new ArrayList<>();
-		 int j=500;
+		 int j=30;
 		 for (int i=0;i<5;i++) {
 			 Rectangle r=new Rectangle();
 				r.setX(j); 
@@ -413,49 +413,49 @@ public class Main extends Application {
 	}
 	
 	
-	public static void action(List<Corner> obstacle, GraphicsContext gc) {
-
-		for (int i = obstacle.size() - 1; i >= 1; i--) {
-
-			obstacle.get(i).x = obstacle.get(i - 1).x;
-			obstacle.get(i).y = obstacle.get(i - 1).y;
-		}
-		
-		switch (direction) {
-		case up:
-			
-			//snake.get(0).y--;
-			obstacle.get(0).x--;
-			//snake.get(0).y++;
-			//snake.get(0).y++;
-			//b.y--;
-			
-			if (snake.get(0).y < 0) {
-				//gameOver = true;
-			}
-			break;
-		case down:
-			//snake.get(0).y++;
-			obstacle.get(0).x--;
-			//b.y++;
-			if (snake.get(0).y > height) {
-				//gameOver = true;
-			}
-			break;
-		case left:
-			//snake.get(0).x--;
-			obstacle.get(0).x--;
-			//b.x++;
-			
-//			if (snake.get(0).x < 0) {
-//				gameOver = true;
+//	public static void action(List<Corner> obstacle, GraphicsContext gc) {
+//
+//		for (int i = obstacle.size() - 1; i >= 1; i--) {
+//
+//			obstacle.get(i).x = obstacle.get(i - 1).x;
+//			obstacle.get(i).y = obstacle.get(i - 1).y;
+//		}
+//		
+//		switch (direction) {
+//		case up:
+//			
+//			//snake.get(0).y--;
+//			obstacle.get(0).x--;
+//			//snake.get(0).y++;
+//			//snake.get(0).y++;
+//			//b.y--;
+//			
+//			if (snake.get(0).y < 0) {
+//				//gameOver = true;
 //			}
-			break;	
-		
-		}
-		
-
-	}
+//			break;
+//		case down:
+//			//snake.get(0).y++;
+//			obstacle.get(0).x--;
+//			//b.y++;
+//			if (snake.get(0).y > height) {
+//				//gameOver = true;
+//			}
+//			break;
+//		case left:
+//			//snake.get(0).x--;
+//			obstacle.get(0).x--;
+//			//b.x++;
+//			
+////			if (snake.get(0).x < 0) {
+////				gameOver = true;
+////			}
+//			break;	
+//		
+//		}
+//		
+//
+//	}
 
 
 	public void start(Stage primaryStage) {
@@ -633,6 +633,14 @@ public class Main extends Application {
 			int i=(int)ball.circle.getCenterY();
 			i=i-30;
 			ball.circle.setCenterY(i);
+			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
+			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
+			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
+			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
+//			for (int j=0;j<19;j++) {
+//				mega.get(0).get(j).setY(mega.get(0).get(j).getY()+10);
+//				mega.get(1).get(j).setY(mega.get(1).get(j).getY()+10);
+//			}
 			//snake.get(0).y++;
 			//snake.get(0).y++;
 			//b.y--;
@@ -662,7 +670,10 @@ public class Main extends Application {
 			//obstacle.get(0).x--;
 			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
-
+			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
+			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
+			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
+			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
 //			j=(int)ball.circle.getCenterY();
 //			j=j+30;
 //			ball.circle.setCenterY(j);
@@ -810,20 +821,25 @@ public class Main extends Application {
 //			
 //		}
 		if (ball.circle.getCenterY()==710) {
-			ball.circle.setFill(Color.PINK);
+			//ball.circle.setFill(Color.PINK);
 		for (int i=0;i<mega.get(0).size();i++) {
 			if (mega.get(0).get(i).getX()==260) {
-				if (ball.circle.getFill()!=mega.get(0).get(i).getFill()) {
+				String s1=ball.circle.getFill().toString();
+				String s2=mega.get(0).get(i).getFill().toString();
+				if (!s1.equals(s2)) {
+//					System.out.println(ball.circle.getFill().getClass());
+//					System.out.println(mega.get(0).get(i).getFill());
+//					ball.circle.setFill(Color.web("61D8A2",1.0));
 					gameOver=true;
 				}
 			}
 		}}
 		
-		if (mega.get(0).get(19).getX()==470) {
-			mega.get(1).get(0).setX(500);
+		if (mega.get(0).get(19).getX()==480) {
+			mega.get(1).get(0).setX(510);
 		}
-		if (mega.get(1).get(19).getX()==470) {
-			mega.get(0).get(0).setX(500);
+		if (mega.get(1).get(19).getX()==480) {
+			mega.get(0).get(0).setX(510);
 		}
 		
 		if (ball.circle.getCenterY()==560) {
