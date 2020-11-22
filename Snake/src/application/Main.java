@@ -154,7 +154,7 @@ public class Main extends Application {
         Text t = new Text();
         //String t = "BEST SCORE";
         t.setText("7");
-        t.setFont(new Font("Proxima Nova",20));
+        t.setFont(Font.font("Proxima Nova",FontWeight.BOLD,20));
         t.setFill(Color.WHITE);
         t.setTranslateX(-180);
         t.setTranslateY(-338);
@@ -162,7 +162,7 @@ public class Main extends Application {
         Text t2 = new Text();
         //String t = "BEST SCORE";
         t2.setText("BEST SCORE: 7");
-        t2.setFont(new Font("Proxima Nova",20));
+        t2.setFont(Font.font("Proxima Nova",FontWeight.BOLD,20));
         t2.setFill(Color.WHITE);
         t2.setTranslateX(160);
         t2.setTranslateY(-340);
