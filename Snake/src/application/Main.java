@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Platform;
 import java.util.Random;
+import javafx.scene.media.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.text.Font;
@@ -30,6 +31,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -48,6 +51,8 @@ import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+
+import java.io.File;
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException; 
 import javafx.scene.shape.Arc;
@@ -69,7 +74,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-class obstacle{
+class obstacle extends dynamicElements{
 	
 	int getsize(){
 		return 0;
@@ -95,6 +100,35 @@ class obstacle{
 	}
 	
 }
+
+
+class staticElements extends gameElements{
+	int size;
+	int getSize() {
+		return 0;
+	}
+	void setSize() {
+		
+	}
+}
+class dynamicElements extends gameElements{
+	int size;
+	int speed;
+}
+class gameElements{
+	int position;
+	int getPosition() {
+		return 0;
+	}
+	void setPosition() {
+		
+	}
+	void disappear() {}
+	void action() {}
+
+}
+
+
 
 public class Main extends Application {
 
@@ -123,23 +157,34 @@ public class Main extends Application {
 
         return;
     }
+    
+    
+    class Game{
 
     protected void SetUp(Pane mainPage, Scene scene2, Stage primaryStage) throws Exception{
-        Font gamefont = Font.font(30);
+      //  Font gamefont = Font.font(30);
 
         Button Start = new Button("START GAME");
-        Start.setFont(gamefont);
+       // Start.setFont(gamefont);
         Start.setOnAction(event ->  primaryStage.setScene(scene2));
         Start.setId("shiny-orange");
-        Start.setMaxWidth(190);
+        Start.setMaxWidth(150);
+        //Start.setMaxWidth(190);
         
 
         Button Exit = new Button("EXIT GAME");
-        Exit.setFont(gamefont);
+     //   Exit.setFont(gamefont);
         
         Exit.setOnAction(event -> Platform.exit());
         Exit.setId("shiny-orange");
-        Exit.setMaxWidth(190);
+        Exit.setMaxWidth(150);
+        
+        Button Load = new Button("LOAD GAME");
+     //   Load.setFont(gamefont);
+        Load.setOnAction(event ->  primaryStage.setScene(scene2));
+        //Load.setOnAction(event -> Platform.exit());
+        Load.setId("shiny-orange");
+        Load.setMaxWidth(150);
 
         
         FileInputStream input = new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png");
@@ -168,13 +213,13 @@ public class Main extends Application {
         t2.setTranslateY(-340);
         //Group img = new Group(imageView);
 
-        VBox vbox = new VBox(40,Start, Exit);
+        VBox vbox = new VBox(20,Start,Load, Exit);
 
         vbox.setTranslateX(170);
         vbox.setTranslateY(500);
 
         mainPage.getChildren().addAll(vbox,imageView,t,t2);
-    }
+    }}
 
 	
 	public static class Cross extends obstacle{
@@ -211,10 +256,6 @@ public class Main extends Application {
 			return l3;
 		}
 		public Line line4() {
-//			l4.setStartX(250);
-//			l4.setStartY(400);
-//			l4.setEndX(200);
-//			l4.setEndY(450);
 			l4.setStartX(200);
 			l4.setStartY(350);
 			l4.setEndX(250);
@@ -269,7 +310,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public static class ball extends obstacle{
+	public static class ball extends dynamicElements{
 		int x;
 		int y;
 		int color=0;
@@ -424,7 +465,7 @@ public class Main extends Application {
 		
 	}
 
-	public static class ColorSwitch {
+	public static class ColorSwitch extends staticElements{
 		int x;
 		int y;
 		int color;
@@ -436,7 +477,7 @@ public class Main extends Application {
 
 	}
 	
-	public static class Star{
+	public static class Star extends staticElements{
 
 		public ImageView star() throws FileNotFoundException{
 		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png"));
@@ -451,22 +492,7 @@ public class Main extends Application {
 	    
 		
 	}
-	
-	public static class bg{
 
-		public ImageView star() throws FileNotFoundException{
-		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"));
-		ImageView imageView = new ImageView(image);
-		imageView.setX(250); 
-	    imageView.setY(325);
-	    imageView.setFitHeight(500); 
-	    imageView.setFitWidth(750);
-	    imageView.setPreserveRatio(true);
-	    return imageView;
-		}
-	    
-		
-	}
 	public static class Stardeco{
 
 		public ImageView star() throws FileNotFoundException{
@@ -673,10 +699,9 @@ public class Main extends Application {
 
 			});
 
-			bg photo=new bg();
 	        StackPane rt = new StackPane();
-	        SetUp(rt,scene2,primaryStage);
-	       // rt.getChildren().add(photo.star());
+	        Game g=new Game();
+	       g.SetUp(rt,scene2,primaryStage);
 	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"),500,750,false,true),
 	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 	                  BackgroundSize.DEFAULT);
@@ -684,12 +709,18 @@ public class Main extends Application {
 	        
 	        //then you set to your node
 	        rt.setBackground(new Background(myBI));
+
 	        //rt.setBackground(arg0);
 	        rt.setId("pane");
 	        Scene scene = new Scene(rt, 500, 750);
+	        
 	        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
 
 	        //Scene s_img = new Scene(img, 500,600);
+	        String path = "C:\\Users\\ishik\\Downloads\\test.mp3";  
+	        Media media = new Media(path);
+	        MediaPlayer mediaPlayer = new MediaPlayer(media); 
+	        mediaPlayer.play();
 	        primaryStage.setTitle("Color Switch");
 	        primaryStage.setScene(scene);
 	        //primaryStage.setScene(s_img);

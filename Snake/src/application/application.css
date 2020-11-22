@@ -13,12 +13,14 @@
         linear-gradient(#ffef84, #f2ba44),
         linear-gradient(#ffea6a, #efaa22),
         linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
-        linear-gradient(from 0% 0% to 15% 50%, rgba(252, 191, 73, 1), rgba(252, 191, 73, 1));
-    -fx-font-family:'Proxima Nova', sans-serif;
+        linear-gradient(from 0% 0% to 15% 50%, #f1faee, #f1faee);
+        
+    
+    -fx-font-family:'Open Sans', sans-serif;
     -fx-background-radius: 30;
     -fx-background-insets: 0,1,2,3,0;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #061731;
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
+    -fx-font-size: 15px;
     -fx-padding: 10 20 10 20;
 }
