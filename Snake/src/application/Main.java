@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Group;
@@ -35,6 +36,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.VLineTo;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -328,19 +330,7 @@ public class Main extends Application {
 	}
 	
 	public static class Star{
-        // Create a Triangle
-        //arcTo = new ArcTo();
-        
-        // Use the arcTo element to build a Path
-//        Path path = new Path(new MoveTo(0, 0),
-//            new VLineTo(100),
-//            new HLineTo(100),
-//            new VLineTo(50),
-//            arcTo);
-//        
-//        public Path star() {
-//        	return path;
-//        }
+
 		public ImageView star() throws FileNotFoundException{
 		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png"));
 		ImageView imageView = new ImageView(image);
@@ -354,7 +344,31 @@ public class Main extends Application {
 	    
 		
 	}
-	
+	public static class Stardeco{
+
+		public ImageView star() throws FileNotFoundException{
+		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png"));
+		ImageView imageView = new ImageView(image);
+		imageView.setX(12); 
+	    imageView.setY(9);
+	    imageView.setFitHeight(25); 
+	    imageView.setFitWidth(25);
+	    imageView.setPreserveRatio(true);
+	    return imageView;
+		}
+		public ImageView pause() throws FileNotFoundException{
+			Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\pause.png"));
+			ImageView imageView = new ImageView(image);
+			imageView.setX(460); 
+			imageView.setY(9);
+			imageView.setFitHeight(35); 
+			imageView.setFitWidth(35);
+			imageView.setPreserveRatio(true);
+			return imageView;
+		}
+	    
+		
+	}
 	public static List<Rectangle> generate(GraphicsContext gc) {
 		 List<Corner> obstacle = new ArrayList<>();
 		 List<Rectangle> Linear = new ArrayList<>();
@@ -465,6 +479,7 @@ public class Main extends Application {
 			
 			Circle ball = new Circle(x, Color.DARKSLATEBLUE);
 			Star s=new Star();
+			Stardeco d1=new Stardeco();
 
 			DropShadow dropShadow = new DropShadow();
 			dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
@@ -484,6 +499,7 @@ public class Main extends Application {
 		      //Setting the spread of the shadow 
 		      dropShadow.setSpread(5);
 			ImageView p=s.star();
+			//ImageView p2=d1.star();
 			//p.setEffect(dropShadow);
 			Square sq=new Square();
 			Quad q=new Quad();
@@ -509,9 +525,12 @@ public class Main extends Application {
 		
 			root.getChildren().add(b.circle);
 			root.getChildren().add(p);
+			root.getChildren().add(d1.star());
+			root.getChildren().add(d1.pause());
 			root.getChildren().add(q.arc1());
 			root.getChildren().add(q.arc2());
 			root.getChildren().add(q.arc3());
+			
 			root.getChildren().add(q.arc4());
 			//q.inf();
 			//sq.square4().setFill(linear);
@@ -592,12 +611,8 @@ public class Main extends Application {
 
 	// tick
 	public static void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q) {
-		if (gameOver) {
-			gc.setFill(Color.RED);
-			gc.setFont(new Font("", 50));
-			gc.fillText("GAME OVER", 100, 250);
-			return;
-		}
+		//gravity(ball);
+
 //		for (int j=0;j<mega.size();j++) {
 //			//List<Corner> obstacle2 = mega.get(j);
 //			action(obstacle2,gc);}
@@ -622,6 +637,23 @@ public class Main extends Application {
 			//obstacle.get(i).y = obstacle.get(i - 1).y;
 		}
 		
+		//gravity(ball);
+		
+//		EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>() {
+//		    @Override
+//		    public void handle(KeyEvent e) {
+//
+//		      if(e.getCode() == KeyCode.W) {
+//		            //your code for shooting the missile
+//		    	  System.out.println("hi");
+//		    	  ball.circle.setCenterY(ball.circle.getCenterY()-30);
+//		        }
+//		        e.consume();
+//		    }
+//		};
+		
+		
+		
 		boolean loop=true;
 		//q.inf(gameOver);
 		switch (direction) {
@@ -630,6 +662,7 @@ public class Main extends Application {
 			//snake.get(0).y--;
 			//obstacle.get(0).x--;
 			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
+			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
 			int i=(int)ball.circle.getCenterY();
 			i=i-30;
 			ball.circle.setCenterY(i);
@@ -717,9 +750,10 @@ public class Main extends Application {
 		gc.fillRect(0, 0, width * cornersize, height * cornersize);
 
 		// score
-		gc.setFill(Color.WHITE);
-		gc.setFont(new Font("", 30));
-		gc.fillText("Score: " + (speed - 6), 10, 30);
+		gc.setFill(Color.web("F8FDE7",1.0));
+		Font f=Font.font("Proxima Nova",FontWeight.BOLD, (double)27);
+		gc.setFont(f);
+		gc.fillText("Stars: " + 0, 40, 30);
 
 		// random foodcolor
 		
@@ -739,8 +773,8 @@ public class Main extends Application {
 //			cc = Color.BLUE;
 //			break;
 //		}
-		gc.setFill(cc);
-		gc.fillOval(x* cornersize, y * cornersize, cornersize, cornersize);
+//		gc.setFill(cc);
+//		gc.fillOval(x* cornersize, y * cornersize, cornersize, cornersize);
 
 		// snake
 		for (Corner c : snake) {
@@ -778,52 +812,11 @@ public class Main extends Application {
 		//for (int j=0;j<mega.size();j++) {
 			//
 		//List<Corner> obstacle = mega.get(0);
-		for (int i=0;i<5;i++) {
-			Rectangle c=obstacle.get(i);
-//			c.color=2;
-//			gc.setFill(Color.web("ED476F",1.0));
-//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-//			gc.setStroke(Color.web("061731",1.0));
-//			gc.setStroke(Color.web("061731",1.0));
-			
-		}
-//		for (int i=5;i<10;i++) {
-//			Corner c=obstacle.get(i);
-//			c.color=3;
-//			gc.setFill(Color.web("FAD167",1.0));
-//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-//		}
-//		for (int i=10;i<15;i++) {
-//			Corner c=obstacle.get(i);
-//			c.color=4;
-//			gc.setFill(Color.web("368BB2",1.0));
-//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-//			gc.setStroke(Color.web("061731",1.0));
-//		}
-//		for (int i=15;i<20;i++) {
-//			Corner c=obstacle.get(i);
-//			c.color=1;
-//			gc.setFill(Color.web("61D8A2",1.0));
-//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-//			gc.setStroke(Color.web("061731",1.0));
-//		}
-//		for (Corner c : obstacle) {
-//			gc.setFill(Color.PINK);
-//			gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize -1);
-//			
-//		}
-		//List<Corner> obstacle=mega.get(0);
-//		if (obstacle.get(15).x==width) {
-//			List<Corner> obstacle2 = generate(gc);
-//			obstacle2.get(0).x=width;
-//			mega.add(obstacle2);
-//			//action(mega,gc);
-//			
-//		}
+
 		if (ball.circle.getCenterY()==710) {
-			//ball.circle.setFill(Color.PINK);
+			ball.circle.setFill(Color.PINK);
 		for (int i=0;i<mega.get(0).size();i++) {
-			if (mega.get(0).get(i).getX()==260) {
+			if (mega.get(0).get(i).getX()==240) {
 				String s1=ball.circle.getFill().toString();
 				String s2=mega.get(0).get(i).getFill().toString();
 				if (!s1.equals(s2)) {
@@ -871,26 +864,31 @@ public class Main extends Application {
 			}
 		}
 		
+		if (gameOver) {
+			//gc.setFill(Color.BLACK);
+			gc.setFill(Color.web("e63946",1.0));
+			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
+			//gc.fillRect(arg0, arg1, arg2, arg3);
+			
+			gc.fillText("GAME OVER", 110, 75);
+			int i=0;
+			while (i!=100000) {
+			ball.circle.setCenterY(ball.circle.getCenterY()-10);
+			i++;}
+
+			return;
+		}
+		
 
 	}
 
 	// food
-//	public static void newFood() {
-//		
-//			foodX = 1;
-//			foodY = height/2;
-//
-////			for (Corner c : snake) {
-////				if (c.x == foodX && c.y == foodY) {
-////					continue start;
-////				}
-////			}
-//			foodcolor = rand.nextInt(3);
-//			//speed++;
-//			//break;
-//
-//		
-//	}
+//gravity
+	public static void gravity(ball ball) {
+		int g=5;
+		while (ball.circle.getCenterY()<800)
+		ball.circle.setCenterY(ball.circle.getCenterY()+10);
+		}
 
 	public static void main(String[] args) {
 		launch(args);
