@@ -115,6 +115,10 @@ class dynamicElements extends gameElements{
 	int size;
 	int speed;
 }
+
+class Player{
+	int stars;
+}
 class gameElements{
 	int position;
 	int getPosition() {
@@ -127,6 +131,9 @@ class gameElements{
 	void action() {}
 
 }
+
+
+
 
 
 
@@ -156,6 +163,245 @@ public class Main extends Application {
     public void exitGame(){
 
         return;
+    }
+    
+    class space{
+    	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage) throws FileNotFoundException {
+
+    		for (int i = obstacle.size() - 1; i >= 1; i--) {
+
+    			mega.get(0).get(i).setX(mega.get(0).get(i - 1).getX());
+    			mega.get(0).get(i).setY(mega.get(0).get(i - 1).getY());
+    			mega.get(1).get(i).setX(mega.get(1).get(i - 1).getX());
+    			mega.get(1).get(i).setY(mega.get(1).get(i - 1).getY());
+    			//obstacle.get(i).y = obstacle.get(i - 1).y;
+    		}
+    		
+            Pane rt = new Pane();
+            
+            Button E = new Button("SAVE & EXIT GAME");
+         //   Exit.setFont(gamefont);
+            E.setMaxWidth(200);
+            E.setLayoutX(70);
+            E.setLayoutY(500);
+            E.setOnAction(event -> Platform.exit());
+          //  Exit.setId("shiny-orange");
+
+            Button Load = new Button("RESUME GAME");
+         //   Load.setFont(gamefont);
+            //Load.setOnAction(event ->  primaryStage.setScene(scene2));
+           // Load.setOnAction(event -> primaryStage.setScene(scene2));
+         //   Load.setId("shiny-orange");
+            Load.setLayoutX(280);
+            Load.setLayoutY(500);
+            Load.setMaxWidth(200);
+            E.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
+            Load.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
+            
+            rt.getChildren().add(E);
+            rt.getChildren().add(Load);
+           // Game g=new Game();
+          // g.SetUp(rt,scene2,primaryStage);
+            BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"),500,750,false,true),
+                    BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                      BackgroundSize.DEFAULT);
+            
+            
+            //then you set to your node
+            rt.setBackground(new Background(myBI));
+
+            //rt.setBackground(arg0);
+          //  rt.setId("pane");
+
+            Scene scene3 = new Scene(rt, 500, 750);
+            
+            //scene3.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
+    		
+    		Start.setOnAction(event ->  primaryStage.setScene(scene3));
+    		boolean loop=true;
+    		//q.inf(gameOver);
+    		switch (direction) {
+    		case up:
+    			
+    			//snake.get(0).y--;
+    			//obstacle.get(0).x--;
+    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
+    			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
+    			int i=(int)ball.circle.getCenterY();
+    			i=i-30;
+    			ball.circle.setCenterY(i);
+    			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
+    			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
+    			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
+    			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
+
+    			break;
+    		case down:
+
+    			//obstacle.get(0).x--;
+    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
+    			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
+    			int j=(int)ball.circle.getCenterY();
+    			j=j+30;
+    			ball.circle.setCenterY(j);
+    			//b.y++;
+
+    			break;
+    		case left:
+
+    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
+    			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
+    			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
+    			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
+    			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
+    			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
+//    			j=(int)ball.circle.getCenterY();
+//    			j=j+30;
+//    			ball.circle.setCenterY(j);
+    		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() { 
+    		          @Override 
+    		          public void handle(MouseEvent e) { 
+    		             //System.out.println("Hello World");
+    		  			int i=(int)ball.circle.getCenterY();
+    					i=i-30;
+    					ball.circle.setCenterY(i);
+    		            // ball.circle.setFill(Color.DARKSLATEBLUE);
+    		          } 
+    		       };
+
+    			break;
+
+
+    		}
+
+
+
+    		// fill
+    		// background
+    		gc.setFill(Color.web("061731",1.0));
+    		gc.fillRect(0, 0, width * cornersize, height * cornersize);
+
+    		// score
+    		gc.setFill(Color.web("F8FDE7",1.0));
+    		Font f=Font.font("Proxima Nova",FontWeight.BOLD, (double)27);
+    		gc.setFont(f);
+    		gc.fillText(" " + stars, 40, 30);
+
+    		// random foodcolor
+    		
+    		Color cc = Color.WHITE;
+
+
+    		
+    		colorSwitch.color=rand.nextInt(3)+1;
+    		if (colorSwitch.color==1) {
+    			gc.setFill(Color.web("61D8A2",1.0));
+    			
+    			gc.fillOval(240, 570, 30 , 30 );
+    		}
+    		if (colorSwitch.color==2) {
+    			gc.setFill(Color.web("ED476F",1.0));
+    			
+    			gc.fillOval(240, 570, 30 , 30 );
+    		}
+    		if (colorSwitch.color==3) {
+    			gc.setFill(Color.web("FAD167",1.0));
+    			
+    			gc.fillOval(240, 570, 30 , 30 );
+    		}
+    		if (colorSwitch.color==4) {
+    			gc.setFill(Color.web("368BB2",1.0));
+    			
+    			gc.fillOval(240, 570, 30 , 30 );
+    		}
+
+    		if (ball.circle.getCenterY()==710) {
+    			//ball.circle.setFill(Color.PINK);
+    		for (int i=0;i<mega.get(0).size();i++) {
+    			if (mega.get(0).get(i).getX()==240) {
+    				//ball.circle.setFill(Color.PINK);
+    				String s1=ball.circle.getFill().toString();
+    				String s2=mega.get(0).get(i).getFill().toString();
+    				if (!s1.equals(s2)) {
+
+    					gameOver=true;
+    				}
+    			}
+    		}}
+    		
+    		if (ball.circle.getCenterY()==20) {
+    			gameOver=true;
+    		}
+    		
+    		if (mega.get(0).get(19).getX()==480) {
+    			mega.get(1).get(0).setX(510);
+    		}
+    		if (mega.get(1).get(19).getX()==480) {
+    			mega.get(0).get(0).setX(510);
+    		}
+    		
+    		// 230 625  800-30x=625 175
+    		if (ball.circle.getCenterY()==620) {
+    			//System.out.println("hufwc");
+    			//ball.circle.setFill(Color.PINK);
+    			stars++;
+    		}
+    		
+    		
+    		if (ball.circle.getCenterY()==560) {
+    			ball.color=colorSwitch.color;
+
+    			if (ball.color==1) {
+    				//Corner c=snake.get(0);
+    				ball.circle.setFill(Color.web("61D8A2",1.0));
+    				
+    				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+    			}
+    			if (ball.color==2) {
+    				ball.circle.setFill(Color.web("ED476F",1.0));
+    				
+    				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+    			}
+    			if (ball.color==3) {
+    				ball.circle.setFill(Color.web("FAD167",1.0));
+    				
+    				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+    			}
+    			if (ball.color==4) {
+    				ball.circle.setFill(Color.web("368BB2",1.0));
+    				
+    				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+    			}
+    		}
+    		
+    		if (gameOver) {
+    			
+    			boolean b=false;
+    			//gc.setFill(Color.BLACK);
+    			gc.setFill(Color.web("e63946",1.0));
+    			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
+    			//gc.fillRect(arg0, arg1, arg2, arg3);
+    			
+    			gc.fillText("GAME OVER", 110, 75);
+    			
+    			b=true;
+    			int i=0;
+    			while (i!=100000) {
+    			ball.circle.setCenterY(ball.circle.getCenterY()-10);
+    			i++;}
+//    			if (b) {
+//    			primaryStage.setScene(scene3);}
+
+    			return;
+    		}
+    		int help=0;
+    		help=1;
+
+    		
+    		
+
+    	}
+    	
     }
     
     
@@ -634,6 +880,8 @@ public class Main extends Application {
 			root.getChildren().add(p);
 			root.getChildren().add(d1.star());
 			//root.getChildren().add(d1.pause());
+			
+			space sp=new space();
 	        Button Start = new Button("PAUSE",d1.pause());
 	        Start.setLayoutX(400);
 	        Start.setLayoutY(9);
@@ -676,7 +924,7 @@ public class Main extends Application {
 					if (lastTick == 0) {
 						lastTick = now;
 						try {
-							tick(gc,obstacle,b,q,Start,primaryStage);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage);
 						} catch (FileNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -687,7 +935,7 @@ public class Main extends Application {
 					if (now - lastTick > 1000000000 / speed) {
 						lastTick = now;
 						try {
-							tick(gc,obstacle,b,q,Start,primaryStage);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage);
 						} catch (FileNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -751,241 +999,7 @@ public class Main extends Application {
 	}
 
 	// tick
-	public static void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage) throws FileNotFoundException {
 
-		for (int i = obstacle.size() - 1; i >= 1; i--) {
-
-			mega.get(0).get(i).setX(mega.get(0).get(i - 1).getX());
-			mega.get(0).get(i).setY(mega.get(0).get(i - 1).getY());
-			mega.get(1).get(i).setX(mega.get(1).get(i - 1).getX());
-			mega.get(1).get(i).setY(mega.get(1).get(i - 1).getY());
-			//obstacle.get(i).y = obstacle.get(i - 1).y;
-		}
-		
-        Pane rt = new Pane();
-        
-        Button E = new Button("SAVE & EXIT GAME");
-     //   Exit.setFont(gamefont);
-        E.setMaxWidth(200);
-        E.setLayoutX(70);
-        E.setLayoutY(500);
-        E.setOnAction(event -> Platform.exit());
-      //  Exit.setId("shiny-orange");
-
-        Button Load = new Button("RESUME GAME");
-     //   Load.setFont(gamefont);
-        //Load.setOnAction(event ->  primaryStage.setScene(scene2));
-       // Load.setOnAction(event -> primaryStage.setScene(scene2));
-     //   Load.setId("shiny-orange");
-        Load.setLayoutX(280);
-        Load.setLayoutY(500);
-        Load.setMaxWidth(200);
-        E.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
-        Load.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
-        
-        rt.getChildren().add(E);
-        rt.getChildren().add(Load);
-       // Game g=new Game();
-      // g.SetUp(rt,scene2,primaryStage);
-        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"),500,750,false,true),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                  BackgroundSize.DEFAULT);
-        
-        
-        //then you set to your node
-        rt.setBackground(new Background(myBI));
-
-        //rt.setBackground(arg0);
-      //  rt.setId("pane");
-
-        Scene scene3 = new Scene(rt, 500, 750);
-        
-        //scene3.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
-		
-		Start.setOnAction(event ->  primaryStage.setScene(scene3));
-		boolean loop=true;
-		//q.inf(gameOver);
-		switch (direction) {
-		case up:
-			
-			//snake.get(0).y--;
-			//obstacle.get(0).x--;
-			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
-			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
-			int i=(int)ball.circle.getCenterY();
-			i=i-30;
-			ball.circle.setCenterY(i);
-			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
-			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
-			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
-			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
-
-			break;
-		case down:
-
-			//obstacle.get(0).x--;
-			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
-			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
-			int j=(int)ball.circle.getCenterY();
-			j=j+30;
-			ball.circle.setCenterY(j);
-			//b.y++;
-
-			break;
-		case left:
-
-			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
-			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
-			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
-			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
-			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
-			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
-//			j=(int)ball.circle.getCenterY();
-//			j=j+30;
-//			ball.circle.setCenterY(j);
-		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() { 
-		          @Override 
-		          public void handle(MouseEvent e) { 
-		             //System.out.println("Hello World");
-		  			int i=(int)ball.circle.getCenterY();
-					i=i-30;
-					ball.circle.setCenterY(i);
-		            // ball.circle.setFill(Color.DARKSLATEBLUE);
-		          } 
-		       };
-
-			break;
-
-
-		}
-
-
-
-		// fill
-		// background
-		gc.setFill(Color.web("061731",1.0));
-		gc.fillRect(0, 0, width * cornersize, height * cornersize);
-
-		// score
-		gc.setFill(Color.web("F8FDE7",1.0));
-		Font f=Font.font("Proxima Nova",FontWeight.BOLD, (double)27);
-		gc.setFont(f);
-		gc.fillText(" " + stars, 40, 30);
-
-		// random foodcolor
-		
-		Color cc = Color.WHITE;
-
-
-		
-		colorSwitch.color=rand.nextInt(3)+1;
-		if (colorSwitch.color==1) {
-			gc.setFill(Color.web("61D8A2",1.0));
-			
-			gc.fillOval(240, 570, 30 , 30 );
-		}
-		if (colorSwitch.color==2) {
-			gc.setFill(Color.web("ED476F",1.0));
-			
-			gc.fillOval(240, 570, 30 , 30 );
-		}
-		if (colorSwitch.color==3) {
-			gc.setFill(Color.web("FAD167",1.0));
-			
-			gc.fillOval(240, 570, 30 , 30 );
-		}
-		if (colorSwitch.color==4) {
-			gc.setFill(Color.web("368BB2",1.0));
-			
-			gc.fillOval(240, 570, 30 , 30 );
-		}
-
-		if (ball.circle.getCenterY()==710) {
-			//ball.circle.setFill(Color.PINK);
-		for (int i=0;i<mega.get(0).size();i++) {
-			if (mega.get(0).get(i).getX()==240) {
-				//ball.circle.setFill(Color.PINK);
-				String s1=ball.circle.getFill().toString();
-				String s2=mega.get(0).get(i).getFill().toString();
-				if (!s1.equals(s2)) {
-
-					gameOver=true;
-				}
-			}
-		}}
-		
-		if (ball.circle.getCenterY()==20) {
-			gameOver=true;
-		}
-		
-		if (mega.get(0).get(19).getX()==480) {
-			mega.get(1).get(0).setX(510);
-		}
-		if (mega.get(1).get(19).getX()==480) {
-			mega.get(0).get(0).setX(510);
-		}
-		
-		// 230 625  800-30x=625 175
-		if (ball.circle.getCenterY()==620) {
-			//System.out.println("hufwc");
-			//ball.circle.setFill(Color.PINK);
-			stars++;
-		}
-		
-		
-		if (ball.circle.getCenterY()==560) {
-			ball.color=colorSwitch.color;
-
-			if (ball.color==1) {
-				//Corner c=snake.get(0);
-				ball.circle.setFill(Color.web("61D8A2",1.0));
-				
-				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
-			}
-			if (ball.color==2) {
-				ball.circle.setFill(Color.web("ED476F",1.0));
-				
-				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
-			}
-			if (ball.color==3) {
-				ball.circle.setFill(Color.web("FAD167",1.0));
-				
-				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
-			}
-			if (ball.color==4) {
-				ball.circle.setFill(Color.web("368BB2",1.0));
-				
-				//gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
-			}
-		}
-		
-		if (gameOver) {
-			
-			boolean b=false;
-			//gc.setFill(Color.BLACK);
-			gc.setFill(Color.web("e63946",1.0));
-			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
-			//gc.fillRect(arg0, arg1, arg2, arg3);
-			
-			gc.fillText("GAME OVER", 110, 75);
-			
-			b=true;
-			int i=0;
-			while (i!=100000) {
-			ball.circle.setCenterY(ball.circle.getCenterY()-10);
-			i++;}
-//			if (b) {
-//			primaryStage.setScene(scene3);}
-
-			return;
-		}
-		int help=0;
-		help=1;
-
-		
-		
-
-	}
 
 	// food
 //gravity
