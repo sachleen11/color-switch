@@ -105,7 +105,7 @@ public class Main extends Application {
 	static int x=0;
 	static int y=0;
 	static int cornersize = 25;
-	static Corner food = new Corner(10,20);
+	static ColorSwitch colorSwitch = new ColorSwitch(10,20);
 	static List<List<Rectangle>> mega= new ArrayList<List<Rectangle>>();
 	//static ball b=new ball(x,y);
 	static Dir direction = Dir.left;
@@ -412,6 +412,7 @@ public class Main extends Application {
 		public Rectangle square4() {
 	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTBLUE), new Stop(1, Color.BLUE)};  
 	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops); 
+	        
 			rectangle4.setX(200); 
 			rectangle4.setY(200); 
 			rectangle4.setWidth(110); 
@@ -423,12 +424,12 @@ public class Main extends Application {
 		
 	}
 
-	public static class Corner {
+	public static class ColorSwitch {
 		int x;
 		int y;
 		int color;
 
-		public Corner(int x, int y) {
+		public ColorSwitch(int x, int y) {
 			this.x = x;
 			this.y = y;
 		}
@@ -492,7 +493,7 @@ public class Main extends Application {
 		
 	}
 	public static List<Rectangle> generate(GraphicsContext gc) {
-		 List<Corner> obstacle = new ArrayList<>();
+		// List<Corner> obstacle = new ArrayList<>();
 		 List<Rectangle> Linear = new ArrayList<>();
 		 int j=30;
 		 for (int i=0;i<5;i++) {
@@ -504,7 +505,7 @@ public class Main extends Application {
 				r.setFill(Color.web("ED476F",1.0));
 				r.setStroke(Color.web("061731",1.0));
 				Linear.add(r);
-		obstacle.add(new Corner(width ,4* height /5 ));
+		//obstacle.add(new Corner(width ,4* height /5 ));
 		j=j+30;
 }
 		 for (int i=5;i<10;i++) {
@@ -517,7 +518,7 @@ public class Main extends Application {
 				//r.setStroke(Color.web("61D8A2",1.0));
 				r.setStroke(Color.web("061731",1.0));
 				Linear.add(r);
-		obstacle.add(new Corner(width ,4* height /5 ));
+		//obstacle.add(new Corner(width ,4* height /5 ));
 		j=j+30;
 }
 		 for (int i=10;i<15;i++) {
@@ -529,7 +530,7 @@ public class Main extends Application {
 				r.setFill(Color.web("FAD167",1.0));
 				r.setStroke(Color.web("061731",1.0));
 				Linear.add(r);
-		obstacle.add(new Corner(width ,4* height /5 ));
+		//obstacle.add(new Corner(width ,4* height /5 ));
 		j=j+30;
 }
 		 for (int i=15;i<20;i++) {
@@ -541,7 +542,7 @@ public class Main extends Application {
 				r.setFill(Color.web("368BB2",1.0));
 				r.setStroke(Color.web("061731",1.0));
 				Linear.add(r);
-		obstacle.add(new Corner(width ,4* height /5 ));
+		//obstacle.add(new Corner(width ,4* height /5 ));
 		j=j+30;
 }
 
@@ -552,23 +553,7 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) {
 		try {
-			//newFood();
-			//sachleen
-//	        StackPane rt = new StackPane();
-//	        SetUp(rt);
-//	        rt.setId("pane");
-//	        Scene scene = new Scene(rt, 500, 750);
-//	        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-//
-//	        //Scene s_img = new Scene(img, 500,600);
-//	        primaryStage.setTitle("Color Switch");
-//	        primaryStage.setScene(scene);
-//	        //primaryStage.setScene(s_img);
-//	        primaryStage.show();
-	        
-	        
-	        
-	        
+
 	        //ishika
 			Circle ball = new Circle(x, Color.DARKSLATEBLUE);
 			Star s=new Star();
@@ -802,23 +787,23 @@ public class Main extends Application {
 
 
 		
-		food.color=rand.nextInt(3)+1;
-		if (food.color==1) {
+		colorSwitch.color=rand.nextInt(3)+1;
+		if (colorSwitch.color==1) {
 			gc.setFill(Color.web("61D8A2",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
-		if (food.color==2) {
+		if (colorSwitch.color==2) {
 			gc.setFill(Color.web("ED476F",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
-		if (food.color==3) {
+		if (colorSwitch.color==3) {
 			gc.setFill(Color.web("FAD167",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
 		}
-		if (food.color==4) {
+		if (colorSwitch.color==4) {
 			gc.setFill(Color.web("368BB2",1.0));
 			
 			gc.fillOval(240, 570, 30 , 30 );
@@ -858,7 +843,7 @@ public class Main extends Application {
 		
 		
 		if (ball.circle.getCenterY()==560) {
-			ball.color=food.color;
+			ball.color=colorSwitch.color;
 
 			if (ball.color==1) {
 				//Corner c=snake.get(0);
