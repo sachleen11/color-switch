@@ -159,14 +159,20 @@ public class Main extends Application {
 
     class space{
     	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage) throws FileNotFoundException {
-
+    		speed++;
     		for (int i = obstacle.size() - 1; i >= 1; i--) {
 
     			mega.get(0).get(i).setX(mega.get(0).get(i - 1).getX());
-    			mega.get(0).get(i).setY(mega.get(0).get(i - 1).getY());
+    			//mega.get(0).get(i).setY(mega.get(0).get(i - 1).getY()+1);
+    			//mega.get(0).get(i).setY(mega.get(0).get(i).getY()+1);
     			mega.get(1).get(i).setX(mega.get(1).get(i - 1).getX());
-    			mega.get(1).get(i).setY(mega.get(1).get(i - 1).getY());
+    			//mega.get(1).get(i).setY(mega.get(1).get(i).getY()+1);
     		}
+//    		
+//			for (int i=0;i<mega.get(0).size();i++) {
+//				mega.get(1).get(0).setY(mega.get(1).get(0).getY()+1);
+//				mega.get(0).get(0).setY(mega.get(0).get(0).getY()+1);
+//			}
 
             Pane rt = new Pane();
 
@@ -199,14 +205,27 @@ public class Main extends Application {
 		    		case up:
 
 		    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
-		    			mega.get(1).get(0).setX(mega.get(0).get(0).getX()-30);
+		    			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
+		    			
+		        		for (int i = obstacle.size() - 1; i >= 0; i--) {
+
+		        			mega.get(0).get(i).setY(mega.get(0).get(i).getY()+1);
+		        			mega.get(1).get(i).setY(mega.get(1).get(i).getY()+1);
+		        		}
+		    			//mega.get(1).get(0).setY(mega.get(1).get(0).getY()+5);
+		    			
+		    			
 		    			int i=(int)ball.circle.getCenterY();
 		    			i=i-30;
 		    			ball.circle.setCenterY(i);
-		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
-		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
-		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
-		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
+		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+45);
+		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+45);
+		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+45);
+		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+45);
+		    			q.arc1.setCenterY(q.arc1.getCenterY()+1);
+		    			q.arc2.setCenterY(q.arc2.getCenterY()+1);
+		    			q.arc3.setCenterY(q.arc3.getCenterY()+1);
+		    			q.arc4.setCenterY(q.arc4.getCenterY()+1);
 
     			break;
     			case down:
@@ -222,10 +241,10 @@ public class Main extends Application {
 
 		    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 		    			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
-		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+90);
-		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+90);
-		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+90);
-		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+90);
+		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+45);
+		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+45);
+		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+45);
+		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+45);
 
     		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
     		          @Override
@@ -299,6 +318,7 @@ public class Main extends Application {
 
     		if (ball.circle.getCenterY()==620) {
     			stars++;
+
     		}
 
 
