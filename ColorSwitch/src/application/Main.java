@@ -158,8 +158,11 @@ public class Main extends Application {
     }
 
     class space{
-    	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage) throws FileNotFoundException {
+    	int position=550;
+    	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ImageView iv,ColorSwitch cs) throws FileNotFoundException {
     		//speed++;
+    		
+    		
     		for (int i = obstacle.size() - 1; i >= 1; i--) {
 
     			mega.get(0).get(i).setX(mega.get(0).get(i - 1).getX());
@@ -241,10 +244,10 @@ public class Main extends Application {
 
 		    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 		    			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
-		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+45);
-		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+45);
-		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+45);
-		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+45);
+		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+30);
+		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+30);
+		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+30);
+		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+30);
 
     		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
     		          @Override
@@ -271,26 +274,26 @@ public class Main extends Application {
     		Color cc = Color.WHITE;
 
 
-    		colorSwitch.color=rand.nextInt(3)+1;
-    		if (colorSwitch.color==1) {
-    			gc.setFill(Color.web("61D8A2",1.0));
-
-    			gc.fillOval(240, 570, 30 , 30 );
+    		cs.color=rand.nextInt(3)+1;
+    		if (cs.color==1) {
+    			cs.cir().setFill(Color.web("61D8A2",1.0));
+    			
+    			//gc.fillOval(240, 200, 30 , 30 );
     		}
-    		if (colorSwitch.color==2) {
-    			gc.setFill(Color.web("ED476F",1.0));
+    		if (cs.color==2) {
+    			cs.cir().setFill(Color.web("ED476F",1.0));
 
-    			gc.fillOval(240, 570, 30 , 30 );
+    			//gc.fillOval(240, 200, 30 , 30 );
     		}
-    		if (colorSwitch.color==3) {
-    			gc.setFill(Color.web("FAD167",1.0));
+    		if (cs.color==3) {
+    			cs.cir().setFill(Color.web("FAD167",1.0));
 
-    			gc.fillOval(240, 570, 30 , 30 );
+    			//gc.fillOval(240, 200, 30 , 30 );
     		}
-    		if (colorSwitch.color==4) {
-    			gc.setFill(Color.web("368BB2",1.0));
+    		if (cs.color==4) {
+    			cs.cir().setFill(Color.web("368BB2",1.0));
 
-    			gc.fillOval(240, 570, 30 , 30 );
+    			//gc.fillOval(240, 200, 30 , 30 );
     		}
 
     		if (ball.circle.getCenterY()==710) {
@@ -324,17 +327,50 @@ public class Main extends Application {
             primaryStage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
             {
                 public void handle(MouseEvent event) 
-                {
+                {	
+                	//position-=5;
+                	//int pos=(int)ball.cir().getCenterY();
+                    ball.circle.setCenterY(ball.cir().getCenterY()-3);
+                   // int pos2=(int)ball.cir().getCenterY();
+                    //System.out.println(ball.cir().getCenterY());
+                    if (ball.cir().getCenterY()<400) {
+                    	//System.out.println("ji");
+                		for (int i = obstacle.size() - 1; i >= 0; i--) {
 
-                    ball.circle.setCenterY(ball.cir().getCenterY()-30);
+                			mega.get(0).get(i).setY(mega.get(0).get(i).getY()+2);
+                			mega.get(1).get(i).setY(mega.get(1).get(i).getY()+2);
+                		}
+                		iv.setY(iv.getY()+2);
+                		cs.cir().setCenterY(cs.cir().getCenterY()+2);
+		    			q.arc1.setCenterY(q.arc1.getCenterY()+2);
+		    			q.arc2.setCenterY(q.arc2.getCenterY()+2);
+		    			q.arc3.setCenterY(q.arc3.getCenterY()+2);
+		    			q.arc4.setCenterY(q.arc4.getCenterY()+2);
+                    }
+
                 }
             });
             
-            if (ball.cir().getCenterY()<800) {
+           // ball.circle.setCenterY(position);
+            //mega.get(0).get(1).getY()>400
+            if (ball.cir().getCenterY()<550) {
             	//System.out.println("ji");
             	
-            	ball.circle.setCenterY(ball.cir().getCenterY()+5);
+//                if (ball.cir().getCenterY()<400) {
+//                	//System.out.println("ji");
+//            		for (int i = obstacle.size() - 1; i >= 0; i--) {
+//
+//            			mega.get(0).get(i).setY(mega.get(0).get(i).getY()+1);
+//            			mega.get(1).get(i).setY(mega.get(1).get(i).getY()+1);
+//            		}
+//                	//ball.circle.setCenterY(ball.cir().getCenterY()+3);
+//                }
+                
+//                else {
+               	ball.circle.setCenterY(ball.cir().getCenterY()+3);
+//                }
             }
+            
 
 
     		if (ball.circle.getCenterY()==560) {
@@ -528,7 +564,7 @@ public class Main extends Application {
 		Circle circle = new Circle();
 		public ball(int x, int y) {
 			circle.setCenterX(250);
-			circle.setCenterY(800
+			circle.setCenterY(550
 					);
 			circle.setRadius(15 );
 			circle.setFill(Color.web("ED476F",1.0));
@@ -547,9 +583,9 @@ public class Main extends Application {
 		Arc arc4 = new Arc();
 		public Arc arc1() {
 			arc1.setCenterX(250.0f);
-			arc1.setCenterY(280);
-			arc1.setRadiusX(50);
-			arc1.setRadiusY(50);
+			arc1.setCenterY(-5);
+			arc1.setRadiusX(90);
+			arc1.setRadiusY(90);
 	        arc1.setStartAngle(0.0f);
 	        arc1.setLength(90.0f);
 	        arc1.setStrokeWidth(10);
@@ -559,9 +595,9 @@ public class Main extends Application {
 		}
 		public Arc arc2() {
 			arc2.setCenterX(250.0f);
-			arc2.setCenterY(280);
-			arc2.setRadiusX(50);
-			arc2.setRadiusY(50);
+			arc2.setCenterY(-5);
+			arc2.setRadiusX(90);
+			arc2.setRadiusY(90);
 			arc2.setStartAngle(90.0f);
 			arc2.setLength(90.0f);
 			arc2.setStrokeWidth(10);
@@ -571,9 +607,9 @@ public class Main extends Application {
 		}
 		public Arc arc3() {
 			arc3.setCenterX(250.0f);
-			arc3.setCenterY(280);
-			arc3.setRadiusX(50);
-			arc3.setRadiusY(50);
+			arc3.setCenterY(-5);
+			arc3.setRadiusX(90);
+			arc3.setRadiusY(90);
 			arc3.setStartAngle(180.0f);
 			arc3.setLength(90.0f);
 			arc3.setStrokeWidth(10);
@@ -583,9 +619,9 @@ public class Main extends Application {
 		}
 		public Arc arc4() {
 			arc4.setCenterX(250.0f);
-			arc4.setCenterY(280);
-			arc4.setRadiusX(50);
-			arc4.setRadiusY(50);
+			arc4.setCenterY(-5);
+			arc4.setRadiusX(90);
+			arc4.setRadiusY(90);
 			arc4.setStartAngle(270.0f);
 			arc4.setLength(90.0f);
 			arc4.setStrokeWidth(10);
@@ -674,13 +710,20 @@ public class Main extends Application {
 	}
 
 	public static class ColorSwitch extends staticElements{
-		int x;
-		int y;
+//		int x;
+//		int y;
 		int color;
-
+		Circle c=new Circle();
 		public ColorSwitch(int x, int y) {
-			this.x = x;
-			this.y = y;
+//			this.x = x;
+//			this.y = y;
+			c.setCenterX(250);
+			c.setCenterY(200);
+			c.setRadius(15);
+			c.setFill(Color.web("368BB2",1.0));
+		}
+		public Circle cir() {
+			return c;
 		}
 
 	}
@@ -691,7 +734,7 @@ public class Main extends Application {
 		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png"));
 		ImageView imageView = new ImageView(image);
 		imageView.setX(230);
-	    imageView.setY(625);
+	    imageView.setY(300);
 	    imageView.setFitHeight(50);
 	    imageView.setFitWidth(100);
 	    imageView.setPreserveRatio(true);
@@ -732,7 +775,7 @@ public class Main extends Application {
 		 for (int i=0;i<5;i++) {
 			 Rectangle r=new Rectangle();
 				r.setX(j);
-				r.setY(700);
+				r.setY(400);
 				r.setWidth(30);
 				r.setHeight(30);
 				r.setFill(Color.web("ED476F",1.0));
@@ -743,7 +786,7 @@ public class Main extends Application {
 		 for (int i=5;i<10;i++) {
 			 Rectangle r=new Rectangle();
 				r.setX(j);
-				r.setY(700);
+				r.setY(400);
 				r.setWidth(30);
 				r.setHeight(30);
 				r.setFill(Color.web("61D8A2",1.0));
@@ -754,7 +797,7 @@ public class Main extends Application {
 		 for (int i=10;i<15;i++) {
 			 Rectangle r=new Rectangle();
 				r.setX(j);
-				r.setY(700);
+				r.setY(400);
 				r.setWidth(30);
 				r.setHeight(30);
 				r.setFill(Color.web("FAD167",1.0));
@@ -765,7 +808,7 @@ public class Main extends Application {
 		 for (int i=15;i<20;i++) {
 			 Rectangle r=new Rectangle();
 				r.setX(j);
-				r.setY(700);
+				r.setY(400);
 				r.setWidth(30);
 				r.setHeight(30);
 				r.setFill(Color.web("368BB2",1.0));
@@ -808,15 +851,15 @@ public class Main extends Application {
 			GraphicsContext gc = c.getGraphicsContext2D();
 			ball b=new ball(width/3,height/3);
 			root.getChildren().add(c);
-			root.getChildren().add(cr.line1());
-			root.getChildren().add(cr.line2());
-			root.getChildren().add(cr.line3());
-			root.getChildren().add(cr.line4());
-
-			root.getChildren().add(d.line1());
-			root.getChildren().add(d.line2());
-			root.getChildren().add(d.line3());
-			root.getChildren().add(d.line4());
+//			root.getChildren().add(cr.line1());
+//			root.getChildren().add(cr.line2());
+//			root.getChildren().add(cr.line3());
+//			root.getChildren().add(cr.line4());
+//
+//			root.getChildren().add(d.line1());
+//			root.getChildren().add(d.line2());
+//			root.getChildren().add(d.line3());
+//			root.getChildren().add(d.line4());
 
 			root.getChildren().add(b.circle);
 			root.getChildren().add(p);
@@ -828,15 +871,17 @@ public class Main extends Application {
 	        Start.setLayoutY(9);
 	        Start.setStyle("-fx-background-color: #061731;-fx-text-fill: #f1faee ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold");
 	         root.getChildren().add(Start);
+	        ColorSwitch cs=new ColorSwitch(200,250);
+	        root.getChildren().add(cs.cir());
 			root.getChildren().add(q.arc1());
 			root.getChildren().add(q.arc2());
 			root.getChildren().add(q.arc3());
 
 			root.getChildren().add(q.arc4());
-			root.getChildren().add(sq.square1());
-			root.getChildren().add(sq.square2());
-			root.getChildren().add(sq.square3());
-			root.getChildren().add(sq.square4());
+//			root.getChildren().add(sq.square1());
+//			root.getChildren().add(sq.square2());
+//			root.getChildren().add(sq.square3());
+//			root.getChildren().add(sq.square4());
 			List<Rectangle> obstacle = generate(gc);
 			List<Rectangle> obstacle2 = generate(gc);
 			for (int i=0;i<20;i++) {
@@ -856,7 +901,7 @@ public class Main extends Application {
 					if (lastTick == 0) {
 						lastTick = now;
 						try {
-							sp.tick(gc,obstacle,b,q,Start,primaryStage);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs);
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
 						}
@@ -866,7 +911,7 @@ public class Main extends Application {
 					if (now - lastTick > 1000000000 / speed) {
 						lastTick = now;
 						try {
-							sp.tick(gc,obstacle,b,q,Start,primaryStage);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs);
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
 						}
@@ -876,7 +921,7 @@ public class Main extends Application {
 			}.start();
 
 
-			Scene scene2 = new Scene(root, width * cornersize, height * cornersize);
+			Scene scene2 = new Scene(root, 500, 600);
 
 			scene2.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 				if (key.getCode() == KeyCode.W) {
