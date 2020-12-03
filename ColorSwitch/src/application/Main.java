@@ -159,7 +159,7 @@ public class Main extends Application {
 
     class space{
     	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage) throws FileNotFoundException {
-    		speed++;
+    		//speed++;
     		for (int i = obstacle.size() - 1; i >= 1; i--) {
 
     			mega.get(0).get(i).setX(mega.get(0).get(i - 1).getX());
@@ -320,6 +320,21 @@ public class Main extends Application {
     			stars++;
 
     		}
+    		
+            primaryStage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
+            {
+                public void handle(MouseEvent event) 
+                {
+
+                    ball.circle.setCenterY(ball.cir().getCenterY()-30);
+                }
+            });
+            
+            if (ball.cir().getCenterY()<800) {
+            	//System.out.println("ji");
+            	
+            	ball.circle.setCenterY(ball.cir().getCenterY()+5);
+            }
 
 
     		if (ball.circle.getCenterY()==560) {
