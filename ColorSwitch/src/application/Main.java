@@ -336,13 +336,13 @@ public class Main extends Application {
             primaryStage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
             {
                 public void handle(MouseEvent event) 
-                {	
+                {	System.out.println(ball.cir().getCenterY());
                 	//position-=5;
                 	//int pos=(int)ball.cir().getCenterY();
                 	if (ball.circle.getCenterY()>410) {
-                    ball.circle.setCenterY(ball.cir().getCenterY()-5);}
+                    ball.circle.setCenterY(ball.cir().getCenterY()-2.3);}
                    // int pos2=(int)ball.cir().getCenterY();
-                    //System.out.println(ball.cir().getCenterY());
+                    
                 	else if (ball.circle.getCenterY()<410) {
                     	//System.out.println("ji");
                 		 //ball.circle.setCenterY(ball.cir().getCenterY()-3);
