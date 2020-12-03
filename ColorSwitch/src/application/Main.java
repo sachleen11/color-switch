@@ -159,7 +159,7 @@ public class Main extends Application {
 
     class space{
     	int position=550;
-    	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ImageView iv,ColorSwitch cs) throws FileNotFoundException {
+    	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ImageView iv,ColorSwitch cs,Square sq,Cross cr,Diamond d) throws FileNotFoundException {
     		//speed++;
     		
     		
@@ -323,18 +323,29 @@ public class Main extends Application {
     			stars++;
 
     		}
-    		
+//			primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+//				if (key.getCode() == KeyCode.Z) {
+//
+//
+//					 ball.circle.setCenterY(ball.cir().getCenterY()-3);
+//
+//				}
+//
+//
+//			});
             primaryStage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
             {
                 public void handle(MouseEvent event) 
                 {	
                 	//position-=5;
                 	//int pos=(int)ball.cir().getCenterY();
-                    ball.circle.setCenterY(ball.cir().getCenterY()-3);
+                	if (ball.circle.getCenterY()>410) {
+                    ball.circle.setCenterY(ball.cir().getCenterY()-5);}
                    // int pos2=(int)ball.cir().getCenterY();
                     //System.out.println(ball.cir().getCenterY());
-                    if (ball.cir().getCenterY()<400) {
+                	else if (ball.circle.getCenterY()<410) {
                     	//System.out.println("ji");
+                		 //ball.circle.setCenterY(ball.cir().getCenterY()-3);
                 		for (int i = obstacle.size() - 1; i >= 0; i--) {
 
                 			mega.get(0).get(i).setY(mega.get(0).get(i).getY()+2);
@@ -342,10 +353,38 @@ public class Main extends Application {
                 		}
                 		iv.setY(iv.getY()+2);
                 		cs.cir().setCenterY(cs.cir().getCenterY()+2);
+                		
 		    			q.arc1.setCenterY(q.arc1.getCenterY()+2);
 		    			q.arc2.setCenterY(q.arc2.getCenterY()+2);
 		    			q.arc3.setCenterY(q.arc3.getCenterY()+2);
 		    			q.arc4.setCenterY(q.arc4.getCenterY()+2);
+		    			//q.arc1.setCenterY(q.arc1.getCenterY()+2);
+		    			sq.rectangle.setY(sq.rectangle.getY()+2);
+		    			sq.rectangle2.setY(sq.rectangle2.getY()+2);
+		    			sq.rectangle3.setY(sq.rectangle3.getY()+2);
+		    			sq.rectangle4.setY(sq.rectangle4.getY()+2);
+		    			cr.l.setStartY(cr.l.getStartY()+2);
+		    			cr.l.setEndY(cr.l.getEndY()+2);
+		    			cr.l2.setStartY(cr.l2.getStartY()+2);
+		    			cr.l2.setEndY(cr.l2.getEndY()+2);
+		    			cr.l3.setStartY(cr.l3.getStartY()+2);
+		    			cr.l3.setEndY(cr.l3.getEndY()+2);
+		    			cr.l4.setStartY(cr.l4.getStartY()+2);
+		    			cr.l4.setEndY(cr.l4.getEndY()+2);
+		    			d.l.setStartY(d.l.getStartY()+2);
+		    			d.l.setEndY(d.l.getEndY()+2);
+		    			d.l2.setStartY(d.l2.getStartY()+2);
+		    			d.l2.setEndY(d.l2.getEndY()+2);
+		    			d.l3.setStartY(d.l3.getStartY()+2);
+		    			d.l3.setEndY(d.l3.getEndY()+2);
+		    			d.l4.setStartY(d.l4.getStartY()+2);
+		    			d.l4.setEndY(d.l4.getEndY()+2);
+//		    			sq.rectangle2.setY(sq.rectangle2.getY()+2);
+//		    			sq.rectangle3.setY(sq.rectangle3.getY()+2);
+//		    			sq.rectangle4.setY(sq.rectangle4.getY()+2);
+
+
+		    			
                     }
 
                 }
@@ -353,7 +392,7 @@ public class Main extends Application {
             
            // ball.circle.setCenterY(position);
             //mega.get(0).get(1).getY()>400
-            if (ball.cir().getCenterY()<550) {
+            if (ball.circle.getCenterY()<550) {
             	//System.out.println("ji");
             	
 //                if (ball.cir().getCenterY()<400) {
@@ -477,36 +516,36 @@ public class Main extends Application {
 		Rectangle rectangle4=new Rectangle();
 		public Line line1() {
 		l.setStartX(300);
-		l.setStartY(350);
+		l.setStartY(-320);
 		l.setEndX(250);
-		l.setEndY(400);
+		l.setEndY(-370);
 		l.setStroke(Color.web("ED476F",1.0));
 		l.setStrokeWidth(10);
 		return l;
 		}
 		public Line line2() {
 			l2.setStartX(250);
-			l2.setStartY(400);
+			l2.setStartY(-370);
 			l2.setEndX(300);
-			l2.setEndY(450);
+			l2.setEndY(-420);
 			l2.setStroke(Color.web("FAD167",1.0));
 			l2.setStrokeWidth(10);
 			return l2;
 		}
 		public Line line3() {
 			l3.setStartX(250);
-			l3.setStartY(400);
+			l3.setStartY(-370);
 			l3.setEndX(200);
-			l3.setEndY(450);
+			l3.setEndY(-410);
 			l3.setStroke(Color.web("61D8A2",1.0));
 			l3.setStrokeWidth(10);
 			return l3;
 		}
 		public Line line4() {
 			l4.setStartX(200);
-			l4.setStartY(350);
+			l4.setStartY(-320);
 			l4.setEndX(250);
-			l4.setEndY(400);
+			l4.setEndY(-370);
 			l4.setStroke(Color.web("368BB2",1.0));
 			l4.setStrokeWidth(10);
 			return l4;
@@ -521,36 +560,36 @@ public class Main extends Application {
 		Rectangle rectangle4=new Rectangle();
 		public Line line1() {
 		l.setStartX(300);
-		l.setStartY(480);
+		l.setStartY(-480);
 		l.setEndX(270);
-		l.setEndY(530);
+		l.setEndY(-530);
 		l.setStroke(Color.web("ED476F",1.0));
 		l.setStrokeWidth(5);
 		return l;
 		}
 		public Line line2() {
 			l2.setStartX(270);
-			l2.setStartY(532);
+			l2.setStartY(-532);
 			l2.setEndX(200);
-			l2.setEndY(532);
+			l2.setEndY(-532);
 			l2.setStroke(Color.web("FAD167",1.0));
 			l2.setStrokeWidth(5);
 			return l2;
 		}
 		public Line line3() {
 			l3.setStartX(230);
-			l3.setStartY(480);
+			l3.setStartY(-480);
 			l3.setEndX(200);
-			l3.setEndY(530);
+			l3.setEndY(-530);
 			l3.setStroke(Color.web("61D8A2",1.0));
 			l3.setStrokeWidth(5);
 			return l3;
 		}
 		public Line line4() {
 			l4.setStartX(230);
-			l4.setStartY(480);
+			l4.setStartY(-480);
 			l4.setEndX(300);
-			l4.setEndY(480);
+			l4.setEndY(-480);
 			l4.setStroke(Color.web("368BB2",1.0));
 			l4.setStrokeWidth(5);
 			return l4;
@@ -655,7 +694,7 @@ public class Main extends Application {
 	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTPINK), new Stop(1, Color.CORAL)};
 	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
 		      rectangle.setX(300);
-		      rectangle.setY(100);
+		      rectangle.setY(-250);
 		      rectangle.setWidth(10);
 		      rectangle.setHeight(100);
 		      rectangle.setFill(Color.web("ED476F",1.0));
@@ -669,7 +708,7 @@ public class Main extends Application {
 	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTGREEN), new Stop(1, Color.FORESTGREEN)};
 	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
 			rectangle2.setX(200);
-			rectangle2.setY(100);
+			rectangle2.setY(-250);
 			rectangle2.setWidth(10);
 			rectangle2.setHeight(100);
 			rectangle2.setFill(Color.web("61D8A2",1.0));
@@ -684,7 +723,7 @@ public class Main extends Application {
 	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
 
 			rectangle3.setX(200);
-			rectangle3.setY(100);
+			rectangle3.setY(-250);
 			rectangle3.setWidth(100);
 			rectangle3.setHeight(10);
 			rectangle3.setFill(Color.web("FAD167",1.0));
@@ -699,7 +738,7 @@ public class Main extends Application {
 	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
 
 			rectangle4.setX(200);
-			rectangle4.setY(200);
+			rectangle4.setY(-150);
 			rectangle4.setWidth(110);
 			rectangle4.setHeight(10);
 			rectangle4.setFill(Color.web("368BB2",1.0));
@@ -851,15 +890,15 @@ public class Main extends Application {
 			GraphicsContext gc = c.getGraphicsContext2D();
 			ball b=new ball(width/3,height/3);
 			root.getChildren().add(c);
-//			root.getChildren().add(cr.line1());
-//			root.getChildren().add(cr.line2());
-//			root.getChildren().add(cr.line3());
-//			root.getChildren().add(cr.line4());
+			root.getChildren().add(cr.line1());
+			root.getChildren().add(cr.line2());
+			root.getChildren().add(cr.line3());
+			root.getChildren().add(cr.line4());
 //
-//			root.getChildren().add(d.line1());
-//			root.getChildren().add(d.line2());
-//			root.getChildren().add(d.line3());
-//			root.getChildren().add(d.line4());
+			root.getChildren().add(d.line1()); //right
+			root.getChildren().add(d.line2());  //top
+			root.getChildren().add(d.line3()); //left
+			root.getChildren().add(d.line4());  //bottm
 
 			root.getChildren().add(b.circle);
 			root.getChildren().add(p);
@@ -878,10 +917,10 @@ public class Main extends Application {
 			root.getChildren().add(q.arc3());
 
 			root.getChildren().add(q.arc4());
-//			root.getChildren().add(sq.square1());
-//			root.getChildren().add(sq.square2());
-//			root.getChildren().add(sq.square3());
-//			root.getChildren().add(sq.square4());
+			root.getChildren().add(sq.square1()); //rm
+			root.getChildren().add(sq.square2()); //lm
+			root.getChildren().add(sq.square3()); //top
+			root.getChildren().add(sq.square4());
 			List<Rectangle> obstacle = generate(gc);
 			List<Rectangle> obstacle2 = generate(gc);
 			for (int i=0;i<20;i++) {
@@ -901,17 +940,17 @@ public class Main extends Application {
 					if (lastTick == 0) {
 						lastTick = now;
 						try {
-							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs,sq,cr,d);
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
 						}
 						return;
 					}
 
-					if (now - lastTick > 1000000000 / speed) {
+					if (now - lastTick > 1000000000 / speed-20) {
 						lastTick = now;
 						try {
-							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs,sq,cr,d);
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
 						}
