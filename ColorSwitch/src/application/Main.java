@@ -412,19 +412,20 @@ public class Main extends Application {
             
 
 
-    		if (ball.circle.getCenterY()==560) {
+    		if (ball.circle.getCenterY()<cs.cir().getCenterY()+30 && ball.circle.getCenterY()>cs.cir().getCenterY()-30
+    				) {
     			ball.color=colorSwitch.color;
-
-    			if (ball.color==1) {
+    			//ball.circle.setFill(Color.web("61D8A2",1.0));
+    			if (cs.color==1) {
     				ball.circle.setFill(Color.web("61D8A2",1.0));
     			}
-    			if (ball.color==2) {
+    			if (cs.color==2) {
     				ball.circle.setFill(Color.web("ED476F",1.0));
     			}
-    			if (ball.color==3) {
+    			if (cs.color==3) {
     				ball.circle.setFill(Color.web("FAD167",1.0));
     			}
-    			if (ball.color==4) {
+    			if (cs.color==4) {
     				ball.circle.setFill(Color.web("368BB2",1.0));
     			}
     		}
@@ -454,188 +455,6 @@ public class Main extends Application {
 
     }
 
-
-    class Game{
-
-    protected void SetUp(Pane mainPage, Scene scene2, Stage primaryStage) throws Exception{
-
-        Button Start = new Button("START GAME");
-        Start.setOnAction(event ->  primaryStage.setScene(scene2));
-        Start.setId("shiny-orange");
-        Start.setMaxWidth(150);
-
-        Button Exit = new Button("EXIT GAME");
-
-        Exit.setOnAction(event -> Platform.exit());
-        Exit.setId("shiny-orange");
-        Exit.setMaxWidth(150);
-
-        Button Load = new Button("LOAD GAME");
-        Load.setOnAction(event ->  primaryStage.setScene(scene2));
-        Load.setId("shiny-orange");
-        Load.setMaxWidth(150);
-
-
-        FileInputStream input = new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png");
-        Image image = new Image(input);
-        ImageView imageView = new ImageView(image);
-        imageView.setTranslateX(-210);
-        imageView.setTranslateY(-340);
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
-        imageView.setPreserveRatio(true);
-
-        Text t = new Text();
-        t.setText("7");
-        t.setFont(Font.font("Proxima Nova",FontWeight.BOLD,20));
-        t.setFill(Color.WHITE);
-        t.setTranslateX(-180);
-        t.setTranslateY(-338);
-
-        Text t2 = new Text();
-        t2.setText("BEST SCORE: 7");
-        t2.setFont(Font.font("Proxima Nova",FontWeight.BOLD,20));
-        t2.setFill(Color.WHITE);
-        t2.setTranslateX(160);
-        t2.setTranslateY(-340);
-
-        VBox vbox = new VBox(20,Start,Load, Exit);
-
-        vbox.setTranslateX(170);
-        vbox.setTranslateY(500);
-
-        mainPage.getChildren().addAll(vbox,imageView,t,t2);
-    }}
-
-
-
-
-
-
-	public static class Square extends obstacle{
-
-		Rectangle rectangle = new Rectangle();
-		Rectangle rectangle2 = new Rectangle();
-		Rectangle rectangle3 = new Rectangle();
-		Rectangle rectangle4 = new Rectangle();
-		public Rectangle square1() {
-	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTPINK), new Stop(1, Color.CORAL)};
-	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
-		      rectangle.setX(300);
-		      rectangle.setY(-250);
-		      rectangle.setWidth(10);
-		      rectangle.setHeight(100);
-		      rectangle.setFill(Color.web("ED476F",1.0));
-
-
-		      Group g=new Group();
-
-		      return rectangle;
-		}
-		public Rectangle square2() {
-	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTGREEN), new Stop(1, Color.FORESTGREEN)};
-	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
-			rectangle2.setX(200);
-			rectangle2.setY(-250);
-			rectangle2.setWidth(10);
-			rectangle2.setHeight(100);
-			rectangle2.setFill(Color.web("61D8A2",1.0));
-
-
-			Group g=new Group();
-
-			return rectangle2;
-		}
-		public Rectangle square3() {
-	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTGOLDENRODYELLOW), new Stop(1, Color.YELLOW)};
-	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
-
-			rectangle3.setX(200);
-			rectangle3.setY(-250);
-			rectangle3.setWidth(100);
-			rectangle3.setHeight(10);
-			rectangle3.setFill(Color.web("FAD167",1.0));
-
-
-			//Group g=new Group();
-
-			return rectangle3;
-		}
-		public Rectangle square4() {
-	        Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTBLUE), new Stop(1, Color.BLUE)};
-	        LinearGradient linear = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
-
-			rectangle4.setX(200);
-			rectangle4.setY(-150);
-			rectangle4.setWidth(110);
-			rectangle4.setHeight(10);
-			rectangle4.setFill(Color.web("368BB2",1.0));
-
-			return rectangle4;
-		}
-
-	}
-
-	public static class ColorSwitch extends staticElements{
-//		int x;
-//		int y;
-		int color;
-		Circle c=new Circle();
-		public ColorSwitch(int x, int y) {
-//			this.x = x;
-//			this.y = y;
-			c.setCenterX(250);
-			c.setCenterY(200);
-			c.setRadius(15);
-			c.setFill(Color.web("368BB2",1.0));
-		}
-		public Circle cir() {
-			return c;
-		}
-
-	}
-
-	public static class Star extends staticElements{
-
-		public ImageView star() throws FileNotFoundException{
-		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png"));
-		ImageView imageView = new ImageView(image);
-		imageView.setX(230);
-	    imageView.setY(300);
-	    imageView.setFitHeight(50);
-	    imageView.setFitWidth(100);
-	    imageView.setPreserveRatio(true);
-	    return imageView;
-		}
-
-
-	}
-
-	public static class Stardeco{
-
-		public ImageView star() throws FileNotFoundException{
-		Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png"));
-		ImageView imageView = new ImageView(image);
-		imageView.setX(12);
-	    imageView.setY(9);
-	    imageView.setFitHeight(25);
-	    imageView.setFitWidth(25);
-	    imageView.setPreserveRatio(true);
-	    return imageView;
-		}
-		public ImageView pause() throws FileNotFoundException{
-			Image image = new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\pause.png"));
-			ImageView imageView = new ImageView(image);
-			imageView.setX(400);
-			imageView.setY(9);
-			imageView.setFitHeight(35);
-			imageView.setFitWidth(35);
-			imageView.setPreserveRatio(true);
-			return imageView;
-		}
-
-
-	}
 	public static List<Rectangle> generate(GraphicsContext gc) {
 		 List<Rectangle> Linear = new ArrayList<>();
 		 int j=30;
