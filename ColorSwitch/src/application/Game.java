@@ -16,6 +16,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Game {
+
+    final String ISHI_STAR = "C:\\Users\\ishik\\Downloads\\starf.png";
+    final String SACH_STAR = "/Users/sachleenkaur/Downloads/ASSETS/starf.png";
+    
     protected void SetUp(Pane mainPage, Scene scene2, Stage primaryStage) throws Exception{
 
         Button Start = new Button("START GAME");
@@ -35,7 +39,7 @@ public class Game {
         Load.setMaxWidth(150);
 
 
-        FileInputStream input = new FileInputStream("C:\\Users\\ishik\\Downloads\\starf.png");
+        FileInputStream input = new FileInputStream(SACH_STAR);
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
         imageView.setTranslateX(-210);

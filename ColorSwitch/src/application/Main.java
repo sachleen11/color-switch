@@ -132,6 +132,11 @@ class Player{
 
 public class Main extends Application {
 
+	final String ISHI_SCREEN = "C:\\Users\\ishik\\Downloads\\color_screen.png";
+	final String SACH_SCREEN = "/Users/sachleenkaur/Downloads/ASSETS/color_screen.png";
+	final String ISHI_STAR = "C:\\Users\\ishik\\Downloads\\starf.png";
+	final String SACH_STAR = "/Users/sachleenkaur/Downloads/ASSETS/starf.png";
+
 	static int speed = 5;
 	static int width = 20;
 	static int height = 35;
@@ -194,7 +199,7 @@ public class Main extends Application {
 
             rt.getChildren().add(E);
             rt.getChildren().add(Load);
-            BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"),500,750,false,true),
+            BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
                     BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                       BackgroundSize.DEFAULT);
 
@@ -632,7 +637,7 @@ public class Main extends Application {
 	        StackPane rt = new StackPane();
 	        Game g=new Game();
 	       g.SetUp(rt,scene2,primaryStage);
-	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("C:\\Users\\ishik\\Downloads\\color_screen.png"),500,750,false,true),
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
 	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 	                  BackgroundSize.DEFAULT);
 
