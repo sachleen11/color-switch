@@ -334,9 +334,9 @@ public class Main extends Application {
 //
 //			});
             primaryStage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
-            {
+            {//fctor:13
                 public void handle(MouseEvent event) 
-                {	System.out.println(ball.cir().getCenterY());
+                {	//System.out.println(ball.cir().getCenterY());
                 	//position-=5;
                 	//int pos=(int)ball.cir().getCenterY();
                 	if (ball.circle.getCenterY()>410) {
@@ -508,181 +508,9 @@ public class Main extends Application {
     }}
 
 
-	public static class Cross extends obstacle{
-		Line l = new Line();
-		Line l2 = new Line();
-		Line l3 = new Line();
-		Line l4 = new Line();
-		Rectangle rectangle4=new Rectangle();
-		public Line line1() {
-		l.setStartX(300);
-		l.setStartY(-320);
-		l.setEndX(250);
-		l.setEndY(-370);
-		l.setStroke(Color.web("ED476F",1.0));
-		l.setStrokeWidth(10);
-		return l;
-		}
-		public Line line2() {
-			l2.setStartX(250);
-			l2.setStartY(-370);
-			l2.setEndX(300);
-			l2.setEndY(-420);
-			l2.setStroke(Color.web("FAD167",1.0));
-			l2.setStrokeWidth(10);
-			return l2;
-		}
-		public Line line3() {
-			l3.setStartX(250);
-			l3.setStartY(-370);
-			l3.setEndX(200);
-			l3.setEndY(-410);
-			l3.setStroke(Color.web("61D8A2",1.0));
-			l3.setStrokeWidth(10);
-			return l3;
-		}
-		public Line line4() {
-			l4.setStartX(200);
-			l4.setStartY(-320);
-			l4.setEndX(250);
-			l4.setEndY(-370);
-			l4.setStroke(Color.web("368BB2",1.0));
-			l4.setStrokeWidth(10);
-			return l4;
-		}
-	}
-
-	public static class Diamond extends obstacle{
-		Line l = new Line();
-		Line l2 = new Line();
-		Line l3 = new Line();
-		Line l4 = new Line();
-		Rectangle rectangle4=new Rectangle();
-		public Line line1() {
-		l.setStartX(300);
-		l.setStartY(-480);
-		l.setEndX(270);
-		l.setEndY(-530);
-		l.setStroke(Color.web("ED476F",1.0));
-		l.setStrokeWidth(5);
-		return l;
-		}
-		public Line line2() {
-			l2.setStartX(270);
-			l2.setStartY(-532);
-			l2.setEndX(200);
-			l2.setEndY(-532);
-			l2.setStroke(Color.web("FAD167",1.0));
-			l2.setStrokeWidth(5);
-			return l2;
-		}
-		public Line line3() {
-			l3.setStartX(230);
-			l3.setStartY(-480);
-			l3.setEndX(200);
-			l3.setEndY(-530);
-			l3.setStroke(Color.web("61D8A2",1.0));
-			l3.setStrokeWidth(5);
-			return l3;
-		}
-		public Line line4() {
-			l4.setStartX(230);
-			l4.setStartY(-480);
-			l4.setEndX(300);
-			l4.setEndY(-480);
-			l4.setStroke(Color.web("368BB2",1.0));
-			l4.setStrokeWidth(5);
-			return l4;
-		}
-	}
-
-	public static class ball extends dynamicElements{
-		int x;
-		int y;
-		int color=0;
-		Circle circle = new Circle();
-		public ball(int x, int y) {
-			circle.setCenterX(250);
-			circle.setCenterY(550
-					);
-			circle.setRadius(15 );
-			circle.setFill(Color.web("ED476F",1.0));
-		}
-
-		public Circle cir() {
-			return circle;
-		}
-	}
 
 
-	public static class Quad extends obstacle{
-		Arc arc1 = new Arc();
-		Arc arc2= new Arc();
-		Arc arc3 = new Arc();
-		Arc arc4 = new Arc();
-		public Arc arc1() {
-			arc1.setCenterX(250.0f);
-			arc1.setCenterY(-5);
-			arc1.setRadiusX(90);
-			arc1.setRadiusY(90);
-	        arc1.setStartAngle(0.0f);
-	        arc1.setLength(90.0f);
-	        arc1.setStrokeWidth(10);
-			arc1.setStroke(Color.web("ED476F",1.0));
-			arc1.setFill(Color.web("061731",1.0));
-			return arc1;
-		}
-		public Arc arc2() {
-			arc2.setCenterX(250.0f);
-			arc2.setCenterY(-5);
-			arc2.setRadiusX(90);
-			arc2.setRadiusY(90);
-			arc2.setStartAngle(90.0f);
-			arc2.setLength(90.0f);
-			arc2.setStrokeWidth(10);
-			arc2.setFill(Color.web("061731",1.0));
-			arc2.setStroke(Color.web("61D8A2",1.0));
-			return arc2;
-		}
-		public Arc arc3() {
-			arc3.setCenterX(250.0f);
-			arc3.setCenterY(-5);
-			arc3.setRadiusX(90);
-			arc3.setRadiusY(90);
-			arc3.setStartAngle(180.0f);
-			arc3.setLength(90.0f);
-			arc3.setStrokeWidth(10);
-			arc3.setFill(Color.web("061731",1.0));
-			arc3.setStroke(Color.web("FAD167",1.0));
-			return arc3;
-		}
-		public Arc arc4() {
-			arc4.setCenterX(250.0f);
-			arc4.setCenterY(-5);
-			arc4.setRadiusX(90);
-			arc4.setRadiusY(90);
-			arc4.setStartAngle(270.0f);
-			arc4.setLength(90.0f);
-			arc4.setStrokeWidth(10);
-			arc4.setFill(Color.web("061731",1.0));
-			arc4.setStroke(Color.web("368BB2",1.0));
-			return arc4;
-		}
 
-		public void inf(boolean v) {
-			int i=0;
-			boolean loop=true;
-			int angle=0;
-			while (!v) {
-				arc1.setStartAngle(arc1.getStartAngle()+angle);
-				arc2.setStartAngle(arc2.getStartAngle()+angle);
-				arc3.setStartAngle(arc3.getStartAngle()+angle);
-				arc4.setStartAngle(arc4.getStartAngle()+angle);
-				angle=angle+90;
-				i++;
-			}
-		}
-	}
 
 	public static class Square extends obstacle{
 
