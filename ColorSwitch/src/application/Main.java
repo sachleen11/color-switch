@@ -296,7 +296,7 @@ public class Main extends Application {
     			//gc.fillOval(240, 200, 30 , 30 );
     		}
 
-    		if (ball.circle.getCenterY()==710) {
+    		if (ball.circle.getCenterY()>mega.get(0).get(0).getY()-30 && ball.circle.getCenterY()<mega.get(0).get(0).getY()+30) {
     		for (int i=0;i<mega.get(0).size();i++) {
     			if (mega.get(0).get(i).getX()==240) {
     				String s1=ball.circle.getFill().toString();
