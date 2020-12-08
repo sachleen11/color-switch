@@ -199,7 +199,7 @@ public class Main extends Application {
 
             rt.getChildren().add(E);
             rt.getChildren().add(Load);
-            BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
+            BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
                     BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                       BackgroundSize.DEFAULT);
 
@@ -249,11 +249,22 @@ public class Main extends Application {
 
 		    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 		    			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
-		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+30);
-		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+30);
-		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+30);
-		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+30);
-
+		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+15);
+		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+15);
+		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+15);
+		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+15);
+		    			if (q.arc4.getStartAngle()>=360) {
+		    				q.arc4.setStartAngle(q.arc4.getStartAngle()-360);
+		    			}
+		    			if (q.arc1.getStartAngle()>=360) {
+		    				q.arc1.setStartAngle(q.arc1.getStartAngle()-360);
+		    			}
+		    			if (q.arc2.getStartAngle()>=360) {
+		    				q.arc2.setStartAngle(q.arc2.getStartAngle()-360);
+		    			}
+		    			if (q.arc3.getStartAngle()>=360) {
+		    				q.arc3.setStartAngle(q.arc3.getStartAngle()-360);
+		    			}
     		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
     		          @Override
     		          public void handle(MouseEvent e) {
@@ -278,7 +289,7 @@ public class Main extends Application {
 
     		Color cc = Color.WHITE;
 
-
+//COLORSWITCH
     		cs.color=rand.nextInt(3)+1;
     		if (cs.color==1) {
     			cs.cir().setFill(Color.web("61D8A2",1.0));
@@ -415,7 +426,7 @@ public class Main extends Application {
 //                }
             }
             
-
+//switching
 
     		if (ball.circle.getCenterY()<cs.cir().getCenterY()+30 && ball.circle.getCenterY()>cs.cir().getCenterY()-30
     				) {
@@ -434,6 +445,59 @@ public class Main extends Application {
     				ball.circle.setFill(Color.web("368BB2",1.0));
     			}
     		}
+    		
+    		int rotatecircle=(int)(q.arc1.getRadiusX()+q.arc1.getCenterY());
+    		if (ball.circle.getCenterY()<rotatecircle+30 && ball.circle.getCenterY()<rotatecircle+30) {
+    			//ball.circle.setFill(Color.AQUA);
+    			if (q.arc1.getStartAngle()>=90 && q.arc1.getStartAngle()<=180) {
+    				//ball.circle.setFill(Color.AQUA);
+    				//System.out.println(ball.circle.getFill());
+    				//System.out.println(q.arc1.getStroke());
+    				String s1=ball.circle.getFill().toString();
+    				String s2=q.arc1.getStroke().toString();
+    				if (!s1.equals(s2)) {
+
+    					
+    					gameOver=true;
+    				}
+    			}
+    			if (q.arc2.getStartAngle()>=90 && q.arc2.getStartAngle()<=180) {
+    				//ball.circle.setFill(Color.AQUA);
+    				//System.out.println(ball.circle.getFill());
+    				//System.out.println(q.arc2.getStroke());
+    				String s1=ball.circle.getFill().toString();
+    				String s2=q.arc2.getStroke().toString();
+    				if (!s1.equals(s2)) {
+
+    					gameOver=true;
+    				}
+    			}
+    			if (q.arc3.getStartAngle()>=90 && q.arc3.getStartAngle()<=180) {
+    				//ball.circle.setFill(Color.AQUA);
+    				//System.out.println(ball.circle.getFill());
+    				//System.out.println(q.arc3.getStroke());
+    				String s1=ball.circle.getFill().toString();
+    				String s2=q.arc3.getStroke().toString();
+    				if (!s1.equals(s2)) {
+
+    					gameOver=true;
+    				}
+    			}
+    			if (q.arc4.getStartAngle()>=90 && q.arc4.getStartAngle()<=180) {
+    				//ball.circle.setFill(Color.AQUA);
+    				//System.out.println(ball.circle.getFill());
+    			//	System.out.println(q.arc4.getStroke());
+    				String s1=ball.circle.getFill().toString();
+    				String s2=q.arc4.getStroke().toString();
+    				if (!s1.equals(s2)) {
+
+    					gameOver=true;
+    				}
+    			}
+    			
+    			
+    		}
+    		
 
     		if (gameOver) {
 
@@ -637,7 +701,7 @@ public class Main extends Application {
 	        StackPane rt = new StackPane();
 	        Game g=new Game();
 	       g.SetUp(rt,scene2,primaryStage);
-	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
 	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 	                  BackgroundSize.DEFAULT);
 

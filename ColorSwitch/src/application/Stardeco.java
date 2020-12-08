@@ -15,7 +15,7 @@ public class Stardeco{
 
 
 	public ImageView star() throws FileNotFoundException{
-	Image image = new Image(new FileInputStream(SACH_STAR));
+	Image image = new Image(new FileInputStream(ISHI_STAR));
 	ImageView imageView = new ImageView(image);
 	imageView.setX(12);
     imageView.setY(9);
@@ -25,7 +25,7 @@ public class Stardeco{
     return imageView;
 	}
 	public ImageView pause() throws FileNotFoundException{
-		Image image = new Image(new FileInputStream(SACH_PAUSE));
+		Image image = new Image(new FileInputStream(ISHI_PAUSE));
 		ImageView imageView = new ImageView(image);
 		imageView.setX(400);
 		imageView.setY(9);
