@@ -246,13 +246,13 @@ public class Main extends Application {
 
     			break;
     			case left:
-
+    					//System.out.println(q.arc1.getStartAngle());
 		    			mega.get(0).get(0).setX(mega.get(0).get(0).getX()-30);
 		    			mega.get(1).get(0).setX(mega.get(1).get(0).getX()-30);
-		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+15);
-		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+15);
-		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+15);
-		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+15);
+		    			q.arc1.setStartAngle(q.arc1.getStartAngle()+3);
+		    			q.arc2.setStartAngle(q.arc2.getStartAngle()+3);
+		    			q.arc3.setStartAngle(q.arc3.getStartAngle()+3);
+		    			q.arc4.setStartAngle(q.arc4.getStartAngle()+3);
 		    			if (q.arc4.getStartAngle()>=360) {
 		    				q.arc4.setStartAngle(q.arc4.getStartAngle()-360);
 		    			}
@@ -447,10 +447,11 @@ public class Main extends Application {
     		}
     		
     		int rotatecircle=(int)(q.arc1.getRadiusX()+q.arc1.getCenterY());
-    		if (ball.circle.getCenterY()<rotatecircle+30 && ball.circle.getCenterY()<rotatecircle+30) {
+    		if (ball.circle.getCenterY()<rotatecircle+10 && ball.circle.getCenterY()<rotatecircle+10) {
     			//ball.circle.setFill(Color.AQUA);
-    			if (q.arc1.getStartAngle()>=90 && q.arc1.getStartAngle()<=180) {
-    				//ball.circle.setFill(Color.AQUA);
+    			if (q.arc1.getStartAngle()>180 && q.arc1.getStartAngle()<360) {
+    				//ball.circle.setFill(q.arc1.getStroke());
+    				//System.out.println("q1 "+q.arc1.getStartAngle());
     				//System.out.println(ball.circle.getFill());
     				//System.out.println(q.arc1.getStroke());
     				String s1=ball.circle.getFill().toString();
@@ -461,8 +462,9 @@ public class Main extends Application {
     					gameOver=true;
     				}
     			}
-    			if (q.arc2.getStartAngle()>=90 && q.arc2.getStartAngle()<=180) {
-    				//ball.circle.setFill(Color.AQUA);
+    			else if (q.arc2.getStartAngle()>180 && q.arc2.getStartAngle()<360) {
+    			//	ball.circle.setFill(q.arc2.getStroke());
+    				//System.out.println("q2 "+q.arc2.getStartAngle());
     				//System.out.println(ball.circle.getFill());
     				//System.out.println(q.arc2.getStroke());
     				String s1=ball.circle.getFill().toString();
@@ -472,8 +474,9 @@ public class Main extends Application {
     					gameOver=true;
     				}
     			}
-    			if (q.arc3.getStartAngle()>=90 && q.arc3.getStartAngle()<=180) {
-    				//ball.circle.setFill(Color.AQUA);
+    			else if (q.arc3.getStartAngle()>180 && q.arc3.getStartAngle()<360) {
+    				//ball.circle.setFill(q.arc3.getStroke());
+    				//System.out.println("q3 "+q.arc3.getStartAngle());
     				//System.out.println(ball.circle.getFill());
     				//System.out.println(q.arc3.getStroke());
     				String s1=ball.circle.getFill().toString();
@@ -483,9 +486,10 @@ public class Main extends Application {
     					gameOver=true;
     				}
     			}
-    			if (q.arc4.getStartAngle()>=90 && q.arc4.getStartAngle()<=180) {
-    				//ball.circle.setFill(Color.AQUA);
+    			else if (q.arc4.getStartAngle()>180 && q.arc4.getStartAngle()<360) {
+    			//	ball.circle.setFill(q.arc4.getStroke());
     				//System.out.println(ball.circle.getFill());
+    				//System.out.println("q4 "+q.arc4.getStartAngle());
     			//	System.out.println(q.arc4.getStroke());
     				String s1=ball.circle.getFill().toString();
     				String s2=q.arc4.getStroke().toString();
