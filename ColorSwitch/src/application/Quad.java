@@ -17,6 +17,7 @@ public class Quad extends obstacle{
         arc1.setLength(90.0f);
         arc1.setStrokeWidth(10);
 		arc1.setStroke(Color.web("ED476F",1.0));
+		//arc1.setStroke(Color.web("ED476F",1.0));
 		arc1.setFill(Color.web("061731",1.0));
 		return arc1;
 	}
@@ -30,6 +31,7 @@ public class Quad extends obstacle{
 		arc2.setStrokeWidth(10);
 		arc2.setFill(Color.web("061731",1.0));
 		arc2.setStroke(Color.web("61D8A2",1.0));
+		//arc2.setStroke(Color.web("ED476F",1.0));
 		return arc2;
 	}
 	public Arc arc3() {
@@ -42,6 +44,7 @@ public class Quad extends obstacle{
 		arc3.setStrokeWidth(10);
 		arc3.setFill(Color.web("061731",1.0));
 		arc3.setStroke(Color.web("FAD167",1.0));
+		//arc3.setStroke(Color.web("ED476F",1.0));
 		return arc3;
 	}
 	public Arc arc4() {
@@ -54,6 +57,7 @@ public class Quad extends obstacle{
 		arc4.setStrokeWidth(10);
 		arc4.setFill(Color.web("061731",1.0));
 		arc4.setStroke(Color.web("368BB2",1.0));
+		//arc4.setStroke(Color.web("ED476F",1.0));
 		return arc4;
 	}
 

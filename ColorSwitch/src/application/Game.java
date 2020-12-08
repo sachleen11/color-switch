@@ -39,7 +39,7 @@ public class Game {
         Load.setMaxWidth(150);
 
 
-        FileInputStream input = new FileInputStream(SACH_STAR);
+        FileInputStream input = new FileInputStream(ISHI_STAR);
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
         imageView.setTranslateX(-210);
