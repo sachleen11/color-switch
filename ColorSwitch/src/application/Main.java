@@ -137,7 +137,7 @@ public class Main extends Application {
 	final String ISHI_STAR = "C:\\Users\\ishik\\Downloads\\starf.png";
 	final String SACH_STAR = "/Users/sachleenkaur/Downloads/ASSETS/starf.png";
 
-	static int speed = 5;
+	static float speed = 5;
 	static int width = 20;
 	static int height = 35;
 	static int stars=0;
@@ -164,7 +164,7 @@ public class Main extends Application {
 
     class space{
     	int position=550;
-    	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ImageView iv,ColorSwitch cs,Square sq,Cross cr,Diamond d) throws FileNotFoundException {
+    	public void tick(GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ImageView iv,ColorSwitch cs,Square sq,Cross cr,Diamond d,Scene scene2) throws FileNotFoundException {
     		//speed++;
     		
     		
@@ -265,6 +265,19 @@ public class Main extends Application {
 		    			if (q.arc3.getStartAngle()>=360) {
 		    				q.arc3.setStartAngle(q.arc3.getStartAngle()-360);
 		    			}
+		    			
+		    			if (cr.l.getStartX()!=cr.l.getEndX()) {
+		    				cr.l.setStartX(cr.l.getEndX());
+		    			}
+		    			else {
+		    				cr.l.setStartX(300);
+		    			}
+		    			
+		    			cr.l3.setEndX(250);
+		    			cr.l2.setEndY(cr.l3.getStartY());
+		    			cr.l4.setStartY(cr.l4.getEndY());
+
+
     		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
     		          @Override
     		          public void handle(MouseEvent e) {
@@ -278,6 +291,20 @@ public class Main extends Application {
 
 
     		}
+		    		Color temp1 = (Color)sq.rectangle.getFill();
+					sq.rectangle.setFill(sq.rectangle2.getFill());
+					sq.rectangle2.setFill(sq.rectangle3.getFill());
+					sq.rectangle3.setFill(sq.rectangle4.getFill());
+					sq.rectangle4.setFill(temp1);
+//					Color temp1 = (Color)sq.square1().getFill();
+//					Color temp2 = (Color)sq.square2().getFill();
+//					Color temp3 = (Color)sq.square3().getFill();
+//					Color temp4 = (Color)sq.square4().getFill();
+//
+//					sq.square1().setFill(temp2);
+//					sq.square2().setFill(temp3);
+//					sq.square3().setFill(temp4);
+//					sq.square4().setFill(temp1);
 
     		gc.setFill(Color.web("061731",1.0));
     		gc.fillRect(0, 0, width * cornersize, height * cornersize);
@@ -290,25 +317,29 @@ public class Main extends Application {
     		Color cc = Color.WHITE;
 
 //COLORSWITCH
+//			sq.square1().setFill(sq.square2().getFill());
+//			sq.square2().setFill(sq.square3().getFill());
+//			sq.square3().setFill(sq.square4().getFill());
+//			sq.square4().setFill(sq.square1().getFill());
     		cs.color=rand.nextInt(3)+1;
     		if (cs.color==1) {
     			cs.cir().setFill(Color.web("61D8A2",1.0));
-    			
+    		//	sq.rectangle2.setFill(Color.web("61D8A2",1.0));
     			//gc.fillOval(240, 200, 30 , 30 );
     		}
     		if (cs.color==2) {
     			cs.cir().setFill(Color.web("ED476F",1.0));
-
+    		//	sq.rectangle2.setFill(Color.web("ED476F",1.0));
     			//gc.fillOval(240, 200, 30 , 30 );
     		}
     		if (cs.color==3) {
     			cs.cir().setFill(Color.web("FAD167",1.0));
-
+    		//	sq.rectangle2.setFill(Color.web("FAD167",1.0));
     			//gc.fillOval(240, 200, 30 , 30 );
     		}
     		if (cs.color==4) {
     			cs.cir().setFill(Color.web("368BB2",1.0));
-
+    		//	sq.rectangle2.setFill(Color.web("368BB2",1.0));
     			//gc.fillOval(240, 200, 30 , 30 );
     		}
 
@@ -446,6 +477,10 @@ public class Main extends Application {
     			}
     		}
     		
+    		if (iv.getY()-ball.circle.getCenterY()<30 && iv.getY()-ball.circle.getCenterY()>0 ) {
+    			stars++;
+    		}
+    		
     		int rotatecircle=(int)(q.arc1.getRadiusX()+q.arc1.getCenterY());
     		if (ball.circle.getCenterY()<rotatecircle+10 && ball.circle.getCenterY()<rotatecircle+10) {
     			//ball.circle.setFill(Color.AQUA);
@@ -501,23 +536,91 @@ public class Main extends Application {
     			
     			
     		}
+    		//ball.circle.getCenterY()
+//    		if (d.l2.getStartY()>0 && d.l2.getStartY()<100) 
+    		if(mega.get(0).get(0).getY()>580 ){
+    			//ball.circle.setFill(Color.AQUA);
+    			//primaryStage.setScene(scene2);
+        		for (int i = obstacle.size() - 1; i >= 0; i--) {
+
+        			mega.get(0).get(i).setY(d.l2.getStartY()-150);
+        			mega.get(1).get(i).setY(d.l2.getStartY()-150);
+        		}}
+    		if(iv.getY()>ball.circle.getCenterY() && mega.get(0).get(0).getY()<0){
+    			//ball.circle.setFill(Color.AQUA);
+    			//primaryStage.setScene(scene2);
+    			iv.setY(mega.get(0).get(0).getY()-150);
+ }
+//    		
+    		if(cs.cir().getCenterY()>580){
+    			//ball.circle.setFill(Color.AQUA);
+    			//primaryStage.setScene(scene2);
+    			cs.cir().setCenterY(iv.getY()-100);
+}
+    		if(q.arc1.getCenterY()>580 && q.arc2.getCenterY()>580 && q.arc3.getCenterY()>580 && q.arc4.getCenterY()>580){
+    			//ball.circle.setFill(Color.AQUA);
+    			//primaryStage.setScene(scene2);
+    			q.arc1.setCenterY(cs.cir().getCenterY()-200);
+    			q.arc2.setCenterY(cs.cir().getCenterY()-200);
+    			q.arc3.setCenterY(cs.cir().getCenterY()-200);
+    			q.arc4.setCenterY(cs.cir().getCenterY()-200);
+ }
+//    		
+    		if(d.l4.getStartY()>580 && d.l.getStartY()>580 && d.l2.getStartY()>580 && d.l3.getStartY()>580){
+    			//ball.circle.setFill(Color.AQUA);
+    			speed=speed-(float)speed/5;
+    			//primaryStage.setScene(scene2);
+    			d.l.setStartY(sq.rectangle3.getY()-150);
+    			d.l.setEndY(sq.rectangle3.getY()-200);
+    			d.l2.setStartY(sq.rectangle3.getY()-200);
+    			d.l2.setEndY(sq.rectangle3.getY()-200);
+    			
+    			d.l3.setStartY(sq.rectangle3.getY()-150);
+    			d.l3.setEndY(sq.rectangle3.getY()-200);
+    			d.l4.setStartY(sq.rectangle3.getY()-150);
+    			d.l4.setEndY(sq.rectangle3.getY()-150);
+ }
+    		if(sq.rectangle3.getY()>580 && sq.rectangle.getY()>580 && sq.rectangle2.getY()>580 && sq.rectangle4.getY()>580){
+    			//ball.circle.setFill(Color.AQUA);
+    			//primaryStage.setScene(scene2);
+    			sq.rectangle4.setY(q.arc1.getCenterY()-200);
+    			sq.rectangle.setY(q.arc1.getCenterY()-300);
+    			sq.rectangle2.setY(q.arc1.getCenterY()-300);
+    			sq.rectangle3.setY(q.arc1.getCenterY()-300);
+//    			d.l.setEndY(-450);
+//    			d.l2.setStartY(-450);
+//    			d.l2.setEndY(-450);
+//    			
+//    			d.l3.setStartY(-400);
+//    			d.l3.setEndY(-450);
+//    			d.l4.setStartY(-400);
+//    			d.l4.setEndY(-400);
+//    			q.arc2.setCenterY(-400);
+//    			q.arc3.setCenterY(-400);
+//    			q.arc4.setCenterY(-400);
+    		}
+        		
+
+        		
+    			
+    		
     		
 
-    		if (gameOver) {
-
-    			boolean b=false;
-    			gc.setFill(Color.web("e63946",1.0));
-    			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
-    			gc.fillText("GAME OVER", 110, 75);
-
-    			b=true;
-    			int i=0;
-    			while (i!=100000) {
-    			ball.circle.setCenterY(ball.circle.getCenterY()-10);
-    			i++;
-				}
-    			return;
-    		}
+//    		if (gameOver) {
+//
+//    			boolean b=false;
+//    			gc.setFill(Color.web("e63946",1.0));
+//    			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
+//    			gc.fillText("GAME OVER", 110, 75);
+//
+//    			b=true;
+//    			int i=0;
+//    			while (i!=100000) {
+//    			ball.circle.setCenterY(ball.circle.getCenterY()-10);
+//    			i++;
+//				}
+//    			return;
+//    		}
     		int help=0;
     		help=1;
 
@@ -530,6 +633,7 @@ public class Main extends Application {
 
 	public static List<Rectangle> generate(GraphicsContext gc) {
 		 List<Rectangle> Linear = new ArrayList<>();
+		 final int inipos=400;
 		 int j=30;
 		 for (int i=0;i<5;i++) {
 			 Rectangle r=new Rectangle();
@@ -652,7 +756,26 @@ public class Main extends Application {
 
 			mega.add(obstacle);
 			mega.add(obstacle2);
+			Scene scene2 = new Scene(root, 500, 600);
+	        StackPane rt = new StackPane();
+	        Game g=new Game();
+	       g.SetUp(rt,scene2,primaryStage);
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
+	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+	                  BackgroundSize.DEFAULT);
 
+
+	        rt.setBackground(new Background(myBI));
+
+	        rt.setId("pane");
+	        Scene scene = new Scene(rt, 500, 750);
+
+	        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
+
+	        primaryStage.setTitle("Color Switch");
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
+			
 			new AnimationTimer() {
 				long lastTick = 0;
 
@@ -660,17 +783,17 @@ public class Main extends Application {
 					if (lastTick == 0) {
 						lastTick = now;
 						try {
-							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs,sq,cr,d);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs,sq,cr,d,scene2);
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
 						}
 						return;
 					}
 
-					if (now - lastTick > 1000000000 / speed-20) {
+					if (now - lastTick > 100000000*(speed-1)) {
 						lastTick = now;
 						try {
-							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs,sq,cr,d);
+							sp.tick(gc,obstacle,b,q,Start,primaryStage,p,cs,sq,cr,d,scene2);
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
 						}
@@ -680,7 +803,7 @@ public class Main extends Application {
 			}.start();
 
 
-			Scene scene2 = new Scene(root, 500, 600);
+			
 
 			scene2.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 				if (key.getCode() == KeyCode.W) {
@@ -702,24 +825,24 @@ public class Main extends Application {
 
 			});
 
-	        StackPane rt = new StackPane();
-	        Game g=new Game();
-	       g.SetUp(rt,scene2,primaryStage);
-	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
-	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-	                  BackgroundSize.DEFAULT);
-
-
-	        rt.setBackground(new Background(myBI));
-
-	        rt.setId("pane");
-	        Scene scene = new Scene(rt, 500, 750);
-
-	        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
-
-	        primaryStage.setTitle("Color Switch");
-	        primaryStage.setScene(scene);
-	        primaryStage.show();
+//	        StackPane rt = new StackPane();
+//	        Game g=new Game();
+//	       g.SetUp(rt,scene2,primaryStage);
+//	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
+//	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+//	                  BackgroundSize.DEFAULT);
+//
+//
+//	        rt.setBackground(new Background(myBI));
+//
+//	        rt.setId("pane");
+//	        Scene scene = new Scene(rt, 500, 750);
+//
+//	        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
+//
+//	        primaryStage.setTitle("Color Switch");
+//	        primaryStage.setScene(scene);
+//	        primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
