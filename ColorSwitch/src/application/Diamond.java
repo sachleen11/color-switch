@@ -5,6 +5,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class Diamond extends obstacle{
+	
 	Line l = new Line();
 	Line l2 = new Line();
 	Line l3 = new Line();

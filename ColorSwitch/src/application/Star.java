@@ -15,7 +15,7 @@ public class Star extends staticElements{
 	Image image = new Image(new FileInputStream(ISHI_STAR));
 	ImageView imageView = new ImageView(image);
 	imageView.setX(230);
-    imageView.setY(300);
+    imageView.setY(250);
     imageView.setFitHeight(50);
     imageView.setFitWidth(100);
     imageView.setPreserveRatio(true);

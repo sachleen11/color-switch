@@ -7,6 +7,7 @@ public class ball extends dynamicElements{
 	int x;
 	int y;
 	int color=0;
+	int inpos=550;
 	Circle circle = new Circle();
 	public ball(int x, int y) {
 		circle.setCenterX(250);
