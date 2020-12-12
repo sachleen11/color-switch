@@ -1,15 +1,17 @@
 package application;
 
+import java.io.Serializable;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class ball extends dynamicElements{
+public class ball extends dynamicElements implements Serializable{
 	int x;
 	int y;
 	int color=0;
 	int inpos=550;
-	Circle circle = new Circle();
-	public ball(int x, int y) {
+	transient Circle circle = new Circle();
+	public ball() {
 		circle.setCenterX(250);
 		circle.setCenterY(550
 				);

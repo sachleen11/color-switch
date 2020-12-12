@@ -1,8 +1,16 @@
 package application;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -20,21 +28,60 @@ public class Game {
     final String ISHI_STAR = "C:\\Users\\ishik\\Downloads\\starf.png";
     final String SACH_STAR = "/Users/sachleenkaur/Downloads/ASSETS/starf.png";
     
-    protected void SetUp(Pane mainPage, Scene scene2, Stage primaryStage) throws Exception{
-
+    protected void SetUp(Pane mainPage,Scene scene2, Stage primaryStage) throws Exception{
+    	//int mode=0;
+    	Space sm=new Space();
         Button Start = new Button("START GAME");
         Start.setOnAction(event ->  primaryStage.setScene(scene2));
+//        Start.setOnAction(new EventHandler() {
+//
+//			@Override
+//			public void handle(Event arg0) {
+//				// TODO Auto-generated method stub
+//				
+//				try {
+//					sm.makescene2(0, primaryStage);
+//				} catch (ClassNotFoundException | IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//				
+//			}});
         Start.setId("shiny-orange");
         Start.setMaxWidth(150);
 
         Button Exit = new Button("EXIT GAME");
 
         Exit.setOnAction(event -> Platform.exit());
+        
         Exit.setId("shiny-orange");
         Exit.setMaxWidth(150);
 
         Button Load = new Button("LOAD GAME");
         Load.setOnAction(event ->  primaryStage.setScene(scene2));
+//        Load.setOnAction(new EventHandler() {
+//
+//			@Override
+//			public void handle(Event arg0) {
+//				// TODO Auto-generated method stub
+//				
+//				try {
+//					sm.makescene2(0, primaryStage);
+//				} catch (ClassNotFoundException | IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//				
+//			}
+        
+
+
+				
+				
+			
+//        });
         Load.setId("shiny-orange");
         Load.setMaxWidth(150);
 

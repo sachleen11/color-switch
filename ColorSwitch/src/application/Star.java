@@ -14,10 +14,10 @@ public class Star extends staticElements{
 	public ImageView star() throws FileNotFoundException{
 	Image image = new Image(new FileInputStream(ISHI_STAR));
 	ImageView imageView = new ImageView(image);
-	imageView.setX(230);
+	imageView.setX(235);
     imageView.setY(250);
-    imageView.setFitHeight(50);
-    imageView.setFitWidth(100);
+    imageView.setFitHeight(30);
+    imageView.setFitWidth(60);
     imageView.setPreserveRatio(true);
     return imageView;
 	}
