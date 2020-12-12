@@ -35,6 +35,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.ArcTo;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -62,7 +63,7 @@ public class Space {
 	static Dir direction = Dir.left;
 	static boolean gameOver = false;
 	static ArcTo arcTo;
-
+	static int help_rotate=0;
 	static Random rand = new Random();
 	
 	
@@ -226,59 +227,59 @@ public class Space {
 	    				q.arc3.setStartAngle(q.arc3.getStartAngle()-360);
 	    			}
 	    			
-//	    			if (cr.l.getStartX()!=cr.l.getEndX()) {
-//	    				cr.l.setStartX(cr.l.getEndX());
-//	    				cr.l.setStartY(cr.l.getStartY()+15);
-//	    				help_rotate = 0;
-//	    			}
-//	    			else {
-//	    				cr.l.setStartX(300);
-//						cr.l.setStartY(cr.l.getStartY()-15);
-//						help_rotate = 1;
-//	    			}
-//
-//	    			if (cr.l2.getStartY()!=cr.l2.getEndY()) {
-//						cr.l2.setEndY(cr.l2.getStartY());
-//						cr.l2.setEndX(cr.l2.getEndX()+15);
-//						help_rotate = 0;
-//					}
-//					else {
-//						cr.l2.setEndY(cr.l2.getEndY()-50);
-//						cr.l2.setEndX(cr.l2.getEndX()-15);
-//						help_rotate = 1;
-//					}
-//
-//					if (cr.l3.getStartX()!=cr.l3.getEndX()) {
-//						cr.l3.setEndX(cr.l3.getStartX());
-//						cr.l3.setEndY(cr.l3.getEndY()-15);
-//						help_rotate = 0;
-//					}
-//					else {
-//						cr.l3.setEndX(200);
-//						cr.l3.setEndY(cr.l3.getEndY()+15);
-//						help_rotate = 1;
-//					}
-//					if (cr.l4.getStartY()!=cr.l4.getEndY()) {
-//						cr.l4.setStartY(cr.l4.getEndY());
-//						cr.l4.setStartX(cr.l4.getStartX()-15);
-//						help_rotate = 0;
-//					}
-//					else {
-//						cr.l4.setStartY(cr.l4.getStartY() + 50);
-//						cr.l4.setStartX(cr.l4.getStartX()+15);
-//						help_rotate = 1;
-//					}
-//
-//					if(help_rotate == 1){
-//						Paint temp1 = cr.l.getStroke();
-//						Paint temp2 = cr.l2.getStroke();
-//						Paint temp3 = cr.l3.getStroke();
-//						Paint temp4 = cr.l4.getStroke();
-//						cr.l.setStroke(temp2);
-//						cr.l2.setStroke(temp3);
-//						cr.l3.setStroke(temp4);
-//						cr.l4.setStroke(temp1);
-//					}
+	    			if (cr.l.getStartX()!=cr.l.getEndX()) {
+	    				cr.l.setStartX(cr.l.getEndX());
+	    				cr.l.setStartY(cr.l.getStartY()+15);
+	    				help_rotate = 0;
+	    			}
+	    			else {
+	    				cr.l.setStartX(300);
+						cr.l.setStartY(cr.l.getStartY()-15);
+						help_rotate = 1;
+	    			}
+
+	    			if (cr.l2.getStartY()!=cr.l2.getEndY()) {
+						cr.l2.setEndY(cr.l2.getStartY());
+						cr.l2.setEndX(cr.l2.getEndX()+15);
+						help_rotate = 0;
+					}
+					else {
+						cr.l2.setEndY(cr.l2.getEndY()-50);
+						cr.l2.setEndX(cr.l2.getEndX()-15);
+						help_rotate = 1;
+					}
+
+					if (cr.l3.getStartX()!=cr.l3.getEndX()) {
+						cr.l3.setEndX(cr.l3.getStartX());
+						cr.l3.setEndY(cr.l3.getEndY()-15);
+						help_rotate = 0;
+					}
+					else {
+						cr.l3.setEndX(200);
+						cr.l3.setEndY(cr.l3.getEndY()+15);
+						help_rotate = 1;
+					}
+					if (cr.l4.getStartY()!=cr.l4.getEndY()) {
+						cr.l4.setStartY(cr.l4.getEndY());
+						cr.l4.setStartX(cr.l4.getStartX()-15);
+						help_rotate = 0;
+					}
+					else {
+						cr.l4.setStartY(cr.l4.getStartY() + 50);
+						cr.l4.setStartX(cr.l4.getStartX()+15);
+						help_rotate = 1;
+					}
+
+					if(help_rotate == 1){
+						Paint temp1 = cr.l.getStroke();
+						Paint temp2 = cr.l2.getStroke();
+						Paint temp3 = cr.l3.getStroke();
+						Paint temp4 = cr.l4.getStroke();
+						cr.l.setStroke(temp2);
+						cr.l2.setStroke(temp3);
+						cr.l3.setStroke(temp4);
+						cr.l4.setStroke(temp1);
+					}
 
 
 		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -614,28 +615,21 @@ public class Space {
 //			q.arc3.setCenterY(-400);
 //			q.arc4.setCenterY(-400);
 		}
-    		
-
-    		
-			
-		
-		
-
-		if (gameOver) {
-
-			boolean b=false;
-			gc.setFill(Color.web("e63946",1.0));
-			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
-			gc.fillText("GAME OVER", 110, 75);
-
-			b=true;
-			int i=0;
-			while (i!=100000) {
-			ball.circle.setCenterY(ball.circle.getCenterY()-10);
-			i++;
-			}
-			return;
-		}
+//if (gameOver) {
+//
+//			boolean b=false;
+//			gc.setFill(Color.web("e63946",1.0));
+//			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
+//			gc.fillText("GAME OVER", 110, 75);
+//
+//			b=true;
+//			int i=0;
+//			while (i!=100000) {
+//			ball.circle.setCenterY(ball.circle.getCenterY()-10);
+//			i++;
+//			}
+//			return;
+//		}
 		int help=0;
 		help=1;
 
