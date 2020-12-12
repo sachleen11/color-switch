@@ -243,23 +243,11 @@ public class Main extends Application {
 	
 				@Override
 				public void handle(Event arg0) {
-					// TODO Auto-generated method stub
+					//Auto-generated method stub
 					
 					try {
 						ball b=new ball();
-						if (mode==1) {
-				            FileInputStream fileOut = new FileInputStream(filepath);
-				            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
-				            ArrayList<Integer> balls= (ArrayList<Integer>)objectOut.readObject();
-				            
-				            
-				            objectOut.close();
-				            System.out.println(balls.get(0));
-				            fileOut.close();
-				            objectOut.close();
-							
-							b.circle.setCenterY(balls.get(0));
-						}
+
 
 						Circle ball = new Circle(x, Color.DARKSLATEBLUE);
 						Star s=new Star();
@@ -416,7 +404,7 @@ public class Main extends Application {
 						});
 
 						primaryStage.setScene(scene2);
-					} catch (ClassNotFoundException | IOException e) {
+					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -439,7 +427,7 @@ public class Main extends Application {
 	        Button Load = new Button("LOAD GAME");
 	     //   Load.setOnAction(event ->  primaryStage.setScene(scene2));
 	        Load.setOnAction(new EventHandler() {
-	
+
 				@Override
 				public void handle(Event arg0) {
 					// TODO Auto-generated method stub
@@ -455,10 +443,17 @@ public class Main extends Application {
 					            
 					            
 					            objectOut.close();
-					            System.out.println(balls.get(1));
+					            System.out.println(balls.get(0));
 					            fileOut.close();
 					            objectOut.close();
-								
+					            FileInputStream fq = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt");
+					            ObjectInputStream oq = new ObjectInputStream(fq);
+					            ArrayList<Integer> quads= (ArrayList<Integer>)oq.readObject();
+					            
+					            
+					            oq.close();
+					            System.out.println(quads.get(0));
+					            fq.close();
 								//b.circle.setCenterY(balls.get(0));
 							//	root.getChildren().add(b.circle);
 
@@ -507,7 +502,7 @@ public class Main extends Application {
 							root.getChildren().add(d.line4());  //bottm
 							
 							//b.circle.setCenterY(pr1);
-						b.circle.setCenterY(balls.get(1));
+						b.circle.setCenterY(balls.get(0));
 						root.getChildren().add(b.circle);
 							
 							root.getChildren().add(d1.star());
@@ -520,11 +515,15 @@ public class Main extends Application {
 					         root.getChildren().add(Start);
 					        ColorSwitch cs=new ColorSwitch(200,250);
 					        root.getChildren().add(cs.cir());
-							root.getChildren().add(q.arc1());
-							root.getChildren().add(q.arc2());
-							root.getChildren().add(q.arc3());
+					        q.arc1().setCenterY(quads.get(0));
+					        q.arc2().setCenterY(quads.get(0));
+					        q.arc3().setCenterY(quads.get(0));
+					        q.arc4().setCenterY(quads.get(0));
+							root.getChildren().add(q.arc1);
+							root.getChildren().add(q.arc2);
+							root.getChildren().add(q.arc3);
 
-							root.getChildren().add(q.arc4());
+							root.getChildren().add(q.arc4);
 							root.getChildren().add(sq.square1()); //rm
 							root.getChildren().add(sq.square2()); //lm
 							root.getChildren().add(sq.square3()); //top

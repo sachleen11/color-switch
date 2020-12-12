@@ -82,17 +82,27 @@ public class Space {
 
 			@Override
 			public void handle(Event arg0) {
-				ArrayList<Integer> elements= new ArrayList<>();
+				ArrayList<Integer> balls= new ArrayList<>();
+				ArrayList<Integer> quads= new ArrayList<>();
 				try {						 
 		            FileInputStream fileOut = new FileInputStream(filepath);
 		            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
-		            elements= (ArrayList<Integer>)objectOut.readObject();
-		            elements.add((int)ball.circle.getCenterY());
+		            balls= (ArrayList<Integer>)objectOut.readObject();
+		            balls.add((int)ball.circle.getCenterY());
 		            
-		            objectOut.close();
-		            System.out.println("The Object  was succesfully read to a file");
+		            
+		            System.out.println("The ball  was succesfully read to a file");
 		            fileOut.close();
 		            objectOut.close();
+		            
+		            FileInputStream fq = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt");
+		            ObjectInputStream oq = new ObjectInputStream(fq);
+		            quads= (ArrayList<Integer>)oq.readObject();
+		            quads.add((int)q.arc1.getCenterY());
+		            
+		            oq.close();
+		            System.out.println("The quad  was succesfully read to a file");
+		            fq.close();
 		            
 		 
 		        } catch (Exception ex) {
@@ -105,10 +115,17 @@ public class Space {
 					FileOutputStream fi = new FileOutputStream(new File(filepath));
 		            ObjectOutputStream oi = new ObjectOutputStream(fi);
 		           
-		            oi.writeObject(elements);
+		            oi.writeObject(balls);
 		            oi.close();
 		            System.out.println("done");
 		            fi.close();
+		            FileOutputStream fiq = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt"));
+		            ObjectOutputStream oiq = new ObjectOutputStream(fiq);
+		            
+		            oiq.writeObject(quads);
+		            oiq.close();
+		            System.out.println("done");
+		            fiq.close();
 		            
 		 
 		        } catch (Exception ex) {
