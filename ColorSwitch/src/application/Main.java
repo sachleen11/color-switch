@@ -455,7 +455,7 @@ public class Main extends Application {
 					            
 					            
 					            objectOut.close();
-					            System.out.println(balls.get(0));
+					            System.out.println(balls.get(1));
 					            fileOut.close();
 					            objectOut.close();
 								
@@ -507,7 +507,7 @@ public class Main extends Application {
 							root.getChildren().add(d.line4());  //bottm
 							
 							//b.circle.setCenterY(pr1);
-						b.circle.setCenterY(balls.get(0));
+						b.circle.setCenterY(balls.get(1));
 						root.getChildren().add(b.circle);
 							
 							root.getChildren().add(d1.star());

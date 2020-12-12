@@ -82,12 +82,12 @@ public class Space {
 
 			@Override
 			public void handle(Event arg0) {
-				ArrayList<Integer> balls= new ArrayList<>();
+				ArrayList<Integer> elements= new ArrayList<>();
 				try {						 
 		            FileInputStream fileOut = new FileInputStream(filepath);
 		            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
-		            balls= (ArrayList<Integer>)objectOut.readObject();
-		            balls.add((int)ball.circle.getCenterY());
+		            elements= (ArrayList<Integer>)objectOut.readObject();
+		            elements.add((int)ball.circle.getCenterY());
 		            
 		            objectOut.close();
 		            System.out.println("The Object  was succesfully read to a file");
@@ -105,7 +105,7 @@ public class Space {
 					FileOutputStream fi = new FileOutputStream(new File(filepath));
 		            ObjectOutputStream oi = new ObjectOutputStream(fi);
 		           
-		            oi.writeObject(balls);
+		            oi.writeObject(elements);
 		            oi.close();
 		            System.out.println("done");
 		            fi.close();
@@ -280,6 +280,48 @@ public class Space {
 						cr.l3.setStroke(temp4);
 						cr.l4.setStroke(temp1);
 					}
+					
+					if(d.l.getStartX()!= d.l.getEndX()){
+						d.l.setStartX(d.l.getEndX());
+						d.l.setEndY(d.l.getEndY()-20);
+						d.l.setStartY(d.l.getStartY()-20);
+					}
+					else{
+						d.l.setStartX(300);
+						d.l.setEndY(d.l.getEndY()+20);
+						d.l.setStartY(d.l.getStartY()+20);
+					}
+					if(d.l2.getStartY()!=d.l2.getEndY()-20){
+						d.l2.setStartY(d.l2.getEndY()-20);
+					}
+					else{
+						d.l2.setStartY(d.l2.getEndY());
+					}
+					if(d.l3.getStartX()!= d.l3.getEndX()){
+						d.l3.setStartX(d.l3.getEndX());
+					}
+					else{
+						d.l3.setStartX(230);
+					}
+					if(d.l4.getEndY()!=d.l4.getStartY()-20){
+						d.l4.setEndY(d.l4.getStartY()-20);
+						d.l4.setStartX(200);
+						d.l4.setEndX(d.l4.getEndX()-30);
+					}
+					else{
+						d.l4.setEndY(d.l4.getStartY());
+						d.l4.setStartX(230);
+						d.l4.setEndX(d.l4.getEndX()+30);
+					}
+
+					Paint temp1 = d.l.getStroke();
+					Paint temp2 = d.l2.getStroke();
+					Paint temp3 = d.l3.getStroke();
+					Paint temp4 = d.l4.getStroke();
+					d.l.setStroke(temp2);
+					d.l2.setStroke(temp3);
+					d.l3.setStroke(temp4);
+					d.l4.setStroke(temp1);
 
 
 		      EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
