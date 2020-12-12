@@ -621,21 +621,21 @@ public class Space {
 		
 		
 
-//		if (gameOver) {
-//
-//			boolean b=false;
-//			gc.setFill(Color.web("e63946",1.0));
-//			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
-//			gc.fillText("GAME OVER", 110, 75);
-//
-//			b=true;
-//			int i=0;
-//			while (i!=100000) {
-//			ball.circle.setCenterY(ball.circle.getCenterY()-10);
-//			i++;
-//			}
-//			return;
-//		}
+		if (gameOver) {
+
+			boolean b=false;
+			gc.setFill(Color.web("e63946",1.0));
+			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
+			gc.fillText("GAME OVER", 110, 75);
+
+			b=true;
+			int i=0;
+			while (i!=100000) {
+			ball.circle.setCenterY(ball.circle.getCenterY()-10);
+			i++;
+			}
+			return;
+		}
 		int help=0;
 		help=1;
 
@@ -702,187 +702,4 @@ public class Space {
 		return Linear;
 	}
 	
-	public void makescene2(List<List<Rectangle>> mega,int mode, Stage primaryStage) throws IOException, ClassNotFoundException {
-		ball b=new ball();
-		var root = new Pane();
-//		if (mode==1) {
-//            FileInputStream fileOut = new FileInputStream(filepath);
-//            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
-//            ArrayList<Integer> balls= (ArrayList<Integer>)objectOut.readObject();
-//            
-//            
-//            objectOut.close();
-//            System.out.println(balls.get(0));
-//            fileOut.close();
-//            objectOut.close();
-//			
-//			b.circle.setCenterY(balls.get(0));
-//			root.getChildren().add(b.circle);
-//		}
-//		
-		//else {
-			root.getChildren().add(b.circle);
-		//}
-
-		Star s=new Star();
-		Stardeco d1=new Stardeco();
-		
-
-
-		DropShadow dropShadow = new DropShadow();
-		dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
-		dropShadow.setColor(Color.PERU);
-	      dropShadow.setHeight(5);
-
-	      dropShadow.setWidth(5);
-	      dropShadow.setRadius(5);
-	      dropShadow.setOffsetX(3);
-	      dropShadow.setOffsetY(2);
-
-	      dropShadow.setSpread(5);
-	      
-	     ArrayList<ImageView> starlist=new ArrayList<>();
-	     for (int i=0;i<5;i++) {
-	    	 ImageView p=s.star();
-	    	 starlist.add(p);
-	     }
-		
-		Square sq=new Square();
-		Quad q=new Quad();
-		Diamond d=new Diamond();
-		Cross cr=new Cross();
-		
-
-		//ball b=new ball(width/3,height/3);
-//		for (int i=0;i<components.size();i++) {
-//			root.getChildren().add(components.get(i));
-//		}
-
-		root.getChildren().add(cr.line1());
-		root.getChildren().add(cr.line2());
-		root.getChildren().add(cr.line3());
-		root.getChildren().add(cr.line4());
-//
-		root.getChildren().add(d.line1()); //right
-		root.getChildren().add(d.line2());  //top
-		root.getChildren().add(d.line3()); //left
-		root.getChildren().add(d.line4());  //bottm
-		
-		//b.circle.setCenterY(pr1);
-		
-		
-		root.getChildren().add(d1.star());
-
-		
-        Button Start = new Button("PAUSE",d1.pause());
-        Start.setLayoutX(400);
-        Start.setLayoutY(9);
-        Start.setStyle("-fx-background-color: #061731;-fx-text-fill: #f1faee ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold");
-         root.getChildren().add(Start);
-        ColorSwitch cs=new ColorSwitch(200,250);
-        root.getChildren().add(cs.cir());
-		root.getChildren().add(q.arc1());
-		root.getChildren().add(q.arc2());
-		root.getChildren().add(q.arc3());
-
-		root.getChildren().add(q.arc4());
-		root.getChildren().add(sq.square1()); //rm
-		root.getChildren().add(sq.square2()); //lm
-		root.getChildren().add(sq.square3()); //top
-		root.getChildren().add(sq.square4());
-		List<Rectangle> obstacle = generate();
-		List<Rectangle> obstacle2 = generate();
-		for (int i=0;i<20;i++) {
-			root.getChildren().add(obstacle.get(i));
-		}
-		for (int i=0;i<20;i++) {
-			root.getChildren().add(obstacle2.get(i));
-		}
-//		ArrayList<Rectangle> obs1=(ArrayList<Rectangle>)components.get(1);
-//		for (int i=0;i<20;i++) {
-//			root.getChildren().add(obs1.get(i));
-//			
-//		}
-//		
-//		ArrayList<Rectangle> obs2=(ArrayList<Rectangle>)components.get(2);
-//		for (int i=0;i<20;i++) {
-//			root.getChildren().add(obs2.get(i));
-//			
-//		}
-		Canvas c = new Canvas(width * cornersize, height * cornersize);
-		GraphicsContext gc = c.getGraphicsContext2D();
-		root.getChildren().add(c);
-		mega.add(obstacle);
-		mega.add(obstacle2);
-		ImageView s1= starlist.get(1);
-		ImageView s2= starlist.get(2);
-		ImageView s3= starlist.get(3);
-		s1.setY(q.arc1.getCenterY()-20);
-		s2.setY(sq.rectangle4.getY()-67);
-		s3.setY(cr.l2.getEndY()-50);
-		for (int i=0;i<5;i++) {
-			ImageView p=starlist.get(i);
-		root.getChildren().add(p);
-		}
-		
-		Scene scene2 = new Scene(root, 500, 600);
-
-		new AnimationTimer() {
-			long lastTick = 0;
-
-			public void handle(long now) {
-				
-				if (lastTick == 0) {
-					System.out.println("executed1");
-					lastTick = now;
-					try {
-						tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
-					return;
-				}
-
-				if (now - lastTick > 100000000*(speed-1)) {
-					System.out.println("executed2");
-					lastTick = now;
-					try {
-						tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
-		}.start();
-
-
-		
-
-		scene2.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-			if (key.getCode() == KeyCode.W) {
-
-
-				direction = Dir.up;
-
-			}
-
-			if (key.getCode() == KeyCode.A) {
-				direction = Dir.left;
-			}
-			if (key.getCode() == KeyCode.S) {
-				direction = Dir.down;
-			}
-			if (key.getCode() == KeyCode.D) {
-				direction = Dir.right;
-			}
-
-		});
-		primaryStage.setScene(scene2);
-		primaryStage.show();
-	
-
-  
-	}
-
 }
