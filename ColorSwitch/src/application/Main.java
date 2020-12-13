@@ -253,6 +253,108 @@ public class Main extends Application {
 						Star s=new Star();
 						Stardeco d1=new Stardeco();
 						
+						//FILE REFRESH
+						
+//						ArrayList<Integer> balls= new ArrayList<>();
+//						ArrayList<Integer> quads= new ArrayList<>();
+//						ArrayList<ArrayList<Integer>> diamonds= new ArrayList<>();
+//						ArrayList<ArrayList<Integer>> crosses= new ArrayList<>();
+//						ArrayList<Integer> lines= new ArrayList<>();
+//						ArrayList<Integer> squares= new ArrayList<>();
+//						ArrayList<ArrayList<Integer>> stars= new ArrayList<>();
+//						ArrayList<ArrayList<Integer>> colorswitches= new ArrayList<>();
+//						ArrayList<Integer> TOTALPOINTS= new ArrayList<>();
+//						ArrayList<Integer> SESHPOINTS= new ArrayList<>();
+//						
+//						
+//						
+//						FileOutputStream fi = new FileOutputStream(new File(filepath));
+//			            ObjectOutputStream oi = new ObjectOutputStream(fi);
+//			           
+//			            oi.writeObject(balls);
+//			            oi.close();
+//			            System.out.println("done");
+//			            fi.close();
+//			            
+//			            
+//			            FileOutputStream fiq = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt"));
+//			            ObjectOutputStream oiq = new ObjectOutputStream(fiq);
+//			            
+//			            oiq.writeObject(quads);
+//			            oiq.close();
+//			            System.out.println("done");
+//			            fiq.close();
+//			            
+//			            
+//			            FileOutputStream fid = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\diamonds.txt"));
+//			            ObjectOutputStream oid = new ObjectOutputStream(fid);
+//			            
+//			            oid.writeObject(diamonds);
+//			            oid.close();
+//			            System.out.println("done");
+//			            fid.close();
+//			            
+//			            
+//			            FileOutputStream fic = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\crosses.txt"));
+//			            ObjectOutputStream oic = new ObjectOutputStream(fic);
+//			            
+//			            oic.writeObject(crosses);
+//			            oic.close();
+//			            System.out.println("done");
+//			            fic.close();
+//			            
+//			            
+//			            FileOutputStream fil = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\lines.txt"));
+//			            ObjectOutputStream oil = new ObjectOutputStream(fil);
+//			            
+//			            oil.writeObject(lines);
+//			            oil.close();
+//			            System.out.println("done");
+//			            fil.close();
+//			            
+//			            
+//			            FileOutputStream fis = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\squares.txt"));
+//			            ObjectOutputStream ois = new ObjectOutputStream(fis);
+//			            
+//			            ois.writeObject(squares);
+//			            ois.close();
+//			            System.out.println("done");
+//			            fis.close();
+//			            
+//			            
+//			            FileOutputStream fist = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt"));
+//			            ObjectOutputStream oist = new ObjectOutputStream(fist);
+//			            
+//			            oist.writeObject(stars);
+//			            oist.close();
+//			            System.out.println("done");
+//			            fist.close();
+//			            
+//			            
+//			            FileOutputStream fics = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\colorswitches.txt"));
+//			            ObjectOutputStream oics = new ObjectOutputStream(fics);
+//			            
+//			            oics.writeObject(colorswitches);
+//			            oics.close();
+//			            System.out.println("done");
+//			            fics.close();
+//						
+//						
+//			            FileOutputStream fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+//			            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
+//			            
+//			            oiTP.writeObject(TOTALPOINTS);
+//			            oiTP.close();
+//			            System.out.println("done");
+//			            fiTP.close();
+//						
+//			            FileOutputStream fiSP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\sessionpoints.txt"));
+//			            ObjectOutputStream oiSP = new ObjectOutputStream(fiSP);
+//			            
+//			            oiSP.writeObject(SESHPOINTS);
+//			            oiSP.close();
+//			            System.out.println("done");
+//			            fiSP.close();
 			 
 
 						DropShadow dropShadow = new DropShadow();

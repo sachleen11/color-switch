@@ -84,6 +84,16 @@ public class Space {
 			public void handle(Event arg0) {
 				ArrayList<Integer> balls= new ArrayList<>();
 				ArrayList<Integer> quads= new ArrayList<>();
+				ArrayList<ArrayList<Integer>> diamonds= new ArrayList<>();
+				ArrayList<ArrayList<Integer>> crosses= new ArrayList<>();
+				ArrayList<Integer> lines= new ArrayList<>();
+				ArrayList<Integer> squares= new ArrayList<>();
+				ArrayList<ArrayList<Integer>> starsl= new ArrayList<>();
+				ArrayList<ArrayList<Integer>> colorswitches= new ArrayList<>();
+				ArrayList<Integer> TOTALPOINTS= new ArrayList<>();
+				ArrayList<Integer> SESHPOINTS= new ArrayList<>();
+				
+				
 				try {						 
 		            FileInputStream fileOut = new FileInputStream(filepath);
 		            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
@@ -104,6 +114,116 @@ public class Space {
 		            System.out.println("The quad  was succesfully read to a file");
 		            fq.close();
 		            
+		            FileInputStream fDIA = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\diamonds.txt");
+		            ObjectInputStream oDIA = new ObjectInputStream(fDIA);
+		            diamonds= (ArrayList<ArrayList<Integer>>)oDIA.readObject();
+		            ArrayList<Integer> a2=new ArrayList<>();
+		            diamonds.add(a2);
+		            diamonds.get(diamonds.size()-1).add((int)d.l.getStartX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l.getStartY());
+		            diamonds.get(diamonds.size()-1).add((int)d.l.getEndX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l.getEndY());
+		            
+		            diamonds.get(diamonds.size()-1).add((int)d.l2.getStartX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l2.getStartY());
+		            diamonds.get(diamonds.size()-1).add((int)d.l2.getEndX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l2.getEndY());
+		            
+		            diamonds.get(diamonds.size()-1).add((int)d.l3.getStartX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l3.getStartY());
+		            diamonds.get(diamonds.size()-1).add((int)d.l3.getEndX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l3.getEndY());
+		            
+		            diamonds.get(diamonds.size()-1).add((int)d.l4.getStartX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l4.getStartY());
+		            diamonds.get(diamonds.size()-1).add((int)d.l4.getEndX());
+		            diamonds.get(diamonds.size()-1).add((int)d.l4.getEndY());
+		            
+		            oDIA.close();
+		            System.out.println("The DIA  was succesfully read to a file");
+		            fDIA.close();
+		            
+		            FileInputStream fCROSS = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\crosses.txt");
+		            ObjectInputStream oCROSS = new ObjectInputStream(fCROSS);
+		            crosses= (ArrayList<ArrayList<Integer>>)oCROSS.readObject();
+		            ArrayList<Integer> a1=new ArrayList<>();
+		            crosses.add(a1);
+		            crosses.get(crosses.size()-1).add((int)cr.l.getStartX());
+		            crosses.get(crosses.size()-1).add((int)cr.l.getStartY());
+		            crosses.get(crosses.size()-1).add((int)cr.l.getEndX());
+		            crosses.get(crosses.size()-1).add((int)cr.l.getEndY());
+		            
+		            crosses.get(crosses.size()-1).add((int)cr.l2.getStartX());
+		            crosses.get(crosses.size()-1).add((int)cr.l2.getStartY());
+		            crosses.get(crosses.size()-1).add((int)cr.l2.getEndX());
+		            crosses.get(crosses.size()-1).add((int)cr.l2.getEndY());
+		            
+		            crosses.get(crosses.size()-1).add((int)cr.l3.getStartX());
+		            crosses.get(crosses.size()-1).add((int)cr.l3.getStartY());
+		            crosses.get(crosses.size()-1).add((int)cr.l3.getEndX());
+		            crosses.get(crosses.size()-1).add((int)cr.l3.getEndY());
+		            
+		            crosses.get(crosses.size()-1).add((int)cr.l4.getStartX());
+		            crosses.get(crosses.size()-1).add((int)cr.l4.getStartY());
+		            crosses.get(crosses.size()-1).add((int)cr.l4.getEndX());
+		            crosses.get(crosses.size()-1).add((int)cr.l4.getEndY());
+		            
+		            
+		            oCROSS.close();
+		            System.out.println("The cross  was succesfully read to a file");
+		            fCROSS.close();
+		            
+		            FileInputStream fLINES = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\lines.txt");
+		            ObjectInputStream oLINES = new ObjectInputStream(fLINES);
+		            lines= (ArrayList<Integer>)oLINES.readObject();
+		            lines.add((int)mega.get(0).get(0).getY());
+		            
+		            oLINES.close();
+		            System.out.println("The LINES  was succesfully read to a file");
+		            fLINES.close();
+		            
+		            FileInputStream fSQUARES = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\squares.txt");
+		            ObjectInputStream oSQUARES = new ObjectInputStream(fSQUARES);
+		            squares= (ArrayList<Integer>)oSQUARES.readObject();
+		            squares.add((int)sq.rectangle4.getY());
+		            
+		            oSQUARES.close();
+		            System.out.println("The SQUARES  was succesfully read to a file");
+		            fSQUARES.close();
+		            
+		            FileInputStream fSTAR = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt");
+		            ObjectInputStream oSTAR = new ObjectInputStream(fSTAR);
+		            starsl= (ArrayList<ArrayList<Integer>>)oSTAR.readObject();
+		            ArrayList<Integer> a3=new ArrayList<>();
+		            starsl.add(a3);
+		            for (int i=0;i<starlist.size();i++) {
+		            starsl.get(starsl.size()-1).add((int)starlist.get(i).getY());
+		            
+		            }
+		            oSTAR.close();
+		            System.out.println("The STAR  was succesfully read to a file");
+		            fSTAR.close();
+		            
+		            FileInputStream fCS = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\colorswitches.txt");
+		            ObjectInputStream oCS = new ObjectInputStream(fCS);
+		            colorswitches= (ArrayList<ArrayList<Integer>>)oCS.readObject();
+		            ArrayList<Integer> a4=new ArrayList<>();
+		            colorswitches.add(a4);
+		            colorswitches.get(colorswitches.size()-1).add((int)cs.c.getCenterY());
+		            
+		            oCS.close();
+		            System.out.println("The quad  was succesfully read to a file");
+		            fCS.close();
+		            
+		            FileInputStream fSP = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\sessionpoints.txt");
+		            ObjectInputStream oSP = new ObjectInputStream(fSP);
+		            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
+		            SESHPOINTS.add(stars);
+		            
+		            oSP.close();
+		            System.out.println("The STARS  was succesfully read to a file");
+		            fSP.close();
+		            
 		 
 		        } catch (Exception ex) {
 		            ex.printStackTrace();
@@ -117,16 +237,88 @@ public class Space {
 		           
 		            oi.writeObject(balls);
 		            oi.close();
-		            System.out.println("done");
+		            System.out.println("write done");
 		            fi.close();
+		            
+		            
 		            FileOutputStream fiq = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt"));
 		            ObjectOutputStream oiq = new ObjectOutputStream(fiq);
 		            
 		            oiq.writeObject(quads);
 		            oiq.close();
-		            System.out.println("done");
+		            System.out.println("write done");
 		            fiq.close();
 		            
+		            
+		            FileOutputStream fid = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\diamonds.txt"));
+		            ObjectOutputStream oid = new ObjectOutputStream(fid);
+		            
+		            oid.writeObject(diamonds);
+		            oid.close();
+		            System.out.println("write done");
+		            fid.close();
+		            
+		            
+		            FileOutputStream fic = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\crosses.txt"));
+		            ObjectOutputStream oic = new ObjectOutputStream(fic);
+		            
+		            oic.writeObject(crosses);
+		            oic.close();
+		            System.out.println("write done");
+		            fic.close();
+		            
+		            
+		            FileOutputStream fil = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\lines.txt"));
+		            ObjectOutputStream oil = new ObjectOutputStream(fil);
+		            
+		            oil.writeObject(lines);
+		            oil.close();
+		            System.out.println("write done");
+		            fil.close();
+		            
+		            
+		            FileOutputStream fis = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\squares.txt"));
+		            ObjectOutputStream ois = new ObjectOutputStream(fis);
+		            
+		            ois.writeObject(squares);
+		            ois.close();
+		            System.out.println("write done");
+		            fis.close();
+		            
+		            
+		            FileOutputStream fist = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt"));
+		            ObjectOutputStream oist = new ObjectOutputStream(fist);
+		            
+		            oist.writeObject(stars);
+		            oist.close();
+		            System.out.println("write done");
+		            fist.close();
+		            
+		            
+		            FileOutputStream fics = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\colorswitches.txt"));
+		            ObjectOutputStream oics = new ObjectOutputStream(fics);
+		            
+		            oics.writeObject(colorswitches);
+		            oics.close();
+		            System.out.println("write done");
+		            fics.close();
+					
+					
+		            FileOutputStream fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+		            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
+		            
+		            oiTP.writeObject(TOTALPOINTS);
+		            oiTP.close();
+		            System.out.println("write done");
+		            fiTP.close();
+					
+		            FileOutputStream fiSP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\sessionpoints.txt"));
+		            ObjectOutputStream oiSP = new ObjectOutputStream(fiSP);
+		            
+		            oiSP.writeObject(SESHPOINTS);
+		            oiSP.close();
+		            System.out.println("write done");
+		            fiSP.close();		            
 		 
 		        } catch (Exception ex) {
 		            ex.printStackTrace();
