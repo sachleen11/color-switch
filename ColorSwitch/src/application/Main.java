@@ -3,6 +3,8 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+
 import java.util.Random;
 import javafx.scene.media.*;
 import javafx.animation.AnimationTimer;
@@ -10,6 +12,7 @@ import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -27,6 +30,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -62,6 +66,7 @@ import java.io.ObjectOutputStream;
 import javafx.scene.shape.Arc;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -159,6 +164,7 @@ public class Main extends Application {
 	static Dir direction = Dir.left;
 	static boolean gameOver = false;
 	static ArcTo arcTo;
+	static int gmode=0;
 
 	static Random rand = new Random();
 
@@ -535,6 +541,72 @@ public class Main extends Application {
 					// TODO Auto-generated method stub
 					
 					try {
+						Pane rt = new Pane();
+					    HBox layout = new HBox();
+					      layout.setSpacing(20);  
+					      layout.setMaxHeight(300);
+					      //layout.setBorder(arg0);
+					      //Setting the margin to the nodes 
+
+					    layout.setStyle("-fx-background-color: #2a9d8f; -fx-padding: 10;-fx-border-style: solid inside;-fx-border-radius: 5;-fx-border-width: 2;-fx-border-insets: 5;-fx-border-color: #f1faee;");
+						Popup pp=new Popup();
+						
+						Button b1=new Button("GAME 1");
+				        b1.setId("shiny-orange");
+				        
+				        b1.setOnAction(new EventHandler() {
+
+							@Override
+							public void handle(Event arg0) {
+								mode=1;
+								Start.setText("Start Game 1");
+								pp.hide();
+								
+							}});
+						
+						Button b2=new Button("GAME 2");
+						
+				        b2.setId("shiny-orange");
+				        b2.setMaxWidth(150);
+				        b2.setOnAction(new EventHandler() {
+
+							@Override
+							public void handle(Event arg0) {
+								mode=2;
+								
+							}});
+				        
+						Button b3=new Button("GAME 3");
+						
+				        b3.setId("shiny-orange");
+				        b3.setMaxWidth(150);
+				        b3.setOnAction(new EventHandler() {
+
+							@Override
+							public void handle(Event arg0) {
+								mode=3;
+								
+							}});
+				        
+				        b1.setLayoutX(130);
+				        b1.setLayoutY(50);
+				        b1.setMaxWidth(100);
+//				        layout.getChildren().add(b1);
+//				        layout.getChildren().add(b2);
+//				        layout.getChildren().add(b3);
+				        layout.setMargin(b1, new Insets(20, 20, 20, 20)); 
+				        layout.setMargin(b2, new Insets(20, 20, 20, 20)); 
+				        layout.setMargin(b3, new Insets(20, 20, 20, 20)); 
+				        ObservableList list = layout.getChildren();  
+				        
+				        //Adding all the nodes to the observable list (HBox) 
+				        list.addAll(b1, b2, b3); 
+
+				        //Scene scene4=new Scene(rt,300,300);
+				        pp.getContent().add(layout);
+				        pp.setX(525);
+				        pp.setY(350);
+				        pp.show(primaryStage);
 						
 						var root = new Pane();
 							ball b=new ball();
@@ -714,7 +786,7 @@ public class Main extends Application {
 
 							});
 
-							primaryStage.setScene(scene2);
+						//	primaryStage.setScene(scene4);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
