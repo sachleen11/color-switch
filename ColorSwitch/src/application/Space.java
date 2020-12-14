@@ -50,7 +50,7 @@ public class Space {
 	final String SACH_STAR = "/Users/sachleenkaur/Downloads/ASSETS/starf.png";
 	private static final String filepath="C:\\Users\\ishik\\OneDrive\\Desktop\\obj.txt";
 	ArrayList<Object> components=new ArrayList<>();
-	static int mode=0;
+	//static int mode=0;
 	static float speed = 5;
 	static int width = 20;
 	static int height = 35;
@@ -808,15 +808,32 @@ public class Space {
     			mega.get(1).get(i).setY(d.l2.getStartY()-150);
     		}}
 		
-		for (int i=0;i<5;i++) {
-			ImageView iv=starlist.get(i);
-    		if(iv.getY()>ball.circle.getCenterY() && mega.get(0).get(0).getY()<0){
+		
+			ImageView iv1=starlist.get(0);
+    		if(iv1.getY()>ball.circle.getCenterY() && mega.get(0).get(0).getY()<0){
     			//ball.circle.setFill(Color.AQUA);
     			//primaryStage.setScene(scene2);
-    			iv.setY(mega.get(0).get(0).getY()-150);
+    			iv1.setY(mega.get(0).get(0).getY()-150);
  }
+    		
+			ImageView iv2=starlist.get(1);
+    		if(iv2.getY()>ball.circle.getCenterY() ){
+
+    			iv2.setY(q.arc1.getCenterY()-20);
+ }
+    		
+			ImageView iv3=starlist.get(2);
+    		if(iv3.getY()>ball.circle.getCenterY()){
+
+    			iv3.setY(sq.rectangle4.getY()-67);
+ }
+    		ImageView iv4=starlist.get(3);
+    		if(iv4.getY()>580){
+    			
+    			iv4.setY(cr.l2.getEndY()-200);
+    		}
 			
-		}
+		
 
 //		
 		if(cs.cir().getCenterY()>580){
@@ -833,20 +850,57 @@ public class Space {
 			q.arc4.setCenterY(cs.cir().getCenterY()-200);
 }
 //		
-		if(d.l4.getStartY()>580 && d.l.getStartY()>580 && d.l2.getStartY()>580 && d.l3.getStartY()>580){
+		if(d.l4.getStartY()>580 && d.l.getStartY()>580 && d.l2.getStartY()>580 && d.l3.getStartY()>580 &&
+				d.l4.getEndY()>580 && d.l.getEndY()>580 && d.l2.getEndY()>580 && d.l3.getEndY()>580){
 			//ball.circle.setFill(Color.AQUA);
 			speed=speed-(float)speed/5;
 			//primaryStage.setScene(scene2);
-			d.l.setStartY(sq.rectangle3.getY()-150);
-			d.l.setEndY(sq.rectangle3.getY()-200);
-			d.l2.setStartY(sq.rectangle3.getY()-200);
-			d.l2.setEndY(sq.rectangle3.getY()-200);
+			d.l.setStartY(starlist.get(3).getY()-150);
+			d.l.setEndY(starlist.get(3).getY()-200);
+			d.l.setStartX(300);
+			d.l.setEndX(270);
+			d.l2.setStartY(starlist.get(3).getY()-200);
+			d.l2.setEndY(starlist.get(3).getY()-200);
+			d.l2.setStartX(270);
+			d.l2.setEndX(200);
 			
-			d.l3.setStartY(sq.rectangle3.getY()-150);
-			d.l3.setEndY(sq.rectangle3.getY()-200);
-			d.l4.setStartY(sq.rectangle3.getY()-150);
-			d.l4.setEndY(sq.rectangle3.getY()-150);
+			d.l3.setStartY(starlist.get(3).getY()-150);
+			d.l3.setEndY(starlist.get(3).getY()-200);
+			d.l3.setStartX(230);
+			d.l3.setEndX(200);
+			
+			d.l4.setStartY(starlist.get(3).getY()-150);
+			d.l4.setEndY(starlist.get(3).getY()-150);
+			d.l4.setStartX(230);
+			d.l4.setEndX(300);
 }
+		
+		
+		if(cr.l4.getStartY()>580 && cr.l.getStartY()>580 && cr.l2.getStartY()>580 && cr.l3.getStartY()>580 &&
+				cr.l4.getEndY()>580 && cr.l.getEndY()>580 && cr.l2.getEndY()>580 && cr.l3.getEndY()>580){
+			//ball.circle.setFill(Color.AQUA);
+			speed=speed-(float)speed/5;
+			//primaryStage.setScene(scene2);
+			cr.l.setStartY(sq.rectangle3.getY()-70);
+			cr.l.setEndY(sq.rectangle3.getY()-120);
+			
+			cr.l.setStartX(300);
+			cr.l.setEndX(250);
+			cr.l2.setStartY(sq.rectangle3.getY()-120);
+			cr.l2.setEndY(sq.rectangle3.getY()-170);
+			cr.l2.setStartX(250);
+			cr.l2.setEndX(300);
+			cr.l3.setStartY(sq.rectangle3.getY()-120);
+			cr.l3.setEndY(sq.rectangle3.getY()-160);
+			cr.l3.setStartX(250);
+			cr.l3.setEndX(200);
+			cr.l4.setStartY(sq.rectangle3.getY()-70);
+			cr.l4.setEndY(sq.rectangle3.getY()-120);
+			cr.l4.setStartX(200);
+			cr.l4.setEndX(250);
+		}
+		
+		
 		if(sq.rectangle3.getY()>580 && sq.rectangle.getY()>580 && sq.rectangle2.getY()>580 && sq.rectangle4.getY()>580){
 			//ball.circle.setFill(Color.AQUA);
 			//primaryStage.setScene(scene2);

@@ -541,6 +541,7 @@ public class Main extends Application {
 					// TODO Auto-generated method stub
 					
 					try {
+						System.out.println(mode);
 						Pane rt = new Pane();
 					    HBox layout = new HBox();
 					      layout.setSpacing(20);  
@@ -560,6 +561,7 @@ public class Main extends Application {
 							public void handle(Event arg0) {
 								mode=1;
 								Start.setText("Start Game 1");
+								System.out.println(mode);
 								pp.hide();
 								
 							}});
@@ -573,6 +575,9 @@ public class Main extends Application {
 							@Override
 							public void handle(Event arg0) {
 								mode=2;
+								Start.setText("Start Game 2");
+								System.out.println(mode);
+								pp.hide();
 								
 							}});
 				        
@@ -585,6 +590,9 @@ public class Main extends Application {
 							@Override
 							public void handle(Event arg0) {
 								mode=3;
+								Start.setText("Start Game 3");
+								System.out.println(mode);
+								pp.hide();
 								
 							}});
 				        
@@ -608,191 +616,34 @@ public class Main extends Application {
 				        pp.setY(350);
 				        pp.show(primaryStage);
 						
-						var root = new Pane();
-							ball b=new ball();
-							
-					            FileInputStream fileOut = new FileInputStream(filepath);
-					            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
-					            ArrayList<Integer> balls= (ArrayList<Integer>)objectOut.readObject();
-					            
-					            
-					            objectOut.close();
-					            System.out.println(balls.get(0));
-					            fileOut.close();
-					            objectOut.close();
-					            FileInputStream fq = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt");
-					            ObjectInputStream oq = new ObjectInputStream(fq);
-					            ArrayList<Integer> quads= (ArrayList<Integer>)oq.readObject();
-					            
-					            
-					            oq.close();
-					            System.out.println(quads.get(0));
-					            fq.close();
+//						var root = new Pane();
+//							ball b=new ball();
+//							
+//					            FileInputStream fileOut = new FileInputStream(filepath);
+//					            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
+//					            ArrayList<Integer> balls= (ArrayList<Integer>)objectOut.readObject();
+//					            
+//					            
+//					            objectOut.close();
+//					            System.out.println(balls.get(0));
+//					            fileOut.close();
+//					            objectOut.close();
+//					            FileInputStream fq = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt");
+//					            ObjectInputStream oq = new ObjectInputStream(fq);
+//					            ArrayList<Integer> quads= (ArrayList<Integer>)oq.readObject();
+//					            
+//					            
+//					            oq.close();
+//					            System.out.println(quads.get(0));
+//					            fq.close();
 								//b.circle.setCenterY(balls.get(0));
 							//	root.getChildren().add(b.circle);
 
-							Star s=new Star();
-							Stardeco d1=new Stardeco();
-							
-				 
-
-							DropShadow dropShadow = new DropShadow();
-							dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
-							dropShadow.setColor(Color.PERU);
-						      dropShadow.setHeight(5);
-
-						      dropShadow.setWidth(5);
-						      dropShadow.setRadius(5);
-						      dropShadow.setOffsetX(3);
-						      dropShadow.setOffsetY(2);
-
-						      dropShadow.setSpread(5);
-						      
-						     ArrayList<ImageView> starlist=new ArrayList<>();
-						     for (int i=0;i<5;i++) {
-						    	 ImageView p=s.star();
-						    	 starlist.add(p);
-						     }
-							
-							Square sq=new Square();
-							Quad q=new Quad();
-							Diamond d=new Diamond();
-							Cross cr=new Cross();
-							
-							Canvas c = new Canvas(width * cornersize, height * cornersize);
-
-							GraphicsContext gc = c.getGraphicsContext2D();
-
-							
-							root.getChildren().add(c);
-							root.getChildren().add(cr.line1());
-							root.getChildren().add(cr.line2());
-							root.getChildren().add(cr.line3());
-							root.getChildren().add(cr.line4());
-				//
-							root.getChildren().add(d.line1()); //right
-							root.getChildren().add(d.line2());  //top
-							root.getChildren().add(d.line3()); //left
-							root.getChildren().add(d.line4());  //bottm
-							
-							//b.circle.setCenterY(pr1);
-						b.circle.setCenterY(balls.get(0));
-						root.getChildren().add(b.circle);
-							
-							root.getChildren().add(d1.star());
-
-							Space sp=new Space();
-					        Button Start = new Button("PAUSE",d1.pause());
-					        Start.setLayoutX(400);
-					        Start.setLayoutY(9);
-					        Start.setStyle("-fx-background-color: #061731;-fx-text-fill: #f1faee ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold");
-					         root.getChildren().add(Start);
-					        ColorSwitch cs=new ColorSwitch(200,250);
-					        root.getChildren().add(cs.cir());
-					        q.arc1().setCenterY(quads.get(0));
-					        q.arc2().setCenterY(quads.get(0));
-					        q.arc3().setCenterY(quads.get(0));
-					        q.arc4().setCenterY(quads.get(0));
-							root.getChildren().add(q.arc1);
-							root.getChildren().add(q.arc2);
-							root.getChildren().add(q.arc3);
-
-							root.getChildren().add(q.arc4);
-							root.getChildren().add(sq.square1()); //rm
-							root.getChildren().add(sq.square2()); //lm
-							root.getChildren().add(sq.square3()); //top
-							root.getChildren().add(sq.square4());
-							List<Rectangle> obstacle = generate();
-							List<Rectangle> obstacle2 = generate();
-							for (int i=0;i<20;i++) {
-								root.getChildren().add(obstacle.get(i));
-							}
-							for (int i=0;i<20;i++) {
-								root.getChildren().add(obstacle2.get(i));
-							}
-//							ArrayList<Rectangle> obs1=(ArrayList<Rectangle>)components.get(1);
-//							for (int i=0;i<20;i++) {
-//								root.getChildren().add(obs1.get(i));
-//								
-//							}
-//							
-//							ArrayList<Rectangle> obs2=(ArrayList<Rectangle>)components.get(2);
-//							for (int i=0;i<20;i++) {
-//								root.getChildren().add(obs2.get(i));
-//								
-//							}
-
-							mega.add(obstacle);
-							mega.add(obstacle2);
-							ImageView s1= starlist.get(1);
-							ImageView s2= starlist.get(2);
-							ImageView s3= starlist.get(3);
-							s1.setY(q.arc1.getCenterY()-20);
-							s2.setY(sq.rectangle4.getY()-67);
-							s3.setY(cr.l2.getEndY()-50);
-							for (int i=0;i<5;i++) {
-								ImageView p=starlist.get(i);
-							root.getChildren().add(p);
-							}
-							Scene scene2 = new Scene(root, 500, 600);
-					        
-							
-							new AnimationTimer() {
-								long lastTick = 0;
-
-								public void handle(long now) {
-									if (lastTick == 0) {
-										lastTick = now;
-										try {
-											sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components);
-										} catch (FileNotFoundException e) {
-											e.printStackTrace();
-										}
-										return;
-									}
-
-									if (now - lastTick > 100000000*(speed-1)) {
-										lastTick = now;
-										try {
-											sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components);
-										} catch (FileNotFoundException e) {
-											e.printStackTrace();
-										}
-									}
-								}
-
-							}.start();
-
-
-							
-
-							scene2.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-								if (key.getCode() == KeyCode.W) {
-
-
-									direction = Dir.up;
-
-								}
-
-								if (key.getCode() == KeyCode.A) {
-									direction = Dir.left;
-								}
-								if (key.getCode() == KeyCode.S) {
-									direction = Dir.down;
-								}
-								if (key.getCode() == KeyCode.D) {
-									direction = Dir.right;
-								}
-
-							});
 
 						//	primaryStage.setScene(scene4);
-						} catch (IOException e) {
+						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
 						}
 						
 					}});
