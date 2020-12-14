@@ -267,7 +267,7 @@ public class Main extends Application {
 //						ArrayList<ArrayList<Integer>> crosses= new ArrayList<>();
 //						ArrayList<Integer> lines= new ArrayList<>();
 //						ArrayList<Integer> squares= new ArrayList<>();
-//						ArrayList<ArrayList<Integer>> stars= new ArrayList<>();
+//						ArrayList<ArrayList<Integer>> starsl= new ArrayList<>();
 //						ArrayList<ArrayList<Integer>> colorswitches= new ArrayList<>();
 //						ArrayList<Integer> TOTALPOINTS= new ArrayList<>();
 //						ArrayList<Integer> SESHPOINTS= new ArrayList<>();
@@ -331,7 +331,7 @@ public class Main extends Application {
 //			            FileOutputStream fist = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt"));
 //			            ObjectOutputStream oist = new ObjectOutputStream(fist);
 //			            
-//			            oist.writeObject(stars);
+//			            oist.writeObject(starsl);
 //			            oist.close();
 //			            System.out.println("done");
 //			            fist.close();

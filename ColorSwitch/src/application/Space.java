@@ -71,12 +71,20 @@ public class Space {
 	public void tick(List<List<Rectangle>> mega,GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ArrayList<ImageView> starlist,ColorSwitch cs,Square sq,Cross cr,Diamond d,Scene scene2,ArrayList<Object> comp) throws FileNotFoundException {
 		//speed++;
    		Pane rt = new Pane();
+   		
+        Button Exit = new Button("EXIT GAME");
+        Exit.setMaxWidth(200);
+        Exit.setLayoutX(205);
+        Exit.setLayoutY(600);
+        Exit.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
+        Exit.setOnAction(event -> Platform.exit());
+        rt.getChildren().add(Exit);
 
         Button E = new Button("SAVE & EXIT GAME");
         E.setMaxWidth(200);
         E.setLayoutX(70);
         E.setLayoutY(500);
-        E.setOnAction(event -> Platform.exit());
+        //E.setOnAction(event -> Platform.exit());
        E.setOnAction(new EventHandler() {
 
 
