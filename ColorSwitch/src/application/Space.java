@@ -65,10 +65,16 @@ public class Space {
 	static ArcTo arcTo;
 	static int help_rotate=0;
 	static Random rand = new Random();
+	static int session=0;
+	static int s1=0;
+	static int s2=0;
+	static int s3=0;
+	static int s4=0;
+	static int s5=0;
 	
 	
 	
-	public void tick(List<List<Rectangle>> mega,GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ArrayList<ImageView> starlist,ColorSwitch cs,Square sq,Cross cr,Diamond d,Scene scene2,ArrayList<Object> comp) throws FileNotFoundException {
+	public void tick(List<List<Rectangle>> mega,GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ArrayList<ImageView> starlist,ColorSwitch cs,Square sq,Cross cr,Diamond d,Scene scene2,ArrayList<Object> comp, int univstar) throws FileNotFoundException {
 		//speed++;
    		Pane rt = new Pane();
    		
@@ -741,12 +747,39 @@ public class Space {
 				ball.circle.setFill(Color.web("368BB2",1.0));
 			}
 		}
-		for (int i=0;i<5;i++) {
-			ImageView iv=starlist.get(i);
-    		if (iv.getY()-ball.circle.getCenterY()<30 && iv.getY()-ball.circle.getCenterY()>0 ) {
-    			stars++;
-    		}
-			
+//		for (int i=0;i<5;i++) {
+//			ImageView iv=starlist.get(i);
+//    		if (iv.getY()-ball.circle.getCenterY()<30 && iv.getY()-ball.circle.getCenterY()>0 ) {
+//    			
+//    			stars++;
+//    		}
+//			
+//		}
+		
+		ImageView v=starlist.get(0);
+		if (v.getY()-ball.circle.getCenterY()>0 && s1<session) {
+			s1++;
+			stars++;
+		}
+		ImageView v2=starlist.get(1);
+		if (v2.getY()-ball.circle.getCenterY()>0 && s2<session) {
+			s2++;
+			stars++;
+		}
+		ImageView v3=starlist.get(2);
+		if (v3.getY()-ball.circle.getCenterY()>0 && s3<session) {
+			s3++;
+			stars++;
+		}
+		ImageView v4=starlist.get(3);
+		if (v4.getY()-ball.circle.getCenterY()>0 && s4<session) {
+			s4++;
+			stars++;
+		}
+		ImageView v5=starlist.get(4);
+		if (v5.getY()-ball.circle.getCenterY()>0 && s5<session) {
+			s5++;
+			stars++;
 		}
 
 		
@@ -808,6 +841,8 @@ public class Space {
 		//ball.circle.getCenterY()
 //		if (d.l2.getStartY()>0 && d.l2.getStartY()<100) 
 		if(mega.get(0).get(0).getY()>580 ){
+			session++;
+			System.out.println(session);
 			//ball.circle.setFill(Color.AQUA);
 			//primaryStage.setScene(scene2);
     		for (int i = obstacle.size() - 1; i >= 0; i--) {
@@ -862,6 +897,7 @@ public class Space {
 				d.l4.getEndY()>580 && d.l.getEndY()>580 && d.l2.getEndY()>580 && d.l3.getEndY()>580){
 			//ball.circle.setFill(Color.AQUA);
 			speed=speed-(float)speed/5;
+			
 			//primaryStage.setScene(scene2);
 			d.l.setStartY(starlist.get(3).getY()-150);
 			d.l.setEndY(starlist.get(3).getY()-200);
@@ -928,21 +964,21 @@ public class Space {
 //			q.arc3.setCenterY(-400);
 //			q.arc4.setCenterY(-400);
 		}
-//if (gameOver) {
-//
-//			boolean b=false;
-//			gc.setFill(Color.web("e63946",1.0));
-//			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
-//			gc.fillText("GAME OVER", 110, 75);
-//
-//			b=true;
-//			int i=0;
-//			while (i!=100000) {
-//			ball.circle.setCenterY(ball.circle.getCenterY()-10);
-//			i++;
-//			}
-//			return;
-//		}
+if (gameOver) {
+			univstar=+stars;
+			boolean b=false;
+			gc.setFill(Color.web("e63946",1.0));
+			gc.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 50));
+			gc.fillText("GAME OVER", 110, 75);
+
+			b=true;
+			int i=0;
+			while (i!=100000) {
+			ball.circle.setCenterY(ball.circle.getCenterY()-10);
+			i++;
+			}
+			return;
+		}
 		int help=0;
 		help=1;
 

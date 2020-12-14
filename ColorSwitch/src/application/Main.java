@@ -165,6 +165,7 @@ public class Main extends Application {
 	static boolean gameOver = false;
 	static ArcTo arcTo;
 	static int gmode=0;
+	static int univstar=0;
 
 	static Random rand = new Random();
 
@@ -469,7 +470,7 @@ public class Main extends Application {
 								if (lastTick == 0) {
 									lastTick = now;
 									try {
-										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components);
+										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components,univstar);
 									} catch (FileNotFoundException e) {
 										e.printStackTrace();
 									}
@@ -479,7 +480,7 @@ public class Main extends Application {
 								if (now - lastTick > 100000000*(speed-1)) {
 									lastTick = now;
 									try {
-										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components);
+										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cs,sq,cr,d,scene2,components,univstar);
 									} catch (FileNotFoundException e) {
 										e.printStackTrace();
 									}
