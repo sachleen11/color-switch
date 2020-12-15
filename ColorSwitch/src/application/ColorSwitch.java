@@ -13,7 +13,7 @@ public class ColorSwitch extends staticElements{
 //		this.y = y;
 		c.setCenterX(250);
 		c.setCenterY(200);
-		c.setRadius(15);
+		c.setRadius(10);
 		c.setFill(Color.web("368BB2",1.0));
 	}
 	public Circle cir() {

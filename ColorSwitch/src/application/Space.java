@@ -48,7 +48,28 @@ public class Space {
 	final String SACH_SCREEN = "/Users/sachleenkaur/Downloads/ASSETS/color_screen.png";
 	final String ISHI_STAR = "C:\\Users\\ishik\\Downloads\\starf.png";
 	final String SACH_STAR = "/Users/sachleenkaur/Downloads/ASSETS/starf.png";
-	private static final String filepath="C:\\Users\\ishik\\OneDrive\\Desktop\\obj.txt";
+	private static final String ISHI_filepath="C:\\Users\\ishik\\OneDrive\\Desktop\\obj.txt";
+	private static final String SACH_filepath = "/Users/sachleenkaur/Downloads/ASSETS/obj.txt";
+	private static final String ISHI_quads_filepath="C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt";
+	private static final String SACH_quads_filepath="/Users/sachleenkaur/Downloads/ASSETS/quads.txt";
+	private static final String ISHI_sessionpoints_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\sessionpoints.txt";
+	private static final String SACH_sessionpoints_filepath = "/Users/sachleenkaur/Downloads/ASSETS/sessionpoints.txt";
+	private static final String ISHI_stars_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt";
+	private static final String SACH_stars_filepath = "/Users/sachleenkaur/Downloads/ASSETS/stars.txt";
+	private static final String ISHI_crosses_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\crosses.txt";
+	private static final String SACH_crosses_filepath = "/Users/sachleenkaur/Downloads/ASSETS/crosses.txt";
+	private static final String ISHI_diamonds_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\diamonds.txt";
+	private static final String SACH_diamonds_filepath = "/Users/sachleenkaur/Downloads/ASSETS/diamonds.txt";
+	private static final String ISHI_squares_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\squares.txt";
+	private static final String SACH_squares_filepath = "/Users/sachleenkaur/Downloads/ASSETS/squares.txt";
+	private static final String ISHI_lines_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\lines.txt";
+	private static final String SACH_lines_filepath = "/Users/sachleenkaur/Downloads/ASSETS/lines.txt";
+	private static final String ISHI_colorswitches_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\colorswitches.txt";
+	private static final String SACH_colorswitches_filepath = "/Users/sachleenkaur/Downloads/ASSETS/colorswitches.txt";
+	private static final String ISHI_totalpoints_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt";
+	private static final String SACH_totalpoints_filepath = "/Users/sachleenkaur/Downloads/ASSETS/totalpoints.txt";
+
+
 	ArrayList<Object> components=new ArrayList<>();
 	//static int mode=0;
 	static float speed = 5;
@@ -109,7 +130,7 @@ public class Space {
 				
 				
 				try {						 
-		            FileInputStream fileOut = new FileInputStream(filepath);
+		            FileInputStream fileOut = new FileInputStream(SACH_filepath);
 		            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
 		            balls= (ArrayList<Integer>)objectOut.readObject();
 		            balls.add((int)ball.circle.getCenterY());
@@ -119,7 +140,7 @@ public class Space {
 		            fileOut.close();
 		            objectOut.close();
 		            
-		            FileInputStream fq = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt");
+		            FileInputStream fq = new FileInputStream(SACH_quads_filepath);
 		            ObjectInputStream oq = new ObjectInputStream(fq);
 		            quads= (ArrayList<Integer>)oq.readObject();
 		            quads.add((int)q.arc1.getCenterY());
@@ -128,7 +149,7 @@ public class Space {
 		            System.out.println("The quad  was succesfully read to a file");
 		            fq.close();
 		            
-		            FileInputStream fDIA = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\diamonds.txt");
+		            FileInputStream fDIA = new FileInputStream(SACH_diamonds_filepath);
 		            ObjectInputStream oDIA = new ObjectInputStream(fDIA);
 		            diamonds= (ArrayList<ArrayList<Integer>>)oDIA.readObject();
 		            ArrayList<Integer> a2=new ArrayList<>();
@@ -157,7 +178,7 @@ public class Space {
 		            System.out.println("The DIA  was succesfully read to a file");
 		            fDIA.close();
 		            
-		            FileInputStream fCROSS = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\crosses.txt");
+		            FileInputStream fCROSS = new FileInputStream(SACH_crosses_filepath);
 		            ObjectInputStream oCROSS = new ObjectInputStream(fCROSS);
 		            crosses= (ArrayList<ArrayList<Integer>>)oCROSS.readObject();
 		            ArrayList<Integer> a1=new ArrayList<>();
@@ -187,7 +208,7 @@ public class Space {
 		            System.out.println("The cross  was succesfully read to a file");
 		            fCROSS.close();
 		            
-		            FileInputStream fLINES = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\lines.txt");
+		            FileInputStream fLINES = new FileInputStream(SACH_lines_filepath);
 		            ObjectInputStream oLINES = new ObjectInputStream(fLINES);
 		            lines= (ArrayList<Integer>)oLINES.readObject();
 		            lines.add((int)mega.get(0).get(0).getY());
@@ -196,7 +217,7 @@ public class Space {
 		            System.out.println("The LINES  was succesfully read to a file");
 		            fLINES.close();
 		            
-		            FileInputStream fSQUARES = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\squares.txt");
+		            FileInputStream fSQUARES = new FileInputStream(SACH_squares_filepath);
 		            ObjectInputStream oSQUARES = new ObjectInputStream(fSQUARES);
 		            squares= (ArrayList<Integer>)oSQUARES.readObject();
 		            squares.add((int)sq.rectangle4.getY());
@@ -205,7 +226,7 @@ public class Space {
 		            System.out.println("The SQUARES  was succesfully read to a file");
 		            fSQUARES.close();
 		            
-		            FileInputStream fSTAR = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt");
+		            FileInputStream fSTAR = new FileInputStream(SACH_stars_filepath);
 		            ObjectInputStream oSTAR = new ObjectInputStream(fSTAR);
 		            starsl= (ArrayList<ArrayList<Integer>>)oSTAR.readObject();
 		            ArrayList<Integer> a3=new ArrayList<>();
@@ -218,7 +239,7 @@ public class Space {
 		            System.out.println("The STAR  was succesfully read to a file");
 		            fSTAR.close();
 		            
-		            FileInputStream fCS = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\colorswitches.txt");
+		            FileInputStream fCS = new FileInputStream(SACH_colorswitches_filepath);
 		            ObjectInputStream oCS = new ObjectInputStream(fCS);
 		            colorswitches= (ArrayList<ArrayList<Integer>>)oCS.readObject();
 		            ArrayList<Integer> a4=new ArrayList<>();
@@ -229,7 +250,7 @@ public class Space {
 		            System.out.println("The quad  was succesfully read to a file");
 		            fCS.close();
 		            
-		            FileInputStream fSP = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\sessionpoints.txt");
+		            FileInputStream fSP = new FileInputStream(SACH_sessionpoints_filepath);
 		            ObjectInputStream oSP = new ObjectInputStream(fSP);
 		            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
 		            SESHPOINTS.add(stars);
@@ -246,7 +267,7 @@ public class Space {
 				
 				try {
 					 
-					FileOutputStream fi = new FileOutputStream(new File(filepath));
+					FileOutputStream fi = new FileOutputStream(new File(SACH_filepath));
 		            ObjectOutputStream oi = new ObjectOutputStream(fi);
 		           
 		            oi.writeObject(balls);
@@ -255,7 +276,7 @@ public class Space {
 		            fi.close();
 		            
 		            
-		            FileOutputStream fiq = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt"));
+		            FileOutputStream fiq = new FileOutputStream(new File(SACH_quads_filepath));
 		            ObjectOutputStream oiq = new ObjectOutputStream(fiq);
 		            
 		            oiq.writeObject(quads);
@@ -264,7 +285,7 @@ public class Space {
 		            fiq.close();
 		            
 		            
-		            FileOutputStream fid = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\diamonds.txt"));
+		            FileOutputStream fid = new FileOutputStream(new File(SACH_diamonds_filepath));
 		            ObjectOutputStream oid = new ObjectOutputStream(fid);
 		            
 		            oid.writeObject(diamonds);
@@ -273,7 +294,7 @@ public class Space {
 		            fid.close();
 		            
 		            
-		            FileOutputStream fic = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\crosses.txt"));
+		            FileOutputStream fic = new FileOutputStream(new File(SACH_crosses_filepath));
 		            ObjectOutputStream oic = new ObjectOutputStream(fic);
 		            
 		            oic.writeObject(crosses);
@@ -282,7 +303,7 @@ public class Space {
 		            fic.close();
 		            
 		            
-		            FileOutputStream fil = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\lines.txt"));
+		            FileOutputStream fil = new FileOutputStream(new File(SACH_lines_filepath));
 		            ObjectOutputStream oil = new ObjectOutputStream(fil);
 		            
 		            oil.writeObject(lines);
@@ -291,7 +312,7 @@ public class Space {
 		            fil.close();
 		            
 		            
-		            FileOutputStream fis = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\squares.txt"));
+		            FileOutputStream fis = new FileOutputStream(new File(SACH_squares_filepath));
 		            ObjectOutputStream ois = new ObjectOutputStream(fis);
 		            
 		            ois.writeObject(squares);
@@ -300,7 +321,7 @@ public class Space {
 		            fis.close();
 		            
 		            
-		            FileOutputStream fist = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt"));
+		            FileOutputStream fist = new FileOutputStream(new File(SACH_stars_filepath));
 		            ObjectOutputStream oist = new ObjectOutputStream(fist);
 		            
 		            oist.writeObject(stars);
@@ -309,7 +330,7 @@ public class Space {
 		            fist.close();
 		            
 		            
-		            FileOutputStream fics = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\colorswitches.txt"));
+		            FileOutputStream fics = new FileOutputStream(new File(SACH_colorswitches_filepath));
 		            ObjectOutputStream oics = new ObjectOutputStream(fics);
 		            
 		            oics.writeObject(colorswitches);
@@ -318,7 +339,7 @@ public class Space {
 		            fics.close();
 					
 					
-		            FileOutputStream fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+		            FileOutputStream fiTP = new FileOutputStream(new File(SACH_totalpoints_filepath));
 		            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
 		            
 		            oiTP.writeObject(TOTALPOINTS);
@@ -326,7 +347,7 @@ public class Space {
 		            System.out.println("write done");
 		            fiTP.close();
 					
-		            FileOutputStream fiSP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\sessionpoints.txt"));
+		            FileOutputStream fiSP = new FileOutputStream(new File(SACH_sessionpoints_filepath));
 		            ObjectOutputStream oiSP = new ObjectOutputStream(fiSP);
 		            
 		            oiSP.writeObject(SESHPOINTS);
@@ -366,7 +387,7 @@ public class Space {
 
         rt.getChildren().add(E);
         rt.getChildren().add(Load);
-        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
+        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                   BackgroundSize.DEFAULT);
 
@@ -456,7 +477,7 @@ public class Space {
 	    				help_rotate = 0;
 	    			}
 	    			else {
-	    				cr.l.setStartX(300);
+	    				cr.l.setStartX(350);
 						cr.l.setStartY(cr.l.getStartY()-15);
 						help_rotate = 1;
 	    			}
@@ -478,7 +499,7 @@ public class Space {
 						help_rotate = 0;
 					}
 					else {
-						cr.l3.setEndX(200);
+						cr.l3.setEndX(250);
 						cr.l3.setEndY(cr.l3.getEndY()+15);
 						help_rotate = 1;
 					}
@@ -498,10 +519,10 @@ public class Space {
 						Paint temp2 = cr.l2.getStroke();
 						Paint temp3 = cr.l3.getStroke();
 						Paint temp4 = cr.l4.getStroke();
-						cr.l.setStroke(temp2);
-						cr.l2.setStroke(temp3);
-						cr.l3.setStroke(temp4);
 						cr.l4.setStroke(temp1);
+						cr.l3.setStroke(temp4);
+						cr.l2.setStroke(temp3);
+						cr.l.setStroke(temp2);
 					}
 					
 					if(d.l.getStartX()!= d.l.getEndX()){
@@ -510,7 +531,7 @@ public class Space {
 						d.l.setStartY(d.l.getStartY()-20);
 					}
 					else{
-						d.l.setStartX(300);
+						d.l.setStartX(345);
 						d.l.setEndY(d.l.getEndY()+20);
 						d.l.setStartY(d.l.getStartY()+20);
 					}
@@ -524,16 +545,16 @@ public class Space {
 						d.l3.setStartX(d.l3.getEndX());
 					}
 					else{
-						d.l3.setStartX(230);
+						d.l3.setStartX(180);
 					}
 					if(d.l4.getEndY()!=d.l4.getStartY()-20){
 						d.l4.setEndY(d.l4.getStartY()-20);
-						d.l4.setStartX(200);
+						d.l4.setStartX(160);
 						d.l4.setEndX(d.l4.getEndX()-30);
 					}
 					else{
 						d.l4.setEndY(d.l4.getStartY());
-						d.l4.setStartX(230);
+						d.l4.setStartX(180);
 						d.l4.setEndX(d.l4.getEndX()+30);
 					}
 
@@ -623,6 +644,45 @@ public class Space {
 				}
 			}
 		}}
+
+		   if(ball.circle.getCenterY() >= d.l2.getEndY()-10 && ball.circle.getCenterY() <= d.l2.getEndY()+10){
+			   if(d.l2.getFill()!= ball.circle.getFill()) {
+				   gameOver = true;
+			   }
+		   }
+
+		   if(ball.circle.getCenterY() >= d.l4.getEndY()-10 && ball.circle.getCenterY() <= d.l4.getEndY()+10){
+			   if(d.l4.getFill()!= ball.circle.getFill()) {
+				   gameOver = true;
+			   }
+		   }
+
+		   if(ball.circle.getCenterY() >= sq.rectangle4.getY()-10 && ball.circle.getCenterY() <= sq.rectangle4.getY()+10){
+			   if(sq.rectangle4.getFill()!= ball.circle.getFill()) {
+				   gameOver = true;
+			   }
+		   }
+		   if(ball.circle.getCenterY() >= sq.rectangle3.getY()-10 && ball.circle.getCenterY() <= sq.rectangle3.getY()+10){
+			   if(sq.rectangle3.getFill()!= ball.circle.getFill()) {
+				   gameOver = true;
+			   }
+		   }
+
+
+		   if(help_rotate == 0){	//when its a cross
+			   if(ball.circle.getCenterY() >= cr.l2.getEndY() && ball.circle.getCenterY() <= cr.l2.getStartY())
+				   if(cr.l2.getStroke()!= ball.circle.getFill())
+					   gameOver = true;
+			   if(ball.circle.getCenterY() >= cr.l.getEndY() && ball.circle.getCenterY() <= cr.l.getStartY())
+				   if(cr.l.getStroke()!= ball.circle.getFill())
+					   gameOver = true;
+		   }
+		   else{				//when its a plus
+			   if(ball.circle.getCenterY() == cr.l2.getStartY()){
+				   if(cr.l2.getStroke() != ball.circle.getFill())
+					   gameOver = true;
+			   }
+		   }
 
 		if (ball.circle.getCenterY()==20) {
 			gameOver=true;
@@ -900,23 +960,23 @@ public class Space {
 			
 			//primaryStage.setScene(scene2);
 			d.l.setStartY(starlist.get(3).getY()-150);
-			d.l.setEndY(starlist.get(3).getY()-200);
-			d.l.setStartX(300);
-			d.l.setEndX(270);
-			d.l2.setStartY(starlist.get(3).getY()-200);
-			d.l2.setEndY(starlist.get(3).getY()-200);
-			d.l2.setStartX(270);
-			d.l2.setEndX(200);
+			d.l.setEndY(starlist.get(3).getY()-250);
+			d.l.setStartX(345);
+			d.l.setEndX(320);
+			d.l2.setStartY(starlist.get(3).getY()-250);
+			d.l2.setEndY(starlist.get(3).getY()-250);
+			d.l2.setStartX(320);
+			d.l2.setEndX(150);
 			
 			d.l3.setStartY(starlist.get(3).getY()-150);
-			d.l3.setEndY(starlist.get(3).getY()-200);
-			d.l3.setStartX(230);
-			d.l3.setEndX(200);
+			d.l3.setEndY(starlist.get(3).getY()-250);
+			d.l3.setStartX(180);
+			d.l3.setEndX(150);
 			
 			d.l4.setStartY(starlist.get(3).getY()-150);
 			d.l4.setEndY(starlist.get(3).getY()-150);
-			d.l4.setStartX(230);
-			d.l4.setEndX(300);
+			d.l4.setStartX(180);
+			d.l4.setEndX(350);
 }
 		
 		
@@ -928,20 +988,28 @@ public class Space {
 			cr.l.setStartY(sq.rectangle3.getY()-70);
 			cr.l.setEndY(sq.rectangle3.getY()-120);
 			
-			cr.l.setStartX(300);
-			cr.l.setEndX(250);
+			//cr.l.setStartX(300);
+			cr.l.setStartX(350);
+			//cr.l.setEndX(250);
+			cr.l.setEndX(300);
 			cr.l2.setStartY(sq.rectangle3.getY()-120);
 			cr.l2.setEndY(sq.rectangle3.getY()-170);
-			cr.l2.setStartX(250);
-			cr.l2.setEndX(300);
+			//cr.l2.setStartX(250);
+			//cr.l2.setEndX(300);
+			cr.l2.setStartX(300);
+			cr.l2.setEndX(350);
 			cr.l3.setStartY(sq.rectangle3.getY()-120);
 			cr.l3.setEndY(sq.rectangle3.getY()-160);
-			cr.l3.setStartX(250);
-			cr.l3.setEndX(200);
+			//cr.l3.setStartX(250);
+			//cr.l3.setEndX(200);
+			cr.l3.setStartX(300);
+			cr.l3.setEndX(250);
 			cr.l4.setStartY(sq.rectangle3.getY()-70);
 			cr.l4.setEndY(sq.rectangle3.getY()-120);
-			cr.l4.setStartX(200);
-			cr.l4.setEndX(250);
+			//cr.l4.setStartX(200);
+			//cr.l4.setEndX(250);
+			cr.l4.setStartX(250);
+			cr.l4.setEndX(300);
 		}
 		
 		

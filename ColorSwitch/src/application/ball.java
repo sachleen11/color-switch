@@ -15,7 +15,7 @@ public class ball extends dynamicElements implements Serializable{
 		circle.setCenterX(250);
 		circle.setCenterY(550
 				);
-		circle.setRadius(15 );
+		circle.setRadius(10 );
 		circle.setFill(Color.web("ED476F",1.0));
 	}
 

@@ -653,7 +653,7 @@ public class Main extends Application {
 	        Load.setMaxWidth(150);
 
 
-	        FileInputStream input = new FileInputStream(ISHI_STAR);
+	        FileInputStream input = new FileInputStream(SACH_STAR);
 	        Image image = new Image(input);
 	        ImageView imageView = new ImageView(image);
 	        imageView.setTranslateX(-210);
@@ -684,7 +684,7 @@ public class Main extends Application {
 	        rt.getChildren().addAll(vbox,imageView,t,t2);
 	        
 	        
-	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
 	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 	                  BackgroundSize.DEFAULT);
 
