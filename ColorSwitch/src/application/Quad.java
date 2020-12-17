@@ -1,6 +1,7 @@
 package application;
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 
 public class Quad extends obstacle{
@@ -73,5 +74,19 @@ public class Quad extends obstacle{
 			angle=angle+90;
 			i++;
 		}
+	}
+	
+	@Override
+	Paint getcolor(Object o) {
+		Arc c=(Arc)o;
+		return c.getStroke();
+
+	}
+	
+	@Override
+	int getPosition(Object o) {
+		Arc c=(Arc)o;
+		return (int)c.getCenterY();
+		
 	}
 }

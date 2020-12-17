@@ -3,6 +3,8 @@ package application;
 import java.io.Serializable;
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 
 public class ball extends dynamicElements implements Serializable{
@@ -20,6 +22,14 @@ public class ball extends dynamicElements implements Serializable{
 	}
 
 	public Circle cir() {
+		
 		return circle;
+	}
+
+	@Override
+	int getPosition(Object o) {
+		Circle c=(Circle)o;
+		return (int)c.getCenterY();
+		
 	}
 }
