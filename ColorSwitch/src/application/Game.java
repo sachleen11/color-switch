@@ -70,92 +70,92 @@ public class Game {
 		
 		
 		
-		FileOutputStream fi = new FileOutputStream(new File(filepath));
+		FileOutputStream fi = new FileOutputStream(new File(SACH_filepath));
         ObjectOutputStream oi = new ObjectOutputStream(fi);
        
         oi.writeObject(balls);
         oi.close();
-        System.out.println("done");
+         
         fi.close();
         
         
-        FileOutputStream fiq = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\quads.txt"));
+        FileOutputStream fiq = new FileOutputStream(new File(SACH_quads_filepath));
         ObjectOutputStream oiq = new ObjectOutputStream(fiq);
         
         oiq.writeObject(quads);
         oiq.close();
-        System.out.println("done");
+         
         fiq.close();
         
         
-        FileOutputStream fid = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\diamonds.txt"));
+        FileOutputStream fid = new FileOutputStream(new File(SACH_diamonds_filepath));
         ObjectOutputStream oid = new ObjectOutputStream(fid);
         
         oid.writeObject(diamonds);
         oid.close();
-        System.out.println("done");
+         
         fid.close();
         
         
-        FileOutputStream fic = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\crosses.txt"));
+        FileOutputStream fic = new FileOutputStream(new File(SACH_crosses_filepath));
         ObjectOutputStream oic = new ObjectOutputStream(fic);
         
         oic.writeObject(crosses);
         oic.close();
-        System.out.println("done");
+         
         fic.close();
         
         
-        FileOutputStream fil = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\lines.txt"));
+        FileOutputStream fil = new FileOutputStream(new File(SACH_lines_filepath));
         ObjectOutputStream oil = new ObjectOutputStream(fil);
         
         oil.writeObject(lines);
         oil.close();
-        System.out.println("done");
+         
         fil.close();
         
         
-        FileOutputStream fis = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\squares.txt"));
+        FileOutputStream fis = new FileOutputStream(new File(SACH_squares_filepath));
         ObjectOutputStream ois = new ObjectOutputStream(fis);
         
         ois.writeObject(squares);
         ois.close();
-        System.out.println("done");
+         
         fis.close();
         
         
-        FileOutputStream fist = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\stars.txt"));
+        FileOutputStream fist = new FileOutputStream(new File(SACH_stars_filepath));
         ObjectOutputStream oist = new ObjectOutputStream(fist);
         
         oist.writeObject(starsl);
         oist.close();
-        System.out.println("done");
+         
         fist.close();
         
         
-        FileOutputStream fics = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\colorswitches.txt"));
+        FileOutputStream fics = new FileOutputStream(new File(SACH_colorswitches_filepath));
         ObjectOutputStream oics = new ObjectOutputStream(fics);
         
         oics.writeObject(colorswitches);
         oics.close();
-        System.out.println("done");
+         
         fics.close();
 		
 		
-        FileOutputStream fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+        FileOutputStream fiTP = new FileOutputStream(new File(SACH_totalpoints_filepath));
         ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
         
         oiTP.writeObject(TOTALPOINTS);
         oiTP.close();
-        System.out.println("done");
+         
         fiTP.close();
 		
-        FileOutputStream fiSP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\sessionpoints.txt"));
+        FileOutputStream fiSP = new FileOutputStream(new File(SACH_sessionpoints_filepath));
         ObjectOutputStream oiSP = new ObjectOutputStream(fiSP);
         
         oiSP.writeObject(SESHPOINTS);
         oiSP.close();
-        System.out.println("done");
+         
         fiSP.close();
 
     }
@@ -175,7 +175,7 @@ public class Game {
 		
 		
 		try {						 
-            FileInputStream fileOut = new FileInputStream(ISHI_filepath);
+            FileInputStream fileOut = new FileInputStream(SACH_filepath);
             ObjectInputStream objectOut = new ObjectInputStream(fileOut);
             balls= (ArrayList<Integer>)objectOut.readObject();
             balls.add((int)ball.circle.getCenterY());
@@ -185,7 +185,7 @@ public class Game {
             fileOut.close();
             objectOut.close();
             
-            FileInputStream fq = new FileInputStream(ISHI_quads_filepath);
+            FileInputStream fq = new FileInputStream(SACH_quads_filepath);
             ObjectInputStream oq = new ObjectInputStream(fq);
             quads= (ArrayList<Integer>)oq.readObject();
             quads.add((int)q.arc1.getCenterY());
@@ -194,7 +194,7 @@ public class Game {
             System.out.println("The quad  was succesfully read to a file");
             fq.close();
             
-            FileInputStream fDIA = new FileInputStream(ISHI_diamonds_filepath);
+            FileInputStream fDIA = new FileInputStream(SACH_diamonds_filepath);
             ObjectInputStream oDIA = new ObjectInputStream(fDIA);
             diamonds= (ArrayList<ArrayList<Integer>>)oDIA.readObject();
             ArrayList<Integer> a2=new ArrayList<>();
@@ -223,7 +223,7 @@ public class Game {
             System.out.println("The DIA  was succesfully read to a file");
             fDIA.close();
             
-            FileInputStream fCROSS = new FileInputStream(ISHI_crosses_filepath);
+            FileInputStream fCROSS = new FileInputStream(SACH_crosses_filepath);
             ObjectInputStream oCROSS = new ObjectInputStream(fCROSS);
             crosses= (ArrayList<ArrayList<Integer>>)oCROSS.readObject();
             ArrayList<Integer> a1=new ArrayList<>();
@@ -253,7 +253,7 @@ public class Game {
             System.out.println("The cross  was succesfully read to a file");
             fCROSS.close();
             
-            FileInputStream fLINES = new FileInputStream(ISHI_lines_filepath);
+            FileInputStream fLINES = new FileInputStream(SACH_lines_filepath);
             ObjectInputStream oLINES = new ObjectInputStream(fLINES);
             lines= (ArrayList<Integer>)oLINES.readObject();
             lines.add((int)mega.get(0).get(0).getY());
@@ -262,7 +262,7 @@ public class Game {
             System.out.println("The LINES  was succesfully read to a file");
             fLINES.close();
             
-            FileInputStream fSQUARES = new FileInputStream(ISHI_squares_filepath);
+            FileInputStream fSQUARES = new FileInputStream(SACH_squares_filepath);
             ObjectInputStream oSQUARES = new ObjectInputStream(fSQUARES);
             squares= (ArrayList<Integer>)oSQUARES.readObject();
             squares.add((int)sq.rectangle4.getY());
@@ -271,7 +271,7 @@ public class Game {
             System.out.println("The SQUARES  was succesfully read to a file");
             fSQUARES.close();
             
-            FileInputStream fSTAR = new FileInputStream(ISHI_stars_filepath);
+            FileInputStream fSTAR = new FileInputStream(SACH_stars_filepath);
             ObjectInputStream oSTAR = new ObjectInputStream(fSTAR);
             starsl= (ArrayList<ArrayList<Integer>>)oSTAR.readObject();
             ArrayList<Integer> a3=new ArrayList<>();
@@ -284,7 +284,7 @@ public class Game {
             System.out.println("The STAR  was succesfully read to a file");
             fSTAR.close();
             
-            FileInputStream fCS = new FileInputStream(ISHI_colorswitches_filepath);
+            FileInputStream fCS = new FileInputStream(SACH_colorswitches_filepath);
             ObjectInputStream oCS = new ObjectInputStream(fCS);
             colorswitches= (ArrayList<ArrayList<Integer>>)oCS.readObject();
             ArrayList<Integer> a4=new ArrayList<>();
@@ -299,7 +299,7 @@ public class Game {
             System.out.println("The quad  was succesfully read to a file");
             fCS.close();
             
-            FileInputStream fSP = new FileInputStream(ISHI_sessionpoints_filepath);
+            FileInputStream fSP = new FileInputStream(SACH_sessionpoints_filepath);
             ObjectInputStream oSP = new ObjectInputStream(fSP);
             SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
             SESHPOINTS.add(stars);
@@ -322,7 +322,7 @@ public class Game {
 		try {
 			
 			
-            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
+            FileInputStream fSP = new FileInputStream(SACH_totalpoints_filepath);
             ObjectInputStream oSP = new ObjectInputStream(fSP);
             SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
             if (SESHPOINTS.size()!=0) {
@@ -338,12 +338,12 @@ public class Game {
             fSP.close();
             
             
-			fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+			fiTP = new FileOutputStream(new File(SACH_totalpoints_filepath));
             ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
             
             oiTP.writeObject(SESHPOINTS);
             oiTP.close();
-            System.out.println("done");
+             
             fiTP.close();
 		
 		
@@ -363,93 +363,83 @@ public class Game {
 		
 		try {
 			 
-			FileOutputStream fi = new FileOutputStream(new File(ISHI_filepath));
+			FileOutputStream fi = new FileOutputStream(new File(SACH_filepath));
             ObjectOutputStream oi = new ObjectOutputStream(fi);
            
             oi.writeObject(balls);
             oi.close();
-            System.out.println("write done");
             fi.close();
             
             
-            FileOutputStream fiq = new FileOutputStream(new File(ISHI_quads_filepath));
+            FileOutputStream fiq = new FileOutputStream(new File(SACH_quads_filepath));
             ObjectOutputStream oiq = new ObjectOutputStream(fiq);
             
             oiq.writeObject(quads);
             oiq.close();
-            System.out.println("write done");
             fiq.close();
             
             
-            FileOutputStream fid = new FileOutputStream(new File(ISHI_diamonds_filepath));
+            FileOutputStream fid = new FileOutputStream(new File(SACH_diamonds_filepath));
             ObjectOutputStream oid = new ObjectOutputStream(fid);
             
             oid.writeObject(diamonds);
             oid.close();
-            System.out.println("write done");
             fid.close();
             
             
-            FileOutputStream fic = new FileOutputStream(new File(ISHI_crosses_filepath));
+            FileOutputStream fic = new FileOutputStream(new File(SACH_crosses_filepath));
             ObjectOutputStream oic = new ObjectOutputStream(fic);
             
             oic.writeObject(crosses);
             oic.close();
-            System.out.println("write done");
-            fic.close();
+  fic.close();
             
             
-            FileOutputStream fil = new FileOutputStream(new File(ISHI_lines_filepath));
+            FileOutputStream fil = new FileOutputStream(new File(SACH_lines_filepath));
             ObjectOutputStream oil = new ObjectOutputStream(fil);
             
             oil.writeObject(lines);
             oil.close();
-            System.out.println("write done");
-            fil.close();
+  fil.close();
             
             
-            FileOutputStream fis = new FileOutputStream(new File(ISHI_squares_filepath));
+            FileOutputStream fis = new FileOutputStream(new File(SACH_squares_filepath));
             ObjectOutputStream ois = new ObjectOutputStream(fis);
             
             ois.writeObject(squares);
             ois.close();
-            System.out.println("write done");
-            fis.close();
+  fis.close();
             
             
-            FileOutputStream fist = new FileOutputStream(new File(ISHI_stars_filepath));
+            FileOutputStream fist = new FileOutputStream(new File(SACH_stars_filepath));
             ObjectOutputStream oist = new ObjectOutputStream(fist);
             
             oist.writeObject(starsl);
             oist.close();
-            System.out.println("write done");
-            fist.close();
+  fist.close();
             
             
-            FileOutputStream fics = new FileOutputStream(new File(ISHI_colorswitches_filepath));
+            FileOutputStream fics = new FileOutputStream(new File(SACH_colorswitches_filepath));
             ObjectOutputStream oics = new ObjectOutputStream(fics);
             
             oics.writeObject(colorswitches);
             oics.close();
-            System.out.println("write done");
-            fics.close();
+  fics.close();
 			
 			
-            FileOutputStream fiP = new FileOutputStream(new File(ISHI_totalpoints_filepath));
+            FileOutputStream fiP = new FileOutputStream(new File(SACH_totalpoints_filepath));
             ObjectOutputStream oiTP = new ObjectOutputStream(fiP);
             
             oiTP.writeObject(TOTALPOINTS);
             oiTP.close();
-            System.out.println("write done");
-            fiP.close();
+  fiP.close();
 			
-            FileOutputStream fiSP = new FileOutputStream(new File(ISHI_sessionpoints_filepath));
+            FileOutputStream fiSP = new FileOutputStream(new File(SACH_sessionpoints_filepath));
             ObjectOutputStream oiSP = new ObjectOutputStream(fiSP);
             
             oiSP.writeObject(SESHPOINTS);
             oiSP.close();
-            System.out.println("write done");
-            fiSP.close();		            
+  fiSP.close();		            
  
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -515,7 +505,7 @@ public class Game {
         Load.setMaxWidth(150);
 
 
-        FileInputStream input = new FileInputStream(ISHI_STAR);
+        FileInputStream input = new FileInputStream(SACH_STAR);
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
         imageView.setTranslateX(-210);

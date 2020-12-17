@@ -17,6 +17,7 @@ import application.Main.space;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -53,6 +54,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class Space {
+	private static int resume = 0;
 	final String ISHI_SCREEN = "C:\\Users\\ishik\\Downloads\\color_screen.png";
 	final String SACH_SCREEN = "/Users/sachleenkaur/Downloads/ASSETS/color_screen.png";
 	final String ISHI_STAR = "C:\\Users\\ishik\\Downloads\\starf.png";
@@ -77,6 +79,7 @@ public class Space {
 	private static final String SACH_colorswitches_filepath = "/Users/sachleenkaur/Downloads/ASSETS/colorswitches.txt";
 	private static final String ISHI_totalpoints_filepath = "C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt";
 	private static final String SACH_totalpoints_filepath = "/Users/sachleenkaur/Downloads/ASSETS/totalpoints.txt";
+
 
 	static Popup pp=new Popup();
 	ArrayList<Object> components=new ArrayList<>();
@@ -126,7 +129,6 @@ public class Space {
         Exit.setLayoutX(290);
         Exit.setLayoutY(600);
         Exit.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
-        Exit.setOnAction(event -> primaryStage.setScene(scene));
         Exit.setOnAction(new EventHandler() {
 
 			@Override
@@ -134,11 +136,12 @@ public class Space {
 				int TOTALPOINTS=stars;
 				ArrayList<Integer> SESHPOINTS=new ArrayList<>();
 				int prev=0;
+				resume = 0;
 	            FileOutputStream fiTP;
 				try {
 					
 					
-		            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
+		            FileInputStream fSP = new FileInputStream(SACH_totalpoints_filepath);
 		            ObjectInputStream oSP = new ObjectInputStream(fSP);
 		            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
 		            if (SESHPOINTS.size()!=0) {
@@ -154,7 +157,7 @@ public class Space {
 		            fSP.close();
 		            
 		            
-					fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+					fiTP = new FileOutputStream(new File(SACH_totalpoints_filepath));
 		            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
 		            
 		            oiTP.writeObject(SESHPOINTS);
@@ -199,7 +202,7 @@ public class Space {
 				try {
 					
 					
-		            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
+		            FileInputStream fSP = new FileInputStream(SACH_totalpoints_filepath);
 		            ObjectInputStream oSP = new ObjectInputStream(fSP);
 		            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
 		            if (SESHPOINTS.size()!=0) {
@@ -215,7 +218,7 @@ public class Space {
 		            fSP.close();
 		            
 		            
-					fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+					fiTP = new FileOutputStream(new File(SACH_totalpoints_filepath));
 		            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
 		            
 		            oiTP.writeObject(SESHPOINTS);
@@ -255,8 +258,10 @@ public class Space {
 			@Override
 			public void handle(Event arg0) {
 				Game g=new Game();
+				resume = 0;
 				g.save(mega,gc,obstacle,ball,q,Start,primaryStage,starlist,cslist,sq,cr,d,scene2,components,scene,stars);
 
+				reset = 1;
 				primaryStage.setScene(scene);
 				//Platform.exit();
 				
@@ -267,22 +272,36 @@ public class Space {
         Load.setLayoutX(280);
         Load.setLayoutY(500);
         Load.setMaxWidth(200);
-        Load.setOnAction(event -> primaryStage.setScene(scene2));
+
+        Load.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent actionEvent) {
+				resume = 0;
+				primaryStage.setScene(scene2);
+			}
+		});
         
         E.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
         Load.setStyle("-fx-background-color:#f1faee;-fx-text-fill: #061731 ;-fx-font-family:'Open Sans', sans-serif;-fx-font-weight: bold;-fx-font-size: 17px;");
 
         rt.getChildren().add(E);
         rt.getChildren().add(Load);
-        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
+        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                   BackgroundSize.DEFAULT);
 
         rt.setBackground(new Background(myBI));
 
         Scene scene3 = new Scene(rt, 500, 750);
+        Start.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent actionEvent) {
+				resume = 1;
+				primaryStage.setScene(scene3);
+			}
+		});
 
-	    		Start.setOnAction(event ->  primaryStage.setScene(scene3));
+	    		//Start.setOnAction(event ->  primaryStage.setScene(scene3));
 		
 	    		
 	   if (primaryStage.getScene()==scene2) {
@@ -771,7 +790,7 @@ public class Space {
 		//System.out.println(v.getY());
 		//System.out.println(so);
 		//System.out.println(session);
-		if (v.getY()-ball.circle.getCenterY()>-30 && so<session) {
+		if (v.getY()-ball.circle.getCenterY()>-30 && so<session && !gameOver) {
 			//System.out.println("crossed");
 			
 			so++;
@@ -781,27 +800,28 @@ public class Space {
 			univstar++;
 		}
 		ImageView v2=starlist.get(1);
-		if (v2.getY()-ball.circle.getCenterY()>0 && s2<session) {
+		   ImageView v3=starlist.get(2);
+		   ImageView v4=starlist.get(3);
+		   ImageView v5=starlist.get(4);
+		   if (v2.getY()-ball.circle.getCenterY()>0 && s2<session && !gameOver) {
 			s2++;
 			updateScore(1);
 			//stars++;
 			univstar++;
 		}
-		ImageView v3=starlist.get(2);
-		if (v3.getY()-ball.circle.getCenterY()>0 && s3<session) {
+		 if (v3.getY()-ball.circle.getCenterY()>0 && s3<session && !gameOver) {
 			s3++;
 			updateScore(1);
 			//stars++;
 			univstar++;
 		}
-		ImageView v4=starlist.get(3);
-		if (v4.getY()-ball.circle.getCenterY()>0 && s4<session) {
+		 if (v4.getY()-ball.circle.getCenterY()>0 && s4<session && !gameOver ){
 			s4++;
 			updateScore(1);
 			//stars++;
 		}
-		ImageView v5=starlist.get(4);
-		if (v5.getY()-ball.circle.getCenterY()>0 && s5<session) {
+
+		if (v5.getY()-ball.circle.getCenterY()>0 && s5<session && !gameOver) {
 			s5++;
 			updateScore(1);
 			//stars++;
@@ -813,10 +833,7 @@ public class Space {
 		if (ball.circle.getCenterY()<rotatecircle+10 && ball.circle.getCenterY()<rotatecircle+10) {
 			//ball.circle.setFill(Color.AQUA);
 			if ((q.arc1.getStartAngle()>180 && q.arc1.getStartAngle()<360) ) {
-				//ball.circle.setFill(q.arc1.getStroke());
-				//System.out.println("q1 "+q.arc1.getStartAngle());
-				//System.out.println(ball.circle.getFill());
-				//System.out.println(q.arc1.getStroke());
+
 				String s1=ball.circle.getFill().toString();
 				String s2=q.getcolor(q.arc1).toString();
 				if (!s1.equals(s2)) {
@@ -826,10 +843,7 @@ public class Space {
 				}
 			}
 			else if (q.arc2.getStartAngle()>180 && q.arc2.getStartAngle()<360) {
-			//	ball.circle.setFill(q.arc2.getStroke());
-				//System.out.println("q2 "+q.arc2.getStartAngle());
-				//System.out.println(ball.circle.getFill());
-				//System.out.println(q.arc2.getStroke());
+
 				String s1=ball.circle.getFill().toString();
 				String s2=q.getcolor(q.arc2).toString();
 				if (!s1.equals(s2)) {
@@ -838,10 +852,6 @@ public class Space {
 				}
 			}
 			else if (q.arc3.getStartAngle()>180 && q.arc3.getStartAngle()<360) {
-				//ball.circle.setFill(q.arc3.getStroke());
-				//System.out.println("q3 "+q.arc3.getStartAngle());
-				//System.out.println(ball.circle.getFill());
-				//System.out.println(q.arc3.getStroke());
 				String s1=ball.circle.getFill().toString();
 				String s2=q.getcolor(q.arc3).toString();
 				if (!s1.equals(s2)) {
@@ -850,10 +860,7 @@ public class Space {
 				}
 			}
 			else if (q.arc4.getStartAngle()>180 && q.arc4.getStartAngle()<360) {
-			//	ball.circle.setFill(q.arc4.getStroke());
-				//System.out.println(ball.circle.getFill());
-				//System.out.println("q4 "+q.arc4.getStartAngle());
-			//	System.out.println(q.arc4.getStroke());
+
 				String s1=ball.circle.getFill().toString();
 				String s2=q.getcolor(q.arc4).toString();
 				if (!s1.equals(s2)) {
@@ -870,42 +877,29 @@ public class Space {
 		
 		int rotatecircle2=(int)(-q.arc1.getRadiusX()+q.getPosition(q.arc1));
 		if (ball.circle.getCenterY()<rotatecircle2+10 && ball.circle.getCenterY()<rotatecircle2+10) {
-			//ball.circle.setFill(Color.AQUA);
 			if ((q.arc1.getStartAngle()>0 && q.arc1.getStartAngle()<0) ) {
-				//ball.circle.setFill(q.arc1.getStroke());
-				//System.out.println("q1 "+q.arc1.getStartAngle());
-				//System.out.println(ball.circle.getFill());
-				//System.out.println(q.arc1.getStroke());
 				String s1=ball.circle.getFill().toString();
 				String s2=q.arc1.getStroke().toString();
 				if (!s1.equals(s2)) {
 
 					
-					//gameOver=true;
+					gameOver=true;
 				}
 			}
 			else if (q.arc2.getStartAngle()>0 && q.arc2.getStartAngle()<180) {
-			//	ball.circle.setFill(q.arc2.getStroke());
-				//System.out.println("q2 "+q.arc2.getStartAngle());
-				//System.out.println(ball.circle.getFill());
-				//System.out.println(q.arc2.getStroke());
 				String s1=ball.circle.getFill().toString();
 				String s2=q.arc2.getStroke().toString();
 				if (!s1.equals(s2)) {
 
-					//gameOver=true;
+					gameOver=true;
 				}
 			}
 			else if (q.arc3.getStartAngle()>0 && q.arc3.getStartAngle()<180) {
-				//ball.circle.setFill(q.arc3.getStroke());
-				//System.out.println("q3 "+q.arc3.getStartAngle());
-				//System.out.println(ball.circle.getFill());
-				//System.out.println(q.arc3.getStroke());
 				String s1=ball.circle.getFill().toString();
 				String s2=q.arc3.getStroke().toString();
 				if (!s1.equals(s2)) {
 
-					//gameOver=true;
+					gameOver=true;
 				}
 			}
 			else if (q.arc4.getStartAngle()>0 && q.arc4.getStartAngle()<180) {
@@ -917,7 +911,7 @@ public class Space {
 				String s2=q.arc4.getStroke().toString();
 				if (!s1.equals(s2)) {
 
-					//gameOver=true;
+					gameOver=true;
 				}
 			}
 			
@@ -1150,9 +1144,9 @@ if (gameOver) {
 	        b3.setId("shiny-orange");
 	        b3.setMaxWidth(150);
 	        b3.setOnAction(new EventHandler() {
-
 				@Override
 				public void handle(Event arg0) {
+					resume = 0;
 					//Player p=new Player();
 					reset=p.resumeGame();
 					int TOTALPOINTS=stars;
@@ -1162,7 +1156,7 @@ if (gameOver) {
 					try {
 						
 						
-			            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
+			            FileInputStream fSP = new FileInputStream(SACH_totalpoints_filepath);
 			            ObjectInputStream oSP = new ObjectInputStream(fSP);
 			            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
 			            if (SESHPOINTS.size()!=0) {
@@ -1178,7 +1172,7 @@ if (gameOver) {
 			            fSP.close();
 			            
 			            
-						fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+						fiTP = new FileOutputStream(new File(SACH_totalpoints_filepath));
 			            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
 			            
 			            oiTP.writeObject(SESHPOINTS);
@@ -1217,7 +1211,7 @@ if (gameOver) {
 					try {
 						
 						
-			            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
+			            FileInputStream fSP = new FileInputStream(SACH_totalpoints_filepath);
 			            ObjectInputStream oSP = new ObjectInputStream(fSP);
 			            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
 			            if (SESHPOINTS.size()!=0) {
@@ -1233,7 +1227,7 @@ if (gameOver) {
 			            fSP.close();
 			            
 			            
-						fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+						fiTP = new FileOutputStream(new File(SACH_totalpoints_filepath));
 			            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
 			            
 			            oiTP.writeObject(SESHPOINTS);
@@ -1256,6 +1250,7 @@ if (gameOver) {
 					
 	        		gameOver=false;
 	        		pp.hide();
+	        		reset = 1;
 	        		primaryStage.setScene(scene);
 	        		
 	        		
@@ -1297,8 +1292,15 @@ if (gameOver) {
 
 	}
 }
-	
-	   int showCurScore() {
+	int getreset() {
+		return reset;
+	}
+	int getResume(){
+		return resume;
+	}
+
+
+	int showCurScore() {
 		   return stars;
 	   }
 	   int showHighScore() {

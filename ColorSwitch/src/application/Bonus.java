@@ -127,7 +127,8 @@ public class Bonus {
     double Y_top;
     double X_bottom;
     double Y_bottom;
-    
+    Button exit;
+
 
     void addColumn() throws FileNotFoundException {
 
@@ -206,6 +207,7 @@ public class Bonus {
         score=0;
         scorelabel.setText("Score"+str.toString(score));
         root.getChildren().remove(restart);
+        root.getChildren().remove(exit);
         root.getChildren().removeAll(columns);
         columns.clear();
         int i=0;
@@ -247,10 +249,10 @@ public class Bonus {
 //        primaryStage.setWidth(W);
 //        primaryStage.setResizable(false);
 
-        Image img=new Image(new FileInputStream("C:\\\\Users\\\\ishik\\\\Downloads\\\\starf.png"));
+        Image img=new Image(new FileInputStream("/Users/sachleenkaur/Downloads/flappy_assets/ball.png"));
         ImagePattern ip=new ImagePattern(img);
 
-        star = new Image(new FileInputStream("C:\\\\Users\\\\ishik\\\\Downloads\\\\starf.png"));
+        star = new Image(new FileInputStream("/Users/sachleenkaur/Downloads/flappy_assets/starf.png"));
         starv=new ImageView(star);
         starv.setFitHeight(15);
         starv.setFitWidth(15);
@@ -258,15 +260,19 @@ public class Bonus {
         starv.setX(X);
         Y = 10+(int)(Math.random()*100);
         starv.setY(Y);
-        Button b=new Button("Exit");
-        b.setOnAction(new EventHandler() {
+         exit=new Button("Exit");
+        exit.setId("shiny-orange2");
+        exit.setTranslateX(primaryStage.getWidth()/2- 40);
+        exit.setTranslateY(primaryStage.getHeight()/2 + 70);
+        exit.setMaxWidth(200);
+        exit.setOnAction(new EventHandler() {
 
 			@Override
 			public void handle(Event arg0) {
 				primaryStage.setScene(scene1);
 				
 			}});
-      //  star = new Image(new FileInputStream("/Users/sachleenkaur/Downloads/flappy_assets/starf.png"));
+        star = new Image(new FileInputStream("/Users/sachleenkaur/Downloads/flappy_assets/starf.png"));
         starv2=new ImageView(star);
         starv2.setFitHeight(15);
         starv2.setFitWidth(15);
@@ -322,6 +328,7 @@ public class Bonus {
         restart.setId("shiny-orange2");
         restart.setTranslateX(primaryStage.getWidth()/2- 40);
         restart.setTranslateY(primaryStage.getHeight()/2 + 20);
+        restart.setMaxWidth(200);
 
 
 
@@ -382,7 +389,7 @@ public class Bonus {
                     game_over_pop.setStroke(Color.GREY);
                     game_over_pop.setStrokeWidth(5.0);
                     root.getChildren().add(game_over_pop);
-                    root.getChildren().addAll(l, restart, b);
+                    root.getChildren().addAll(l, restart, exit);
                 }
                 restart.setOnMouseClicked(k ->
                 {

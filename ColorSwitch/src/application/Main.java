@@ -268,7 +268,7 @@ public class Main extends Application {
 			
 			ArrayList<Integer> points=new ArrayList<>();
 			
-            FileInputStream fSP = new FileInputStream("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt");
+            FileInputStream fSP = new FileInputStream(SACH_totalpoints_filepath);
             ObjectInputStream oSP = new ObjectInputStream(fSP);
             points= (ArrayList<Integer>)oSP.readObject();
             if (points.size()!=0) {
@@ -337,16 +337,16 @@ public class Main extends Application {
 
 
 					Label l=new Label("How to Play?");
-					Label b1=new Label("Save using save and Exit");
-					Label b2=new Label("Only 3 or more stars can help revive");
-					Label b3=new Label("Use MouseClick to move");
-			        l.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 15));
+					Label b2=new Label("Pass through the obstacles by matching with the color of the ball");
+					Label b3=new Label("3 or more stars can help you revive!");
+					Label b1=new Label("Tap to move the ball");
+			        l.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 25));
 			        l.setTextFill(Color.web("#061731"));
-			        b1.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 10));
+			        b1.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 20));
 			        b1.setTextFill(Color.web("#061731"));
-			        b2.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 10));
+			        b2.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 20));
 			        b2.setTextFill(Color.web("#061731"));
-			        b3.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 10));
+			        b3.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 20));
 			        b3.setTextFill(Color.web("#061731"));
 			        Button b=new Button("Okay");
 			        b.setId("shiny-orange");
@@ -508,7 +508,7 @@ public class Main extends Application {
 //            fSP.close();
 
 
-	        FileInputStream input = new FileInputStream(ISHI_STAR);
+	        FileInputStream input = new FileInputStream(SACH_STAR);
 	        Image image = new Image(input);
 	        ImageView imageView = new ImageView(image);
 	        imageView.setTranslateX(-210);
@@ -546,7 +546,7 @@ public class Main extends Application {
 	        rt.getChildren().add(vbox2);
 	        
 	        
-	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(ISHI_SCREEN),500,750,false,true),
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream(SACH_SCREEN),500,750,false,true),
 	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 	                  BackgroundSize.DEFAULT);
 
@@ -596,14 +596,14 @@ public class Main extends Application {
 						ArrayList<Integer> SESHPOINTS= new ArrayList<>();
 						
 						try {						 
-				            FileInputStream fileOut = new FileInputStream(ISHI_filepath);
+				            FileInputStream fileOut = new FileInputStream(SACH_filepath);
 				            ObjectInputStream objectOut = new ObjectInputStream(fileOut);
 				            balls= (ArrayList<Integer>)objectOut.readObject();
 				            System.out.println("The ball  was succesfully read to a file");
 				            fileOut.close();
 				            objectOut.close();
 				            
-				            FileInputStream fq = new FileInputStream(ISHI_quads_filepath);
+				            FileInputStream fq = new FileInputStream(SACH_quads_filepath);
 				            ObjectInputStream oq = new ObjectInputStream(fq);
 				            quads= (ArrayList<Integer>)oq.readObject();
 
@@ -611,7 +611,7 @@ public class Main extends Application {
 				            System.out.println("The quad  was succesfully read to a file");
 				            fq.close();
 				            
-				            FileInputStream fDIA = new FileInputStream(ISHI_diamonds_filepath);
+				            FileInputStream fDIA = new FileInputStream(SACH_diamonds_filepath);
 				            ObjectInputStream oDIA = new ObjectInputStream(fDIA);
 				            diamonds= (ArrayList<ArrayList<Integer>>)oDIA.readObject();
 				            ArrayList<Integer> a2=new ArrayList<>();
@@ -620,7 +620,7 @@ public class Main extends Application {
 				            System.out.println("The DIA  was succesfully read to a file");
 				            fDIA.close();
 				            
-				            FileInputStream fCROSS = new FileInputStream(ISHI_crosses_filepath);
+				            FileInputStream fCROSS = new FileInputStream(SACH_crosses_filepath);
 				            ObjectInputStream oCROSS = new ObjectInputStream(fCROSS);
 				            crosses= (ArrayList<ArrayList<Integer>>)oCROSS.readObject();
 
@@ -628,7 +628,7 @@ public class Main extends Application {
 				            System.out.println("The cross  was succesfully read to a file");
 				            fCROSS.close();
 				            
-				            FileInputStream fLINES = new FileInputStream(ISHI_lines_filepath);
+				            FileInputStream fLINES = new FileInputStream(SACH_lines_filepath);
 				            ObjectInputStream oLINES = new ObjectInputStream(fLINES);
 				            lines= (ArrayList<Integer>)oLINES.readObject();
 
@@ -636,7 +636,7 @@ public class Main extends Application {
 				            System.out.println("The LINES  was succesfully read to a file");
 				            fLINES.close();
 				            
-				            FileInputStream fSQUARES = new FileInputStream(ISHI_squares_filepath);
+				            FileInputStream fSQUARES = new FileInputStream(SACH_squares_filepath);
 				            ObjectInputStream oSQUARES = new ObjectInputStream(fSQUARES);
 				            squares= (ArrayList<Integer>)oSQUARES.readObject();
 
@@ -644,7 +644,7 @@ public class Main extends Application {
 				            System.out.println("The SQUARES  was succesfully read to a file");
 				            fSQUARES.close();
 				            
-				            FileInputStream fSTAR = new FileInputStream(ISHI_stars_filepath);
+				            FileInputStream fSTAR = new FileInputStream(SACH_stars_filepath);
 				            ObjectInputStream oSTAR = new ObjectInputStream(fSTAR);
 				            starsl= (ArrayList<ArrayList<Integer>>)oSTAR.readObject();
 
@@ -652,7 +652,7 @@ public class Main extends Application {
 				            System.out.println("The STAR  was succesfully read to a file");
 				            fSTAR.close();
 				            
-				            FileInputStream fCS = new FileInputStream(ISHI_colorswitches_filepath);
+				            FileInputStream fCS = new FileInputStream(SACH_colorswitches_filepath);
 				            ObjectInputStream oCS = new ObjectInputStream(fCS);
 				            colorswitches= (ArrayList<ArrayList<Integer>>)oCS.readObject();
 
@@ -660,7 +660,7 @@ public class Main extends Application {
 				            System.out.println("The quad  was succesfully read to a file");
 				            fCS.close();
 				            
-				            FileInputStream fSP = new FileInputStream(ISHI_sessionpoints_filepath);
+				            FileInputStream fSP = new FileInputStream(SACH_sessionpoints_filepath);
 				            ObjectInputStream oSP = new ObjectInputStream(fSP);
 				            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
 
@@ -700,7 +700,7 @@ public class Main extends Application {
 							List<Rectangle> obstacle = generate();
 							List<Rectangle> obstacle2 = generate();
 					   
-			 
+
 						if (mode==1) {
 						b.circle.setCenterY(balls.get(balls.size()-1));
 						for (int i=0;i<20;i++) {
@@ -893,7 +893,7 @@ public class Main extends Application {
 							
 							
 						}
-						
+
 						
 						
 
@@ -945,7 +945,6 @@ public class Main extends Application {
 						mega.add(obstacle2);}
 						
 						else if (mega.size()==2) {
-							System.out.println("dai jobe");
 							mega.set(0,obstacle);
 							mega.set(1,obstacle2);
 						}
@@ -980,7 +979,7 @@ public class Main extends Application {
 //						}
 						
 						
-						
+
 						
 						Scene scene2 = new Scene(root, 500, 600);
 				        
@@ -993,6 +992,7 @@ public class Main extends Application {
 									lastTick = now;
 									tick++;
 									try {
+
 										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cslist,sq,cr,d,scene2,components,univstar,scene,pl);
 									} catch (FileNotFoundException e) {
 										e.printStackTrace();
@@ -1003,7 +1003,10 @@ public class Main extends Application {
 								if (now - lastTick > 100000000*(speed)) {
 									tick++;
 									lastTick = now;
-									if (tick%15==0) {
+									if (sp.getreset()==1) {
+										speed=5;
+									}
+									if (tick%15==0 && sp.getResume() != 1) {
 										speed=speed-(float)0.5;
 									}
 									try {
