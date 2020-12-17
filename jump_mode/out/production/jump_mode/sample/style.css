@@ -1,0 +1,10 @@
+#shiny-orange {
+    -fx-background-color: grey;
+    -fx-font-family:'Proxima Nova', sans-serif;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-padding: 10 20 10 20;
+}
