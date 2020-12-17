@@ -102,6 +102,7 @@ public class Space {
 	static int s3=0;
 	static int s4=0;
 	static int s5=0;
+	static int tot=0;
 	
 	List<Integer> colorsw = Arrays.asList(0,0,0,0,0);
 
@@ -110,31 +111,10 @@ public class Space {
 	static int reset=0;
 	
 	
-	public void restart(List<List<Rectangle>> mega,GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ArrayList<ImageView> starlist,ColorSwitch cs,Square sq,Cross cr,Diamond d,Scene scene2,ArrayList<Object> comp){
-		for (int i = obstacle.size()-1 ; i >= 0; i--) {
 
-			mega.get(0).get(i).setY(400);
-			mega.get(1).get(i).setY(400);
-		}
-		
-		ball=new ball();
-		q=new Quad();
-		sq=new Square();
-		cs=new ColorSwitch(0,0);
-		d=new Diamond();
-		cr=new Cross();
-		ImageView s1= starlist.get(1);
-		ImageView s2= starlist.get(2);
-		ImageView s3= starlist.get(3);
-		s1.setY(q.arc1.getCenterY()-20);
-		s2.setY(sq.rectangle4.getY()-67);
-		s3.setY(cr.l2.getEndY()-50);
-		
-		
-	}
 	
 	
-	public void tick(List<List<Rectangle>> mega,GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ArrayList<ImageView> starlist,ArrayList<ColorSwitch> cslist,Square sq,Cross cr,Diamond d,Scene scene2,ArrayList<Object> comp, int univstar, Scene scene) throws FileNotFoundException {
+	public void tick(List<List<Rectangle>> mega,GraphicsContext gc,List<Rectangle> obstacle,ball ball,Quad q,Button Start,Stage primaryStage, ArrayList<ImageView> starlist,ArrayList<ColorSwitch> cslist,Square sq,Cross cr,Diamond d,Scene scene2,ArrayList<Object> comp, int univstar, Scene scene, Player p) throws FileNotFoundException {
 		//speed++;
 		//gameOver=true;
 		loop++;
@@ -565,23 +545,24 @@ public class Space {
 //COLORSWITCH
 		for (int i=0;i<5;i++) {
 			ColorSwitch cs=cslist.get(i);
-		cs.color=rand.nextInt(3)+1;
-		if (cs.color==1) {
+		
+		cs.setcolor(rand.nextInt(3)+1);
+		if (cs.getcolor()==1) {
 			cs.cir().setFill(Color.web("61D8A2",1.0));
 		//	sq.rectangle2.setFill(Color.web("61D8A2",1.0));
 			//gc.fillOval(240, 200, 30 , 30 );
 		}
-		if (cs.color==2) {
+		if (cs.getcolor()==2) {
 			cs.cir().setFill(Color.web("ED476F",1.0));
 		//	sq.rectangle2.setFill(Color.web("ED476F",1.0));
 			//gc.fillOval(240, 200, 30 , 30 );
 		}
-		if (cs.color==3) {
+		if (cs.getcolor()==3) {
 			cs.cir().setFill(Color.web("FAD167",1.0));
 		//	sq.rectangle2.setFill(Color.web("FAD167",1.0));
 			//gc.fillOval(240, 200, 30 , 30 );
 		}
-		if (cs.color==4) {
+		if (cs.getcolor()==4) {
 			cs.cir().setFill(Color.web("368BB2",1.0));
 		//	sq.rectangle2.setFill(Color.web("368BB2",1.0));
 			//gc.fillOval(240, 200, 30 , 30 );
@@ -683,18 +664,13 @@ public class Space {
         primaryStage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
         {//fctor:13
             public void handle(MouseEvent event) 
-            {	//System.out.println(ball.cir().getCenterY());
-            	//System.out.println(ball.cir().getCenterY());
-            	//position-=5;
-            	//int pos=(int)ball.cir().getCenterY();
+            {	
             	if (ball.cir().getCenterY()>410) {
                 ball.cir().setCenterY(ball.cir().getCenterY()-2.3);}
                // int pos2=(int)ball.cir().getCenterY();
                 
             	else if (ball.cir().getCenterY()<410) {
-                	System.out.println("ji");
-                	System.out.println(ball.cir().getCenterY());
-            		 //ball.circle.setCenterY(ball.cir().getCenterY()-3);
+
             		for (int i = obstacle.size() - 1; i >= 0; i--) {
 
             			mega.get(0).get(i).setY(mega.get(0).get(i).getY()+2);
@@ -799,31 +775,36 @@ public class Space {
 			//System.out.println("crossed");
 			
 			so++;
-			stars++;
+			updateScore(1);
+			//stars++;
 			v.setY(mega.get(0).get(0).getY()-150);
 			univstar++;
 		}
 		ImageView v2=starlist.get(1);
 		if (v2.getY()-ball.circle.getCenterY()>0 && s2<session) {
 			s2++;
-			stars++;
+			updateScore(1);
+			//stars++;
 			univstar++;
 		}
 		ImageView v3=starlist.get(2);
 		if (v3.getY()-ball.circle.getCenterY()>0 && s3<session) {
 			s3++;
-			stars++;
+			updateScore(1);
+			//stars++;
 			univstar++;
 		}
 		ImageView v4=starlist.get(3);
 		if (v4.getY()-ball.circle.getCenterY()>0 && s4<session) {
 			s4++;
-			stars++;
+			updateScore(1);
+			//stars++;
 		}
 		ImageView v5=starlist.get(4);
 		if (v5.getY()-ball.circle.getCenterY()>0 && s5<session) {
 			s5++;
-			stars++;
+			updateScore(1);
+			//stars++;
 			univstar++;
 		}
 
@@ -1091,235 +1072,248 @@ public class Space {
 		}
 		
 		
-//if (gameOver) {
-//	//System.out.println("in the loop");
-//	int pos=(int)ball.circle.getCenterY();
-//		
-//			univstar=+stars;
-//			Popup warning=new Popup();
-//			Label l=new Label("Shoot! You dont have enough stars");
-//	        l.setFont(Font.font("Proxima Nova", 15));
-//	        l.setTextFill(Color.web("#ef233c"));
-//
-//			TilePane l2=new TilePane();
-//	        l.setLayoutY(5);
-//	        l.setLayoutX(45);
-//	        l2.setHgap(50);
-//	        l2.setStyle("-fx-background-color: #ffffff; -fx-padding: 10;-fx-border-style: solid inside;-fx-border-radius: 5;-fx-border-width: 2;-fx-border-insets: 5;-fx-border-color: #f1faee;");
-//	        l2.setPrefHeight(150);
-//	        l2.setPrefWidth(300);
-//	        l2.setAlignment(Pos.CENTER);
-//			Button w=new Button("Okay");
-//			w.setStyle("-fx-background-color:#d5f2e3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
-//			w.setOnAction(new EventHandler() {
-//
-//				@Override
-//				public void handle(Event arg0) {
-//					
-//					warning.hide();
-//					
-//				}
-//		
-//			});
-//			
-//			
-//			
-//			l2.getChildren().add(w);
-//			
-//			
-//			warning.getContent().add(l2);
-//			warning.getContent().add(l);
-//			warning.setY(300);
-//			warning.setX(625);
-//			TextField textField = new TextField ();
-//			TilePane layout = new TilePane();
-//
-//		    layout.setStyle("-fx-background-color: #ffffff; -fx-padding: 10;-fx-border-style: solid inside;-fx-border-radius: 5;-fx-border-width: 2;-fx-border-insets: 5;-fx-border-color: #f1faee;");
-//			
-//			
-//			Button b1=new Button("REVIVE");
-//	        b1.setId("shiny-orange");
-//	        b1.setStyle("-fx-background-color:#d5f2e3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
-//	        
-//	        
-//	        b1.setOnAction(new EventHandler() {
-//
-//				@Override
-//				public void handle(Event arg0) {
-//					
-//					if (stars>3) {
-//					ball.circle.setCenterY(580);
-//					gameOver=false;
-//					pp.hide();}
-//					else {
-//						if(!warning.isShowing()) {
-//						warning.show(primaryStage);}
-//					}
-//					
-//					//System.out.println(gameOver);
-//					
-//				}});
-//			
-//			Button b2=new Button("LOSE");
-//			b2.setStyle("-fx-background-color:#d3d3d3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
-//	        b2.setId("shiny-orange");
-//	        b2.setMaxWidth(150);
-//	        Button b3=new Button("RESTART");
-//	        b3.setStyle("-fx-background-color:#d3d3d3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
-//	        b3.setId("shiny-orange");
-//	        b3.setMaxWidth(150);
-//	        b3.setOnAction(new EventHandler() {
-//
-//				@Override
-//				public void handle(Event arg0) {
-//
-//					reset=1;
-//					int TOTALPOINTS=stars;
-//					ArrayList<Integer> SESHPOINTS=new ArrayList<>();
-//					int prev=0;
-//		            FileOutputStream fiTP;
-//					try {
-//						
-//						
-//			            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
-//			            ObjectInputStream oSP = new ObjectInputStream(fSP);
-//			            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
-//			            if (SESHPOINTS.size()!=0) {
-//			            prev=SESHPOINTS.get(0);}
-//			            else if(SESHPOINTS.size()==0) {
-//			            	SESHPOINTS.add(0);
-//			            }
-//			            
-//			            SESHPOINTS.set(0, prev+stars);
-//			            
-//			            oSP.close();
-//			            System.out.println("The STARS  was succesfully read to a file");
-//			            fSP.close();
-//			            
-//			            
-//						fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
-//			            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
-//			            
-//			            oiTP.writeObject(SESHPOINTS);
-//			            oiTP.close();
-//			            System.out.println("done");
-//			            fiTP.close();
-//					
-//					
-//					
-//					} catch (FileNotFoundException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					} catch (ClassNotFoundException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					
-//					ball.circle.setCenterY(580);
-//					gameOver=false;
-//					pp.hide();
-//					
-//					
-//				}});
-//	        b2.setOnAction(new EventHandler() {
-//	        	
-//	        	@Override
-//	        	public void handle(Event arg0) {
-//	        		
-//	        		int TOTALPOINTS=stars;
-//					ArrayList<Integer> SESHPOINTS=new ArrayList<>();
-//					int prev=0;
-//		            FileOutputStream fiTP;
-//					try {
-//						
-//						
-//			            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
-//			            ObjectInputStream oSP = new ObjectInputStream(fSP);
-//			            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
-//			            if (SESHPOINTS.size()!=0) {
-//			            prev=SESHPOINTS.get(0);}
-//			            else if(SESHPOINTS.size()==0) {
-//			            	SESHPOINTS.add(0);
-//			            }
-//			            
-//			            SESHPOINTS.set(0, prev+stars);
-//			            
-//			            oSP.close();
-//			            System.out.println("The STARS  was succesfully read to a file");
-//			            fSP.close();
-//			            
-//			            
-//						fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
-//			            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
-//			            
-//			            oiTP.writeObject(SESHPOINTS);
-//			            oiTP.close();
-//			            System.out.println("done");
-//			            fiTP.close();
-//					
-//					
-//					
-//					} catch (FileNotFoundException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					} catch (ClassNotFoundException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					
-//	        		gameOver=false;
-//	        		pp.hide();
-//	        		primaryStage.setScene(scene);
-//	        		
-//	        		
-//	        		//System.out.println(gameOver);
-//	        		
-//	        	}});
-//
-//			Label label1 = new Label("GAME OVER");
-//	        label1.setAlignment(Pos.CENTER);
-//	        label1.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 25));
-//	        label1.setTextFill(Color.web("#ef233c"));
-//	        layout.setAlignment(Pos.CENTER);
-//	        label1.setLayoutY(5);
-//	        label1.setLayoutX(82);
-//	        layout.setHgap(50);
-//	        layout.setPrefHeight(150);
-//	        layout.setPrefWidth(300);
-//	       
-//	        ObservableList list = layout.getChildren();  
-//	        
-//	        //Adding all the nodes to the observable list (HBox) 
-//	        list.addAll(b1, b2,b3); 
-//
-//
-//	        Scene scene4=new Scene(layout,300,300);
-//	        pp.getContent().add(layout);
-//	        pp.getContent().add(label1);
-//	        pp.setX(625);
-//	        pp.setY(300);
-//	       if (!pp.isShowing()) {
-//	       pp.show(primaryStage);}
-//	       int i=0;
-//			while (i!=100000) {
-//			ball.circle.setCenterY(ball.circle.getCenterY()-10);
-//			i++;
-//			}
-//			return;
-//		}
+if (gameOver) {
+	//System.out.println("in the loop");
+	int pos=(int)ball.circle.getCenterY();
+		
+			univstar=+stars;
+			Popup warning=new Popup();
+			Label l=new Label("Shoot! You dont have enough stars");
+	        l.setFont(Font.font("Proxima Nova", 15));
+	        l.setTextFill(Color.web("#ef233c"));
+
+			TilePane l2=new TilePane();
+	        l.setLayoutY(5);
+	        l.setLayoutX(45);
+	        l2.setHgap(50);
+	        l2.setStyle("-fx-background-color: #ffffff; -fx-padding: 10;-fx-border-style: solid inside;-fx-border-radius: 5;-fx-border-width: 2;-fx-border-insets: 5;-fx-border-color: #f1faee;");
+	        l2.setPrefHeight(150);
+	        l2.setPrefWidth(300);
+	        l2.setAlignment(Pos.CENTER);
+			Button w=new Button("Okay");
+			w.setStyle("-fx-background-color:#d5f2e3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
+			w.setOnAction(new EventHandler() {
+
+				@Override
+				public void handle(Event arg0) {
+					
+					warning.hide();
+					
+				}
+		
+			});
+			
+			
+			
+			l2.getChildren().add(w);
+			
+			
+			warning.getContent().add(l2);
+			warning.getContent().add(l);
+			warning.setY(300);
+			warning.setX(625);
+			TextField textField = new TextField ();
+			TilePane layout = new TilePane();
+
+		    layout.setStyle("-fx-background-color: #ffffff; -fx-padding: 10;-fx-border-style: solid inside;-fx-border-radius: 5;-fx-border-width: 2;-fx-border-insets: 5;-fx-border-color: #f1faee;");
+			
+			
+			Button b1=new Button("REVIVE");
+	        b1.setId("shiny-orange");
+	        b1.setStyle("-fx-background-color:#d5f2e3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
+	        
+	        
+	        b1.setOnAction(new EventHandler() {
+
+				@Override
+				public void handle(Event arg0) {
+					
+					if (p.checkStar(stars)) {
+					ball.circle.setCenterY(580);
+					gameOver=false;
+					pp.hide();}
+					else {
+						if(!warning.isShowing()) {
+						warning.show(primaryStage);}
+					}
+					
+					//System.out.println(gameOver);
+					
+				}});
+			
+			Button b2=new Button("LOSE");
+			b2.setStyle("-fx-background-color:#d3d3d3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
+	        b2.setId("shiny-orange");
+	        b2.setMaxWidth(150);
+	        Button b3=new Button("RESTART");
+	        b3.setStyle("-fx-background-color:#d3d3d3;-fx-font-family:'Open Sans';-fx-background-radius: 30;-fx-background-insets: 0,1,2,3,0; -fx-text-fill: #061731; -fx-font-weight: bold;-fx-padding: 10 20 10 20;");
+	        b3.setId("shiny-orange");
+	        b3.setMaxWidth(150);
+	        b3.setOnAction(new EventHandler() {
+
+				@Override
+				public void handle(Event arg0) {
+					//Player p=new Player();
+					reset=p.resumeGame();
+					int TOTALPOINTS=stars;
+					ArrayList<Integer> SESHPOINTS=new ArrayList<>();
+					int prev=0;
+		            FileOutputStream fiTP;
+					try {
+						
+						
+			            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
+			            ObjectInputStream oSP = new ObjectInputStream(fSP);
+			            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
+			            if (SESHPOINTS.size()!=0) {
+			            prev=SESHPOINTS.get(0);}
+			            else if(SESHPOINTS.size()==0) {
+			            	SESHPOINTS.add(0);
+			            }
+			            
+			            SESHPOINTS.set(0, prev+stars);
+			            p.star=stars;
+			            oSP.close();
+			            System.out.println("The STARS  was succesfully read to a file");
+			            fSP.close();
+			            
+			            
+						fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+			            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
+			            
+			            oiTP.writeObject(SESHPOINTS);
+			            oiTP.close();
+			            System.out.println("done");
+			            fiTP.close();
+					
+					
+					
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					ball.circle.setCenterY(580);
+					gameOver=false;
+					pp.hide();
+					
+					
+				}});
+	        b2.setOnAction(new EventHandler() {
+	        	
+	        	@Override
+	        	public void handle(Event arg0) {
+	        		
+	        		int TOTALPOINTS=stars;
+					ArrayList<Integer> SESHPOINTS=new ArrayList<>();
+					int prev=0;
+		            FileOutputStream fiTP;
+					try {
+						
+						
+			            FileInputStream fSP = new FileInputStream(ISHI_totalpoints_filepath);
+			            ObjectInputStream oSP = new ObjectInputStream(fSP);
+			            SESHPOINTS= (ArrayList<Integer>)oSP.readObject();
+			            if (SESHPOINTS.size()!=0) {
+			            prev=SESHPOINTS.get(0);}
+			            else if(SESHPOINTS.size()==0) {
+			            	SESHPOINTS.add(0);
+			            }
+			            
+			            SESHPOINTS.set(0, prev+stars);
+			            
+			            oSP.close();
+			            System.out.println("The STARS  was succesfully read to a file");
+			            fSP.close();
+			            
+			            
+						fiTP = new FileOutputStream(new File("C:\\Users\\ishik\\OneDrive\\Desktop\\totalpoints.txt"));
+			            ObjectOutputStream oiTP = new ObjectOutputStream(fiTP);
+			            
+			            oiTP.writeObject(SESHPOINTS);
+			            oiTP.close();
+			            System.out.println("done");
+			            fiTP.close();
+					
+					
+					
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+	        		gameOver=false;
+	        		pp.hide();
+	        		primaryStage.setScene(scene);
+	        		
+	        		
+	        		//System.out.println(gameOver);
+	        		
+	        	}});
+
+			Label label1 = new Label("GAME OVER");
+	        label1.setAlignment(Pos.CENTER);
+	        label1.setFont(Font.font("Proxima Nova",FontWeight.BOLD, 25));
+	        label1.setTextFill(Color.web("#ef233c"));
+	        layout.setAlignment(Pos.CENTER);
+	        label1.setLayoutY(5);
+	        label1.setLayoutX(82);
+	        layout.setHgap(50);
+	        layout.setPrefHeight(150);
+	        layout.setPrefWidth(300);
+	       
+	        ObservableList list = layout.getChildren();  
+	        
+	        //Adding all the nodes to the observable list (HBox) 
+	        list.addAll(b1, b2,b3); 
+
+
+	        Scene scene4=new Scene(layout,300,300);
+	        pp.getContent().add(layout);
+	        pp.getContent().add(label1);
+	        pp.setX(625);
+	        pp.setY(300);
+	       if (!pp.isShowing()) {
+	       pp.show(primaryStage);}
+	       int i=0;
+			while (i!=100000) {
+			ball.circle.setCenterY(ball.circle.getCenterY()-10);
+			i++;
+			}
+			return;
+		}
 
 	}
+}
+	
+	   int showCurScore() {
+		   return stars;
+	   }
+	   int showHighScore() {
+		   return tot;
+	   }
+	   void updateScore(int i){
+		   stars+=i;
+	   }
+	   void updateHighScore(int i){
+		   tot+=i;
+	   }
 
-
-
-
-	}
+	   void exitGame(){
+		   System.exit(0);
+	   }
 
 	
 

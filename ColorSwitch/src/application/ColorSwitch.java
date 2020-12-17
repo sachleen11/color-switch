@@ -19,4 +19,11 @@ public class ColorSwitch extends staticElements{
 	public Circle cir() {
 		return c;
 	}
+	int getcolor() {
+		return color;
+	}
+	void setcolor(int i) {
+		color=i;
+	}
+	
 }

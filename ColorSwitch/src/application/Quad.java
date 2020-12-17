@@ -9,6 +9,14 @@ public class Quad extends obstacle{
 	Arc arc2= new Arc();
 	Arc arc3 = new Arc();
 	Arc arc4 = new Arc();
+	double speed;
+	
+	public Quad(double i) {
+		speed=i;
+		
+	}
+	
+	
 	public Arc arc1() {
 		arc1.setCenterX(250.0f);
 		arc1.setCenterY(-5);
@@ -82,6 +90,34 @@ public class Quad extends obstacle{
 		return c.getStroke();
 
 	}
+	@Override
+	void setcolor(Paint p, Object o) {
+		Arc c=(Arc)o;
+		c.setStroke(p);
+		
+	}
+	
+	@Override
+	void setspeed(double s) {
+		speed=s;
+		
+	}
+	@Override
+	int getspeed() {
+		return (int) speed;
+		
+	}
+	@Override
+	void display() {
+		Quad q=new Quad(speed);
+		
+	}
+	
+
+	
+	
+	
+	
 	
 	@Override
 	int getPosition(Object o) {

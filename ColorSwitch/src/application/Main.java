@@ -125,13 +125,13 @@ class obstacle extends dynamicElements{
 		return Color.BLACK;
 
 	}
-	void setcolor(){
+	void setcolor(Paint p, Object o){
 
 	}
 	int getspeed() {
 		return 0;
 	}
-	void setspeed() {
+	void setspeed(double i) {
 
 	}
 	void display() {
@@ -264,6 +264,7 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) throws FileNotFoundException{
 		try {
+			Player pl=new Player(0);
 			
 			ArrayList<Integer> points=new ArrayList<>();
 			
@@ -285,6 +286,13 @@ public class Main extends Application {
 
 			
 	    	Space sm=new Space();
+	    	Button Run=new Button("FLY MODE");
+	    	Run.setMaxWidth(150);
+	    	Run.setId("shiny-orange");
+	    	
+
+	    	
+	    	
 	        Button Start = new Button("START GAME");
 	        //Start.setOnAction(event ->  primaryStage.setScene(scene2));
 
@@ -296,7 +304,16 @@ public class Main extends Application {
 	      // g.SetUp(rt,scene2,primaryStage);      
 	        Button Exit = new Button("EXIT GAME");
 
-	        Exit.setOnAction(event -> Platform.exit());
+	        Exit.setOnAction(new EventHandler() {
+
+				@Override
+				public void handle(Event arg0) {
+					// TODO Auto-generated method stub
+					
+					Game g=new Game();
+					g.exit();
+					
+				}});
 	        
 	        Exit.setId("shiny-orange");
 	        Exit.setMaxWidth(150);
@@ -514,7 +531,8 @@ public class Main extends Application {
 	        t2.setTranslateX(160);
 	        t2.setTranslateY(-340);
 
-	        VBox vbox = new VBox(20,Start,Load, Exit);
+	        VBox vbox = new VBox(20,Start,Load, Exit,Run);
+	        //vbox.setAlignment(Pos.CENTER);
 	        VBox vbox2 = new VBox(20,Help);
 //	        Help.setLayoutX(100);
 //	        Help.setLayoutY(30);
@@ -537,6 +555,22 @@ public class Main extends Application {
 
 	        rt.setId("pane");
 	        Scene scene = new Scene(rt, 500, 750);
+	    	Run.setOnAction(new EventHandler() {
+
+				@Override
+				public void handle(Event arg0) {
+					Bonus bonus=new Bonus();
+					try {
+						bonus.startbonus(primaryStage,scene);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+	    		
+	    		
+	    	});
 	        
 	        Start.setOnAction(new EventHandler() {
 	        	
@@ -638,11 +672,11 @@ public class Main extends Application {
 				        } catch (Exception ex) {
 				            ex.printStackTrace();
 				        }
-						ball b=new ball();
+						ball b=new ball(speed);
 						Star s=new Star();
 						Stardeco d1=new Stardeco();
 						Square sq=new Square();
-						Quad q=new Quad();
+						Quad q=new Quad(speed);
 						Diamond d=new Diamond();
 						Cross cr=new Cross();
 						var root = new Pane();
@@ -959,7 +993,7 @@ public class Main extends Application {
 									lastTick = now;
 									tick++;
 									try {
-										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cslist,sq,cr,d,scene2,components,univstar,scene);
+										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cslist,sq,cr,d,scene2,components,univstar,scene,pl);
 									} catch (FileNotFoundException e) {
 										e.printStackTrace();
 									}
@@ -973,7 +1007,7 @@ public class Main extends Application {
 										speed=speed-(float)0.5;
 									}
 									try {
-										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cslist,sq,cr,d,scene2,components,univstar,scene);
+										sp.tick(mega,gc,obstacle,b,q,Start,primaryStage,starlist,cslist,sq,cr,d,scene2,components,univstar,scene,pl);
 									} catch (FileNotFoundException e) {
 										e.printStackTrace();
 									}
@@ -1013,6 +1047,8 @@ public class Main extends Application {
 					
 					
 				}});
+	        
+	        
 
 	        scene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
 
